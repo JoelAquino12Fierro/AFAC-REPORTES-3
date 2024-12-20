@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,3 +16,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+// Route::get('tables', [User::class, 'index'])->name('table.tables') ->middleware('auth.basic');  //Solo usuarios autenticados acceden
+
+// Para el diseño de las vistas
+Route::view('/table', 'table');
