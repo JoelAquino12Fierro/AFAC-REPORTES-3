@@ -20,4 +20,7 @@ Route::middleware([
 // Route::get('tables', [User::class, 'index'])->name('table.tables') ->middleware('auth.basic');  //Solo usuarios autenticados acceden
 
 // Para el diseño de las vistas
-Route::view('/table', 'table');
+Route::view('/table', 'table')->name('table');
+
+//para ver el diseño del formulario de nuevo registro
+Route::view('/newform', 'newform')->name('newform');

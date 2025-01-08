@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('BIENVENIDO A SISTEMAS DE INCIDENCIAS') }}
+            {{ __('BIENVENIDO AL SISTEMAS DE INCIDENCIAS') }}
         </h2>
     </x-slot>
 
