@@ -19,7 +19,7 @@
             </style>
         @endif
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased ">
         <div class="bg-gray-50 text-black/50">
             <!-- imagen de BACKGROUND -->
             <img id="background" class="absolute left-0 top-0 w-full" src="https://cdn-3.expansion.mx/dims4/default/80c66c8/2147483647/strip/true/crop/724x483+0+0/resize/1200x801!/format/webp/quality/60/?url=https%3A%2F%2Fcherry-brightspot.s3.amazonaws.com%2F0e%2Fea%2F4169f6b94c50a54cbbc2ad6b4c78%2Fistock-537714779.jpg" alt="Background de un avion " />
