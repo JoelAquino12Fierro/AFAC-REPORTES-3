@@ -11,7 +11,7 @@
 
             <div class="flex flex-row">
                 <div class="basis-1/7 mb-4 mr-2">
-                    <form action="{{ route('register') }}">
+                    <form action="{{ route('newform') }}">
                         @csrf
                         <button type="submit"
                             class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-sky-500 text-white hover:bg-sky-700 ">Nuevo
@@ -70,14 +70,10 @@
 
                             {{-- Eminiar --}}
                             <td>
-                                <form action="" method="">
-                                    @csrf
-                                    {{-- @method('DELETE') --}}
                                     <button type="submit"
                                         class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
                                         Eliminar
                                     </button>
-                                </form>
                             </td>
                             {{-- PDF --}}
                             <td>
@@ -99,10 +95,11 @@
         {{-- Modal de ver detalles --}}
 
 
+
+       
+
 <!-- Modal toggle -->
-<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-    Toggle modal
-  </button>
+
   
   
   

@@ -30,10 +30,10 @@
                         </div>
                     </div>
                     {{-- Para redirigir --}}
-                    {{-- <form action="{{route('')}}" method="GET">
-                        @csrf --}}
+                    <form action="{{route('reports')}}">
+                        @csrf 
                         <button type="submit">Ir al módulo</button>
-                    {{-- </form> --}}
+                    </form>
                 </div>
             </a>
 
@@ -56,8 +56,8 @@
                     </p>
                 </div>
                  {{-- Para redirigir --}}
-                 {{-- <form action="{{route('')}}" method="GET">
-                    @csrf --}}
+                 {{-- <form action="{{route('reports')}}">  --}}
+                    {{-- @csrf  --}}
                     <button type="submit">Ir al módulo</button>
                 {{-- </form> --}}
                 

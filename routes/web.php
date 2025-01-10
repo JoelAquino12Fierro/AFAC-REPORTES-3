@@ -25,5 +25,5 @@ Route::view('/table', 'table')->name('table');
 //para ver el diseño del formulario de nuevo registro
 Route::view('/newform', 'newform')->name('newform');
 
-//Ruta para el nuevo formulario
-Route::view('/newregister','newForm')->name('register');
+
+Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
