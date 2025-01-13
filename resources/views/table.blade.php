@@ -46,6 +46,7 @@
                 </thead>
                 <tbody>
                     <ul>
+                        
                         <tr class=" bg-white dark:bg-white dark:text-black-400 text-sm ">
 
                             <td class="px-6 py-3">2021</th>
@@ -91,18 +92,19 @@
                 </tbody>
             </table>
         </div>
+    </body>
+
+</x-app-layout>
 
         {{-- Modal de ver detalles --}}
 
 
 
+
        
 
-<!-- Modal toggle -->
 
   
   
   
         {{-- Modal de eliminar --}}
-    </body>
-</x-app-layout>
