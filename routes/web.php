@@ -29,4 +29,5 @@ Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
 // Rutas para los controllers
 Route::get('tables',[table::class, 'index'])->name('table.index')->middleware('auth.basic'); //Mostrar en tabla
 Route::put('/update/{id}', [table::class, 'update'])->name('reports.update'); //Editar
-Route::get('/reports/{id}/update', [table::class, 'edit'])->name('reports.edit')->middleware('auth.basic'); //vista editar
+Route::get('/reports/{id}/update', [table::class, 'edit'])->name('reports.edit'); //vista editar
+Route::delete('/delete/{id}', [table::class, 'destroy'])->name('reports.destroy')->middleware('auth.basic');

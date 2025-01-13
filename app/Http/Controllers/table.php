@@ -12,17 +12,24 @@ class table extends Controller
         $reporte = Reporte::paginate();
         return view('table', compact('reporte'));
     }
-    public function edit($id) //
+    public function edit($id) // Manda a la vista de actualizar
     {
-        // Encuentra al user
+        // Encuentra el reporte
         $reporte = Reporte::findOrFail($id);
         return view('update', compact('reporte'));
     }
-    // Actualizar
-    public function update(Request $request, $id)
+    
+    public function update(Request $request, $id) // Actualiza
     {
         $reporte = Reporte::findOrFail($id);
         $reporte->update($request->all());
-        return redirect()->route('table.tables')->with('success', 'Usuario actualizado correctamente');
+        return redirect()->route('table.index')->with('success', 'Usuario actualizado correctamente');
+    }
+    public function destroy($id) //Elimina
+    {
+        // Encuentra al usuario
+        $reporte = Reporte::findOrFail($id);
+        $reporte->delete();
+        return redirect()->route('table.index')->with('success', 'Usuario eliminado correctamente');
     }
 }

@@ -54,8 +54,8 @@
                                 <td class="px-6 py-3">{{ $reporte->report_date }} </td>
                                 <td class="px-6 py-3">{{ $reporte->area }} </td>
                                 <td class="px-6 py-3">{{ $reporte->system }}</td>
-                                <td class="px-6 py-3">{{$reporte->type_report}}</td>
-                                <td class="px-6 py-3">{{$reporte->reporting_user}} </td>
+                                <td class="px-6 py-3">{{ $reporte->type_report }}</td>
+                                <td class="px-6 py-3">{{ $reporte->reporting_user }} </td>
 
                                 {{--  botones --}}
 
@@ -69,13 +69,23 @@
                                         </button>
                                     </form>
                                 </td>
+                                {{-- <td>
+                                    <button type="button" data-id="{{ $reporte->id }}"
+                                        class="view-details w-1/8 py-3 px-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
+                                        Ver Detalles
+                                    </button>
+                                </td> --}}
 
                                 {{-- Eliminiar --}}
                                 <td>
-                                    <button type="submit"
-                                        class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
-                                        Eliminar
-                                    </button>
+                                    <form action="{{ route('reports.destroy', $reporte->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
+                                            Eliminar
+                                        </button>
+                                    </form>
                                 </td>
                                 {{-- PDF --}}
                                 <td>
@@ -94,6 +104,41 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Modal -->
+        {{-- <div id="deleteModal" class="fixed inset-0 items-center">
+
+        </div> --}}
+
+
+
+
+
+
+        {{-- Modal ver detalles --}}
+
+        {{-- <div id="detailsModal" class="fixed inset-0 flex items-center justify-center z-50 ">
+            <div class="bg-white w-1/3 rounded-lg shadow-lg ">
+                <div class="p-4 border-b">
+                    <h3 class="text-lg font-semibold">Detalles del Reporte</h3>
+                </div>
+                <div class="p-4">
+                    <p><strong>Folio:</strong> <span id="modalFolio"></span></p>
+                    <p><strong>Fecha de Solicitud:</strong> <span id="modalApplicationDate"></span></p>
+                    <p><strong>Fecha de Reporte:</strong> <span id="modalReportDate"></span></p>
+                    <p><strong>Área:</strong> <span id="modalArea"></span></p>
+                    <p><strong>Sistema:</strong> <span id="modalSystem"></span></p>
+                    <p><strong>Tipo de Reporte:</strong> <span id="modalTypeReport"></span></p>
+                    <p><strong>Usuario que Reporta:</strong> <span id="modalReportingUser"></span></p>
+                </div>
+</div>
+                <div class="p-4 border-t flex justify-end">
+                    <button id="closeModal"
+                        class="py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-700">Cerrar</button>
+                </div>
+            </div>
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+        </div> --}}
     </body>
 
 </x-app-layout>
