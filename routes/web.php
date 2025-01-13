@@ -1,7 +1,8 @@
 <?php
-
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\table;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,13 +18,15 @@ Route::middleware([
     })->name('dashboard');
 });
 
-// Route::get('tables', [User::class, 'index'])->name('table.tables') ->middleware('auth.basic');  //Solo usuarios autenticados acceden
+// Rutas para las vistas
 
-// Para el diseño de las vistas
 Route::view('/table', 'table')->name('table');
-
-//para ver el diseño del formulario de nuevo registro
-Route::view('/newform', 'newform')->name('newform');
-
-
+Route::view('/newform', 'newform')->name('newform'); //para ver el diseño del formulario de nuevo registro
 Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
+
+
+
+// Rutas para los controllers
+Route::get('tables',[table::class, 'index'])->name('table.index')->middleware('auth.basic'); //Mostrar en tabla
+Route::put('/update/{id}', [table::class, 'update'])->name('reports.update'); //Editar
+Route::get('/reports/{id}/update', [table::class, 'edit'])->name('reports.edit')->middleware('auth.basic'); //vista editar

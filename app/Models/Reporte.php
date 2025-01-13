@@ -21,4 +21,6 @@ class Reporte extends Model
         return
         $this->belongsTo(User::class,'reporting_user');
     }
+
+   
 }

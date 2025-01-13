@@ -46,48 +46,50 @@
                 </thead>
                 <tbody>
                     <ul>
-                        
-                        <tr class=" bg-white dark:bg-white dark:text-black-400 text-sm ">
+                        @foreach ($reporte as $reporte)
+                            <tr class=" bg-white dark:bg-white dark:text-black-400 text-sm ">
 
-                            <td class="px-6 py-3">2021</th>
-                            <td class="px-6 py-3">10/01/2025 </th>
-                            <td class="px-6 py-3">10/01/2025 </th>
-                            <td class="px-6 py-3">Área </th>
-                            <td class="px-6 py-3">Sistema</th>
-                            <td class="px-6 py-3">Tipo de reporte</th>
-                            <td class="px-6 py-3">Leslie Mendoza </th>
+                                <td class="px-6 py-3">{{ $reporte->folio }}</td>
+                                <td class="px-6 py-3">{{ $reporte->application_date }} </td>
+                                <td class="px-6 py-3">{{ $reporte->report_date }} </td>
+                                <td class="px-6 py-3">{{ $reporte->area }} </td>
+                                <td class="px-6 py-3">{{ $reporte->system }}</td>
+                                <td class="px-6 py-3">{{$reporte->type_report}}</td>
+                                <td class="px-6 py-3">{{$reporte->reporting_user}} </td>
 
                                 {{--  botones --}}
-                                {{-- Ver detalles --}}
-                            <td>
-                                <form action="" method="">
-                                    @csrf
-                                    <button type="submit"
-                                        class="w-1/8 py-3 px-6 single-line inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
-                                        Verdetalles
-                                    </button>
-                                </form>
-                            </td>
 
-                            {{-- Eminiar --}}
-                            <td>
+                                {{-- Ver detalles --}}
+                                <td>
+                                    <form action="{{ route('reports.edit', $reporte->id) }}" method="GET">
+                                        @csrf
+                                        <button type="submit"
+                                            class="w-1/8 py-3 px-6 single-line inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700">
+                                            Verdetalles
+                                        </button>
+                                    </form>
+                                </td>
+
+                                {{-- Eliminiar --}}
+                                <td>
                                     <button type="submit"
                                         class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700">
                                         Eliminar
                                     </button>
-                            </td>
-                            {{-- PDF --}}
-                            <td>
-                                <form action="" method="">
-                                    @csrf
-                                    {{-- @method('DELETE') --}}
-                                    <button type="submit"
-                                        class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-600 text-white hover:bg-orange-700">
-                                        PDF
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
+                                </td>
+                                {{-- PDF --}}
+                                <td>
+                                    <form action="" method="">
+                                        @csrf
+                                        {{-- @method('DELETE') --}}
+                                        <button type="submit"
+                                            class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-600 text-white hover:bg-orange-700">
+                                            PDF
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </ul>
                 </tbody>
             </table>
@@ -96,15 +98,15 @@
 
 </x-app-layout>
 
-        {{-- Modal de ver detalles --}}
+{{-- Modal de ver detalles --}}
 
 
 
 
-       
 
 
-  
-  
-  
-        {{-- Modal de eliminar --}}
+
+
+
+
+{{-- Modal de eliminar --}}

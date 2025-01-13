@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     {{-- Para redirigir --}}
-                    <form action="{{route('reports')}}">
+                    <form action="{{route('table.index')}}" method="GET">
                         @csrf 
                         <button type="submit">Ir al módulo</button>
                     </form>
@@ -56,10 +56,10 @@
                     </p>
                 </div>
                  {{-- Para redirigir --}}
-                 {{-- <form action="{{route('reports')}}">  --}}
-                    {{-- @csrf  --}}
+                 <form action="{{route('table.index')}}" method="GET">
+                    @csrf 
                     <button type="submit">Ir al módulo</button>
-                {{-- </form> --}}
+                </form>
                 
             </a>
 
