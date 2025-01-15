@@ -7,14 +7,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-<<<<<<< HEAD
-        "dompdf/dompdf": "^3.0",
-=======
         "barryvdh/laravel-dompdf": "^3.0",
         "codeat3/blade-codicons": "^1.33",
         "codeat3/blade-uiw-icons": "^1.5",
         "davidhsianturi/blade-bootstrap-icons": "^1.5",
->>>>>>> tabla
         "laravel/framework": "^11.31",
         "laravel/jetstream": "^5.3",
         "laravel/sanctum": "^4.0",
