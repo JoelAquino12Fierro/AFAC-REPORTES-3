@@ -110,9 +110,11 @@
             <td>
                 <form action="{{ route('reports.edit', $reporte->id) }}" method="GET">
                     @csrf
-                    <button type="submit"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        Verdetalles
+                    <button type="submit">
+                        {{-- class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        Verdetalles --}}
+                        <x-codicon-eye class="h-7 w-7 text-blue-700" />
+
                     </button>
                 </form>
             </td>
@@ -120,19 +122,24 @@
                 <form action="{{ route('reports.destroy', $reporte->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit"
-                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                        Eliminar
+                    <button type="submit">
+                        <x-uiw-delete  class="h-7 w-7 text-red-600"/>
+                        {{-- class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                        Eliminar --}}
                     </button>
                 </form>
             </td>
             {{-- PDF --}}
             <td>
-                <form action="" method="">
+                <form action="{{ route('pdf') }}" method="GET" >
                     @csrf
                     {{-- @method('DELETE') --}}
-                    <button type="button"
-                        class="text-orange-400 hover:text-white border border-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-orange-300 dark:text-orange-300 dark:hover:text-white dark:hover:bg-orange-400 dark:focus:ring-yellow-900">PDF</button>
+                    <button type="submit" >
+                    <x-bi-file-pdf class=" h-7 w-7 text-orange-400"  />
+                    </button>
+                    {{-- <button type="sumbit" --}}
+                    
+                        {{-- class="text-orange-400 hover:text-white border border-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-orange-300 dark:text-orange-300 dark:hover:text-white dark:hover:bg-orange-400 dark:focus:ring-yellow-900">PDF</button> --}}
                 </form>
             </td>
         </tr>
@@ -141,6 +148,10 @@
     </table>
 </div>
 
+
+
+
+  
 
     </body>
 

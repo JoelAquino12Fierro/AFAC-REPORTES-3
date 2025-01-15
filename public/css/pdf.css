@@ -1,0 +1,132 @@
+@page {
+    margin: 1cm;
+    font-family: Helvetica;
+}
+
+/* body:after {  Marca de agua */
+/* content: "AFAC"; 
+    font-size: 1cm;  
+    color: rgba(149, 168, 190);
+    z-index: 9999;
+    background-repeat: repeat;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+      
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none;
+  
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  } */
+
+table {
+    width: 100%;
+    border: 1px solid #999;
+    text-align: left;
+    border-collapse: collapse;
+    margin: 0 0 1em 0;
+    caption-side: top;
+    align-content: right;
+
+}
+
+th,
+td,
+tr {
+    border-bottom: 1px solid #999;
+    width: 25%
+}
+
+/* HEADER */
+.tablaHeader {
+    /* position:fixed; */
+    top: 0cm;
+    left: 0cm;
+}
+
+.logo {
+    float: left;
+    width: 4cm;
+}
+
+.AFAC {
+    position:center;
+    color: black;
+    font-size: small;
+    /* text-align: left; */
+    /* left: 0cm; */
+    /* padding-left: 0%; */
+}
+
+.folio {
+    text-align: right;
+    color: #003764;
+    font-size: xx-large;
+    padding-right: 5cm;
+
+}
+
+
+.usuarios {
+    font-family: Helvetica;
+    color: black;
+    font-size: medium;
+    font-weight: bolder;
+
+
+}
+
+
+
+/* .area{
+    background: white;
+     width:90px;
+      height: 50px; 
+      
+      margin-top: 50px;
+      border-color:black solid;
+      width: 30%;
+      border: 1px solid #999;
+
+    
+ }
+.sistema{
+    background: white;
+     width:90px;
+      height: 50px; 
+      display: inline-block; 
+      margin-top: 50px;
+      border-color:black solid;
+      width: 30%;
+      border: 1px solid #999;
+}
+.tipo{
+    background: white;
+     width:90px; 
+     height: 50px; 
+     display:inline-block; 
+     margin-top: 50px;
+     width: 30%;
+     border-radius: black;
+     border: 1px solid #999;
+}
+.encabezados1{
+    color: #003764;
+    font-weight: bolder;
+
+} */
+
+/* display: inline-block;  */
