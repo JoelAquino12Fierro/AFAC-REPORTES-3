@@ -22,6 +22,7 @@ Route::middleware([
 // Rutas para las vistas
 
 Route::view('/table', 'table')->name('table');
+Route::view('/catalogos', 'catalogos')->name('catalogos');
 Route::view('/newform', 'newform')->name('newform'); //para ver el diseño del formulario de nuevo registro
 Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
 
