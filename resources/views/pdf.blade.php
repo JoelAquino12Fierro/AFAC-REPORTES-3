@@ -26,18 +26,18 @@
                         DEPARTAMENTO DE TECNOLOGÍA INFORMÁTICA Y ATENCIÓN A USUARIOS</p>
                     </th>
                     <th>
-                        <th>
-                            Hoja
-                        </th>
-                        <th>
-                            Proceso
-                        </th>
-                        <th>
-                            Versión plantilla
-                        </th>
-                        <th>
-                            Fecha plantilla
-                        </th>
+                    <th>
+                        Hoja
+                    </th>
+                    <th>
+                        Proceso
+                    </th>
+                    <th>
+                        Versión plantilla
+                    </th>
+                    <th>
+                        Fecha plantilla
+                    </th>
                     </th>
                 </tr>
             </thead>
@@ -49,33 +49,41 @@
                     SOLICITUDES DE ATENCIÓN
                 </td>
                 <td>
-                    <td>
-                        1 de 1
-                    </td>
-                    <td>
-                        ADP
-                    </td>
-                    <td>
-                        1.0
-                    </td>
-                    <td>
-                        26/07/2024
-                    </td>
-                    DDE-DTI
+                <td>
+                    1 de 1
+                </td>
+                <td>
+                    ADP
+                </td>
+                <td>
+                    1.0
+                </td>
+                <td>
+                    26/07/2024
+                </td>
+                DDE-DTI
                 </td>
             </tbody>
         </table>
     </header>
 
-    <h2> Folio: </h2>
 
-    {{-- Segunda Tabla --}}
+
+
+
+
+    <div class="divFolio">
+        <h2 class="folio"> Folio: </h2>
+    </div>
     <table>
         <thead>
             <tr>
+                {{-- <div class="area"> --}}
                 <th>
                     Área:
                 </th>
+                {{-- </div> --}}
+
                 <th>
                     Sistema:
                 </th>
@@ -121,22 +129,22 @@
         </tbody>
 
     </table>
-    <h2>
-       SOLICITUD 
-    </h2>
+    <div class="divSolicitud">
+        <h2 class="solicitud">
+            SOLICITUD
+        </h2>
+    </div>
 
     <table>
         <thead>
             <tr>
-            <th>
-                Módulo
-            </th>
-            <th>
-                Descripción
-            </th>
-            <th>
-                Usuarios responsables
-            </th>
+                <th>
+                    Módulo
+                </th>
+                <th>
+                    Descripción
+                </th>
+
             <tr>
         </thead>
         <tbody>
@@ -147,18 +155,30 @@
                 <td>
                     Descripción
                 </td>
-                <td>
-                    Nombre:
-                    <br>
-                    Departamento:
-                    <br>
-                    Cargo:
-                    <br>
-                    Observaciones:
-                    <br>
-                </td>
+
             </tr>
 
+        </tbody>
+    </table>
+    <div class="divUsuarios">
+        <p class="usuarios">USUARIOS RESPONSABLES</p>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Departamentod</th>
+                <th>Cargo</th>
+                <th>Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Jorge Alberto Mondragón Escamilla</td>
+                <td>Desarrollo Estratégico</td>
+                <td>Insepector B</td>
+                <td> </td>
+            </tr>
         </tbody>
     </table>
 

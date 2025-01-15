@@ -1,9 +1,10 @@
 @page {
     margin: 1cm;
-    font-family:  Helvetica;
+    font-family: Helvetica;
 }
+
 /* body:after {  Marca de agua */
-    /* content: "AFAC"; 
+/* content: "AFAC"; 
     font-size: 1cm;  
     color: rgba(149, 168, 190);
     z-index: 9999;
@@ -30,23 +31,8 @@
     -o-user-select: none;
     user-select: none;
   } */
-/* HEADER */
-.tablaHeader{
-/* position:fixed; */
-top: 0cm;
-left: 0cm;
-}
 
-.logo{
-    float: left;
-    width: 3cm;
-}
-.AFAC{
-    position:center;
-    color:black;
-}
-
-table{
+table {
     width: 100%;
     border: 1px solid #999;
     text-align: left;
@@ -54,9 +40,93 @@ table{
     margin: 0 0 1em 0;
     caption-side: top;
     align-content: right;
+
 }
 
-th,td,tr{
+th,
+td,
+tr {
     border-bottom: 1px solid #999;
-   width: 25%
+    width: 25%
 }
+
+/* HEADER */
+.tablaHeader {
+    /* position:fixed; */
+    top: 0cm;
+    left: 0cm;
+}
+
+.logo {
+    float: left;
+    width: 4cm;
+}
+
+.AFAC {
+    position:center;
+    color: black;
+    font-size: small;
+    /* text-align: left; */
+    /* left: 0cm; */
+    /* padding-left: 0%; */
+}
+
+.folio {
+    text-align: right;
+    color: #003764;
+    font-size: xx-large;
+    padding-right: 5cm;
+
+}
+
+
+.usuarios {
+    font-family: Helvetica;
+    color: black;
+    font-size: medium;
+    font-weight: bolder;
+
+
+}
+
+
+
+/* .area{
+    background: white;
+     width:90px;
+      height: 50px; 
+      
+      margin-top: 50px;
+      border-color:black solid;
+      width: 30%;
+      border: 1px solid #999;
+
+    
+ }
+.sistema{
+    background: white;
+     width:90px;
+      height: 50px; 
+      display: inline-block; 
+      margin-top: 50px;
+      border-color:black solid;
+      width: 30%;
+      border: 1px solid #999;
+}
+.tipo{
+    background: white;
+     width:90px; 
+     height: 50px; 
+     display:inline-block; 
+     margin-top: 50px;
+     width: 30%;
+     border-radius: black;
+     border: 1px solid #999;
+}
+.encabezados1{
+    color: #003764;
+    font-weight: bolder;
+
+} */
+
+/* display: inline-block;  */
