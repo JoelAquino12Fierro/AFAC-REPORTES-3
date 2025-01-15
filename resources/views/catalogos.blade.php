@@ -18,7 +18,7 @@
                         <path
                             d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                     </svg>
-                    <span class="ms-3">Áreas</span>
+                    <span class="ms-3">ÁREAS</span>
                 </a>
 
 
@@ -30,7 +30,7 @@
                         <path
                             d="M14 4H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2ZM2 16v-6h12v6H2Z" />
                     </svg>
-                    <span class="ms-3">Módulos</span>
+                    <span class="ms-3">MÓDULOS</span>
                 </a>
 
 
@@ -43,21 +43,21 @@
                             d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Zm16 14a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2ZM4 13a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6Zm16-2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6Z" />
                     </svg>
 
-                    <span class="ms-3">Sitemas</span>
+                    <span class="ms-3">SISTEMAS</span>
                 </a>
 
             </div>
 
             {{-- Formularios --}}
-            <div class="block">
+            {{-- <div class="block"> --}}
                 {{-- Area --}}
                 <div class="basis-1/2 px-20 py-20 bg-white rounded-md ">
                     <form class="max-w-sm mx-auto">
                         <div class="mb-5">
                             <label for="area"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre área</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE ÁREA</label>
                             <input type="text" id="area"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Ingresa aquí..." required />
                         </div>
                         <button type="submit"
@@ -69,10 +69,10 @@
                     <form class="max-w-sm mx-auto">
                         <div class="mb-5">
                             <label for="sistema"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del
-                                sistema</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE DEL SISTEMA
+                                </label>
                             <input type="sistema" id="sistema"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border uppercase  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Ingresa aquí..." required />
                         </div>
                         <button type="submit"
@@ -80,15 +80,14 @@
                     </form>
                 </div>
 
-
+{{-- Módulo --}}
                 <div class="basis-1/2 px-20 py-20 bg-white rounded-md ">
                     <form class="max-w-sm mx-auto">
                         <div class="mb-5">
                             <label for="módulo"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del
-                                módulo</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE DEL MÓDULO</label>
                             <input type="módulo" id="módulo"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 uppercase border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Ingresa aquí..." required />
                         </div>
                         <button type="submit"
@@ -96,7 +95,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        {{-- </div> --}}
 
     </body>
 </x-app-layout>
