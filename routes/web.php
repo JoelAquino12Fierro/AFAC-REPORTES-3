@@ -3,6 +3,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\table;
+use Barryvdh\DomPDF\Facade\Pdf AS PDF;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,3 +32,9 @@ Route::get('tables',[table::class, 'index'])->name('table.index')->middleware('a
 Route::put('/update/{id}', [table::class, 'update'])->name('reports.update'); //Editar
 Route::get('/reports/{id}/update', [table::class, 'edit'])->name('reports.edit'); //vista editar
 Route::delete('/delete/{id}', [table::class, 'destroy'])->name('reports.destroy')->middleware('auth.basic');
+
+Route::get('/pdf', function (){
+    $pdf = PDF::loadView('pdf');
+    return $pdf->stream();
+}) ->name('pdf');
+//Temporal para la creacíon del pdf

@@ -1,0 +1,62 @@
+@page {
+    margin: 1cm;
+    font-family:  Helvetica;
+}
+/* body:after {  Marca de agua */
+    /* content: "AFAC"; 
+    font-size: 1cm;  
+    color: rgba(149, 168, 190);
+    z-index: 9999;
+    background-repeat: repeat;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+      
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none;
+  
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  } */
+/* HEADER */
+.tablaHeader{
+/* position:fixed; */
+top: 0cm;
+left: 0cm;
+}
+
+.logo{
+    float: left;
+    width: 3cm;
+}
+.AFAC{
+    position:center;
+    color:black;
+}
+
+table{
+    width: 100%;
+    border: 1px solid #999;
+    text-align: left;
+    border-collapse: collapse;
+    margin: 0 0 1em 0;
+    caption-side: top;
+    align-content: right;
+}
+
+th,td,tr{
+    border-bottom: 1px solid #999;
+   width: 25%
+}
