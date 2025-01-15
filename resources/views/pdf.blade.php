@@ -124,7 +124,44 @@
     <h2>
        SOLICITUD 
     </h2>
-    
+
+    <table>
+        <thead>
+            <tr>
+            <th>
+                Módulo
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Usuarios responsables
+            </th>
+            <tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    CITAS AGENDADAS
+                </td>
+                <td>
+                    Descripción
+                </td>
+                <td>
+                    Nombre:
+                    <br>
+                    Departamento:
+                    <br>
+                    Cargo:
+                    <br>
+                    Observaciones:
+                    <br>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
 
 
 </body>
