@@ -121,6 +121,10 @@
         </tbody>
 
     </table>
+    <h2>
+       SOLICITUD 
+    </h2>
+    
 
 
 </body>
