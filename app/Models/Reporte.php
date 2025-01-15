@@ -11,6 +11,18 @@ class Reporte extends Model
     use HasFactory;
 
     protected $table = 'reporte';
+    
+    protected $fillable = [
+        'folio',
+        'application_date',
+        'report_date',
+        'area',
+        'system',
+        'type_report',
+        'actions',
+        'description',
+        'evidence',
+    ];
 
     public static function getRecentReports(){
         return

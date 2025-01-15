@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\newformController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,5 @@ Route::middleware([
 Route::view('/table', 'table')->name('table');
 
 //para ver el diseño del formulario de nuevo registro
-Route::view('/newform', 'newform')->name('newform');
+Route::get('/newform', [newformController::class, 'create'])->name('newform.create');
+Route::post('/newform', [newformController::class, 'store'])->name('newform.store');
