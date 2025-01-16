@@ -23,6 +23,16 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('modules_systems', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('id_systems');
+            $table->unsignedBigInteger('id_modules');
+            $table->timestamps();
+
+            $table->foreign('id_systems')->references('id')->on('systems')->onDelete('cascade');
+            $table->foreign('id_modules')->references('id')->on('modules')->onDelete('cascade');
+        });
+
       
     }
 
@@ -33,5 +43,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('systems');
         Schema::dropIfExists('modules');
+        Schema::dropIfExists('modules_systems');
     }
 };

@@ -96,13 +96,13 @@
                                     {{ $reporte->report_date }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $reporte->area }}
+                                    {{ $reporte->areas }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $reporte->system }}
+                                    {{ $reporte->systems }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $reporte->type_report }}
+                                    {{ $reporte->types_reports }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $reporte->reporting_user }}
