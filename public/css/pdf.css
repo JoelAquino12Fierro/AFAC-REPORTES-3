@@ -32,24 +32,7 @@
     user-select: none;
   } */
 
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
-}
-
-.container {
-    width: 90%;
-    margin: 0 auto;
-}
-
-.logo{
-    float: left;
-    width: 3cm;
-}
-
-header {
+  header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -74,7 +57,47 @@ header {
 
 .header-right td {
     border: 1px solid #000;
-    padding: 5px;
+    padding: 2px;
+}
+
+
+.info, .descripcion, .solicitud, .usuarios {
+    
+}
+
+.info table, .solicitud table, .usuarios table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+.descripcion h4, .solicitud h4, .usuarios h4 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+}
+
+/* mis estilos */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.logo{
+  float: center;
+  width: 3cm;
+}
+
+.header-right p, td {
+    text-align: center;
+    font-size: 11px;
 }
 
 .folio {
@@ -83,66 +106,27 @@ header {
     margin: 10px 0;
 }
 
-.info, .descripcion, .solicitud, .usuarios {
-    margin-bottom: 20px;
-}
-
-.info table, .solicitud table, .usuarios table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
 .info td, .solicitud td, .usuarios td, .solicitud th, .usuarios th {
-    border: 1px solid #000;
+    border: 1px solid #000000;
     padding: 5px;
     text-align: left;
     font-size: 12px;
 }
 
-.descripcion h4, .solicitud h4, .usuarios h4 {
+.info {
+
+}
+
+.descripcion {
+    border-collapse: collapse;
+}
+
+.solicitud th {
+    text-align: center;
+    font-size: medium;
+}
+
+.usuarios h4 {
     margin: 0 0 10px 0;
     font-size: 14px;
 }
-
-
-
-
-/* .area{
-    background: white;
-     width:90px;
-      height: 50px; 
-      
-      margin-top: 50px;
-      border-color:black solid;
-      width: 30%;
-      border: 1px solid #999;
-
-    
- }
-.sistema{
-    background: white;
-     width:90px;
-      height: 50px; 
-      display: inline-block; 
-      margin-top: 50px;
-      border-color:black solid;
-      width: 30%;
-      border: 1px solid #999;
-}
-.tipo{
-    background: white;
-     width:90px; 
-     height: 50px; 
-     display:inline-block; 
-     margin-top: 50px;
-     width: 30%;
-     border-radius: black;
-     border: 1px solid #999;
-}
-.encabezados1{
-    color: #003764;
-    font-weight: bolder;
-
-} */
-
-/* display: inline-block;  */
