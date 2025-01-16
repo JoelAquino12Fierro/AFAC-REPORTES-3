@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Reporte;
 use Illuminate\Http\Request;
 
-class table extends Controller
+class tableController extends Controller
 {
     public function index() //Mostrar en tabla
     { 
