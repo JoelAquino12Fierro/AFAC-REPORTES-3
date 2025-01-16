@@ -16,6 +16,12 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors:{
+                'azul-afac':'rgba(0,55,100)',
+                'dorado-afac':'rgba(188,149,92)',
+                'azul-secundario':'rgba(149,168,190)',
+                'dorado-secundario':'rgba(216,190,154)',
+            }
         },
     },
 

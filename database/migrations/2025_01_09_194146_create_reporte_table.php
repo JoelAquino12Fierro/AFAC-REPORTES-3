@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reporte', function (Blueprint $table) {
-            $table->id();
-            $table->string('folio')->unique();
-            $table->date('application_date');
-            $table->date('report_date');
-            $table->string('area');
-            $table->string('system');
-            $table->string('type_report');
-            $table->unsignedBigInteger('reporting_user');
-            $table->string('actions');
+            $table->id(); 
+            $table->string('folio')->unique(); //Folio
+            $table->date('application_date'); //Fecha creación
+            $table->date('report_date'); //Fecha del reporte
+            $table->string('area'); //Area
+            $table->string('system'); //Sistema
+            $table->string('type_report'); //Tipo
+            $table->unsignedBigInteger('reporting_user'); //usuario
+            $table->string('actions');  //
             $table->text('description')->nullable();
             $table->string('evidence')->nullable(); //string de la ruta de la imagen
             $table->timestamps();
