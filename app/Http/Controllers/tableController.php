@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Models\Report;
+use App\Models\Area;
+use App\Models\System;
 use Illuminate\Http\Request;
 
 class tableController extends Controller
 {
     public function index() //Mostrar en tabla
     { 
+        // Para traer los nombres
+        // $reportes = Report::with(['types_reports'])->get();
+        // return view('table', compact('reportes'));
         $reporte = Report::paginate();
         return view('table', compact('reporte'));
     }

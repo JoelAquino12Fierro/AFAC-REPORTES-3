@@ -99,9 +99,11 @@
                                     {{ $reporte->areas }}
                                 </td>
                                 <td class="px-6 py-4">
+                                    {{-- {{ $reporte->systems->name }} --}}
                                     {{ $reporte->systems }}
                                 </td>
                                 <td class="px-6 py-4">
+                                    {{-- {{ $reporte->types_reports->name_types_reports}} --}}
                                     {{ $reporte->types_reports }}
                                 </td>
                                 <td class="px-6 py-4">
