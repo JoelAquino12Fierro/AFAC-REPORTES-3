@@ -3,36 +3,9 @@
     font-family: Helvetica;
 }
 
-/* body:after {  Marca de agua */
-/* content: "AFAC"; 
-    font-size: 1cm;  
-    color: rgba(149, 168, 190);
-    z-index: 9999;
-    background-repeat: repeat;
-   
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-      
-    -webkit-pointer-events: none;
-    -moz-pointer-events: none;
-    -ms-pointer-events: none;
-    -o-pointer-events: none;
-    pointer-events: none;
-  
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-  } */
 
-  header {
+
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,7 +13,8 @@
     padding: 10px 0;
 }
 
-.header-left h2, .header-left h3 {
+.header-left h2,
+.header-left h3 {
     margin: 0;
     font-size: 16px;
 }
@@ -61,17 +35,22 @@
 }
 
 
-.info, .descripcion, .solicitud, .usuarios {
-    
-}
+/* .info,
+.descripcion,
+.solicitud,
+.usuarios {} */
 
-.info table, .solicitud table, .usuarios table {
+.info table,
+.solicitud table,
+.usuarios table {
     width: 100%;
     border-collapse: collapse;
 }
 
 
-.descripcion h4, .solicitud h4, .usuarios h4 {
+.descripcion h4,
+.solicitud h4,
+.usuarios h4 {
     margin: 0 0 10px 0;
     font-size: 14px;
 }
@@ -79,23 +58,24 @@
 /* mis estilos */
 
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.5;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
 }
 
 .container {
-  width: 90%;
-  margin: 0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
-.logo{
-  float: center;
-  width: 3cm;
+.logo {
+    float: center;
+    width: 3cm;
 }
 
-.header-right p, td {
+.header-right p,
+td {
     text-align: center;
     font-size: 11px;
 }
@@ -106,16 +86,18 @@ body {
     margin: 10px 0;
 }
 
-.info td, .solicitud td, .usuarios td, .solicitud th, .usuarios th {
+.info td,
+.solicitud td,
+.usuarios td,
+.solicitud th,
+.usuarios th {
     border: 1px solid #000000;
     padding: 5px;
     text-align: left;
     font-size: 12px;
 }
 
-.info {
-
-}
+/* .info {} */
 
 .descripcion {
     border-collapse: collapse;
