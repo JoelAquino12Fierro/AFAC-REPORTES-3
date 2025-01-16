@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Registros') }}
+            {{ __('REGISTRO') }}
         </h2>
     </x-slot>
 
@@ -84,7 +84,7 @@
         <tbody>
             @foreach ($reporte as $reporte)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" class=" uppercase px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ $reporte->folio }}
                 </th>
                 <td class="px-6 py-4">
@@ -93,16 +93,16 @@
                 <td class="px-6 py-4">
                     {{ $reporte->report_date }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 uppercase">
                     {{ $reporte->area }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 uppercase">
                     {{ $reporte->system }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 uppercase">
                     {{ $reporte->type_report }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 uppercase">
                     {{ $reporte->reporting_user }}
                 </td>
                 
