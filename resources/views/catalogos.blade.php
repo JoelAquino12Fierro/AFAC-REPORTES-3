@@ -50,28 +50,30 @@
 
             {{-- Formularios --}}
             {{-- <div class="block"> --}}
-                {{-- Area --}}
-                <div class="basis-1/2 px-20 py-20 bg-white rounded-md ">
-                    <form class="max-w-sm mx-auto">
+            {{-- Area --}}
+            <div class="basis-1/2 px-20 py-20 bg-white rounded-md ">
+                <form class="max-w-sm mx-auto" action="{{ route('register.area') }}" method="POST">
+                    @csrf {{-- TOKEN --}}
+                    <div class="mb-5">
+                        <label for="area"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE ÁREA</label>
+                        <input type="text" id="area" name="area"
+                            class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Ingresa aquí..." required />
+                    </div>
+                    <button type="submit"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Registrar</button>
+                </form>
+            </div>
+            {{-- Sistema --}}
+            <div class="basis-1/2 px-20 py-20 bg-white rounded-md ">
+                    <form class="max-w-sm mx-auto" action="{{ route('register.system') }}" method="POST">
+                        @csrf {{-- TOKEN --}}
                         <div class="mb-5">
-                            <label for="area"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE ÁREA</label>
-                            <input type="text" id="area"
-                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Ingresa aquí..." required />
-                        </div>
-                        <button type="submit"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Registrar</button>
-                    </form>
-                </div>
-                {{-- Sistema --}}
-                <div class="basis-1/2 px-20 py-20 bg-white rounded-md ">
-                    <form class="max-w-sm mx-auto">
-                        <div class="mb-5">
-                            <label for="sistema"
+                            <label for="system"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRE DEL SISTEMA
                                 </label>
-                            <input type="sistema" id="sistema"
+                            <input type="system" id="system" name="system"
                                 class="bg-gray-50 border uppercase  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Ingresa aquí..." required />
                         </div>
@@ -80,8 +82,8 @@
                     </form>
                 </div>
 
-{{-- Módulo --}}
-                <div class="basis-1/2 px-20 py-20 bg-white rounded-md ">
+            {{-- Módulo --}}
+            {{-- <div class="basis-1/2 px-20 py-20 bg-white rounded-md ">
                     <form class="max-w-sm mx-auto">
                         <div class="mb-5">
                             <label for="módulo"
@@ -93,8 +95,8 @@
                         <button type="submit"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Registrar</button>
                     </form>
-                </div>
-            </div>
+                </div> --}}
+        </div>
         {{-- </div> --}}
 
     </body>
