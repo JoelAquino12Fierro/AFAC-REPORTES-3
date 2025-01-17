@@ -99,7 +99,7 @@
                                     {{ $reporte->areas }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{-- {{ $reporte->systems->name }} --}}
+                                    {{-- {{ $reporte->systems->systems_name }} --}}
                                     {{ $reporte->systems }}
                                 </td>
                                 <td class="px-6 py-4">

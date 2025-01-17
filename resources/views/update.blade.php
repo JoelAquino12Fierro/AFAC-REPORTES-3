@@ -41,7 +41,7 @@
                             {{-- <input type="area" name="area" id="area" value="{{ old('area', $reporte->area) }}" --}}
                             <select id="area"
                                 class="w-full rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900">
-                                <option value="{{ old('area', $reporte->area) }}"></option>
+                                <option value="{{ old('area', $reporte->areas) }}"></option>
                                 <option value="desarrollo_estrategico">Desarrollo estratégico</option>
                                 <option value="recursos_humanos">Recursos humanos</option>
                                 <option value="ventanilla">Ventanilla</option>
@@ -58,7 +58,7 @@
                             {{-- <input type="system" name="system" id="system" value="{{ old('system', $reporte->system) }}"> --}}
                             <select id="system"
                                 class="w-full rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900">
-                                <option value="{{ old('system', $reporte->system) }}"></option>
+                                <option value="{{ old('system', $reporte->systems) }}"></option>
                             </select>
                             {{-- class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"> --}}
                             @error('system')
@@ -71,7 +71,7 @@
                             {{-- <input type="type_report" name="type_report" id="type_report" value="{{ old('type_report', $reporte->type_report) }}"> --}}
                             <select id="type_report"
                                 class="w-full rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900">
-                                <option value="{{ old('type_report', $reporte->type_report) }}"></option>
+                                <option value="{{ old('type_report', $reporte->types_reports) }}"></option>
                                 <option value="incidencia">Incidencia</option>
                                 <option value="falla">Falla</option>
                                 <option value="solicitud">Solicitud</option>
