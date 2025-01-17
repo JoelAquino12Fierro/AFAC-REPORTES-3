@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Report;
-use App\Models\Area;
-use App\Models\System;
+
 use Illuminate\Http\Request;
 
 class tableController extends Controller

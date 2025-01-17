@@ -4,6 +4,7 @@ use App\Http\Controllers\areaController;
 use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tableController;
+use App\Http\Controllers\userController;
 use Barryvdh\DomPDF\Facade\Pdf AS PDF;
 
 Route::get('/', function () {
@@ -23,7 +24,8 @@ Route::middleware([
 // Rutas para las vistas
 
 Route::view('/table', 'table')->name('table');
-Route::view('/catalogos', 'catalogos')->name('catalogos');
+Route::view('/catalogos', 'catalogos')->name('catalogos'); //Ver en la barra de navegacion
+
 Route::view('/newform', 'newform')->name('newform'); //para ver el diseño del formulario de nuevo registro
 Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
 
@@ -46,3 +48,5 @@ Route::get('/pdf', function (){
 Route::post('newArea', [areaController::class, 'store'])->name('register.area');
 Route::post('newSystem', [systemController::class, 'store'])->name('register.system');
 
+// Ruta para la tabla de usuarios
+Route::get('users',[userController::class, 'index'])->name('users')->middleware('auth.basic');
