@@ -13,4 +13,11 @@ class userController extends Controller
         $user = User::paginate();
         return view('users', compact('user'));
     }
+
+    // Para agregar un nuevo usuario
+    public function store(Request $request)
+    {
+
+    }
+
 }
