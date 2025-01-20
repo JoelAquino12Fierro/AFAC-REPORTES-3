@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,10 @@ class userController extends Controller
         return view('users', compact('user'));
     }
 
-    // Para agregar un nuevo usuario
-    public function store(Request $request)
+    public function create_function()
     {
-
+        $data=Role::all();
+        return view('newuser',compact('data'));
     }
 
 }

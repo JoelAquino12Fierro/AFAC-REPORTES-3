@@ -28,6 +28,7 @@ return new class extends Migration
             $table->unsignedBigInteger('systems'); //Sistema
             $table->unsignedBigInteger('types_reports'); //Tipo
             $table->unsignedBigInteger('reporting_user'); //usuario
+            $table->boolean('status')->default('0');
             $table->timestamps();
 
             $table->foreign('reporting_user')->references('id')->on('users')->onDelete('cascade');

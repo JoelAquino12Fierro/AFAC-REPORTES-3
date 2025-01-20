@@ -52,7 +52,7 @@ Route::post('newSystem', [systemController::class, 'store'])->name('register.sys
 
 // Ruta para la tabla de usuarios
 Route::get('users',[userController::class, 'index'])->name('users')->middleware('auth.basic');
-Route::get('newuser',[newuserController::class,'create_function'])->name('newuser')->middleware('auth.basic');
+Route::get('newuser',[userController::class,'create_function'])->name('newuser')->middleware('auth.basic');
 
 //Rutas de nuevo reporte
 Route::get('/newform', [newformController::class,'create_function'])->name('newform')->middleware('auth.basic'); //para ver el diseño del formulario de nuevo registro
