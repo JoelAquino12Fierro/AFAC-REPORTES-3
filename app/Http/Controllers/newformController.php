@@ -18,7 +18,7 @@ class newformController extends Controller
     // CONTROLADOR DE EL FORMULARIO QUE CREA REPORTES NUEVOS 
 
     public function store(Request $request){
-        dd($request->all());
+        //dd($request->all());
 
         $validated = $request->validate([
             'report_date' => 'nullable|date',
