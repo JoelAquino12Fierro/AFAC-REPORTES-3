@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\modules_system;
 use App\Models\Report;
 use App\Models\System;
 use App\Models\types_report;
@@ -27,11 +28,11 @@ class tableController extends Controller
     {
         // Encuentra el reporte
         $reporte = Report::findOrFail($id);
-        $area=Area::all();
-        $system=System::all();
-        $type=types_report::all();
-        $user=User::all();
-        return view('update', compact('reporte','area','system','type','user'));
+        // Encuentra el sistema
+        // $systems=System::findOrFail($id);
+
+        $modules_system=modules_system::all();
+        return view('verDetalles', compact('reporte','modules_system'));
     }
     
     public function update(Request $request, $id) // Actualiza
