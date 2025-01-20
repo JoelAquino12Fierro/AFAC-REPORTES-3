@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Usuarios') }}
+            {{ __('USUARIOS') }}
         </h2>
     </x-slot>
 
@@ -31,8 +31,9 @@
 
 
                     <div class="top-0 righ-0 mt-2">
-                        <form>
-                            <button type="button"
+                        <form class="{{route('newuser')}}" method="GET" >
+                            @csrf
+                            <button type="submit"
                                 class="mt-4 right-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <x-ik-add class="h-5 w-5" />
                                 Nuevo

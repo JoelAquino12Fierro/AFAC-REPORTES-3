@@ -28,7 +28,7 @@ Route::view('/catalogos', 'catalogos')->name('catalogos'); //Ver en la barra de 
 
 Route::view('/newform', 'newform')->name('newform'); //para ver el diseño del formulario de nuevo registro
 Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
-
+Route::view('/newuser','newuser')->name('newuser');
 
 
 // Rutas para los controllers TABLA
