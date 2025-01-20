@@ -86,27 +86,27 @@
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    class="uppercase px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $reporte->folio }}
                                 </th>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 uppercase">
                                     {{ $reporte->application_date }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 uppercase">
                                     {{ $reporte->report_date }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 uppercase">
                                     {{ $reporte->area->areas_name}}  
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 uppercase">
                                     {{ $reporte->system->systems_name}}
                               
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 uppercase">
                                     {{ $reporte->type->name_types_reports}}
                             
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 uppercase">
                                     {{-- como se define el foreach->la funcion del modelo->lo que se quiere traer --}}
                                     {{ $reporte->user->name }}
                                 </td>

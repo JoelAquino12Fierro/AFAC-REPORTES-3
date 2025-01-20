@@ -27,7 +27,11 @@ class tableController extends Controller
     {
         // Encuentra el reporte
         $reporte = Report::findOrFail($id);
-        return view('update', compact('reporte'));
+        $area=Area::all();
+        $system=System::all();
+        $type=types_report::all();
+        $user=User::all();
+        return view('update', compact('reporte','area','system','type','user'));
     }
     
     public function update(Request $request, $id) // Actualiza

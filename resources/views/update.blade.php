@@ -41,15 +41,13 @@
                             {{-- <input type="area" name="area" id="area" value="{{ old('area', $reporte->area) }}" --}}
                             <select id="area"
                                 class="w-full rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900">
-                                <option value="{{ old('area', $reporte->areas) }}"></option>
-                                <option value="desarrollo_estrategico">Desarrollo estratégico</option>
-                                <option value="recursos_humanos">Recursos humanos</option>
-                                <option value="ventanilla">Ventanilla</option>
+                                {{-- <option value="" class="uppercase">--Selecciona una área--</option> --}}
+                                <option {{ old('area') == $key ? "selected" : "" }} value="{{ $value }}">
+                                @foreach ($area as $area)
+                                    <option class="uppercase" value="{{ $area->id }}">{{ $area->areas_name }}
+                                    </option>
+                                @endforeach
                             </select>
-                            {{-- class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"> --}}
-                            @error('area')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
                         </div>
 
                         {{-- Sistema --}}
@@ -58,12 +56,12 @@
                             {{-- <input type="system" name="system" id="system" value="{{ old('system', $reporte->system) }}"> --}}
                             <select id="system"
                                 class="w-full rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900">
-                                <option value="{{ old('system', $reporte->systems) }}"></option>
+                                <option value="" class="uppercase">--Selecciona un sistema--</option>
+                                @foreach ($system as $system)
+                                    <option class="uppercase" value="{{ $system->id }}">{{ $system->systems_name }}
+                                    </option>
+                                @endforeach
                             </select>
-                            {{-- class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"> --}}
-                            @error('system')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
                         </div>
                         {{--  Tipo --}}
                         <div class="mb-4">
@@ -71,26 +69,25 @@
                             {{-- <input type="type_report" name="type_report" id="type_report" value="{{ old('type_report', $reporte->type_report) }}"> --}}
                             <select id="type_report"
                                 class="w-full rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900">
-                                <option value="{{ old('type_report', $reporte->types_reports) }}"></option>
-                                <option value="incidencia">Incidencia</option>
-                                <option value="falla">Falla</option>
-                                <option value="solicitud">Solicitud</option>
+
+                                <option value="" class="uppercase">--Selecciona el tipo--</option>
+                                @foreach ($type as $type)
+                                    <option class="uppercase" value="{{ $type->id }}">
+                                        {{ $type->name_types_reports }}</option>
+                                @endforeach
                             </select>
-                            {{-- class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"> --}}
-                            @error('type_report')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
                         </div>
 
                         {{-- Usuario --}}
                         <div class="mb-4">
                             <label for="reporting_user" class="block text-sm font-medium text-gray-700">Usuario</label>
-                            <input type="reporting_user" name="reporting_user" id="reporting_user"
-                                value="{{ old('reporting_user', $reporte->reporting_user) }}"
-                                class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            @error('reporting_user')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
+                            <select id="reporting_user"
+                                class="w-full rounded-md bg-white py-1.5 pl-3 pr-8 text-base text-gray-900">
+                                <option value="" class="uppercase">--Selecciona al usuario--</option>
+                                @foreach ($user as $user)
+                                    <option class="uppercase" value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
 
