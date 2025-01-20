@@ -11,7 +11,7 @@
 
             <div class="flex flex-row">
                 <div class="basis-1/7 mb-4 mr-2">
-                    <form action="{{ route('newform') }}">
+                    <form action="{{ route('newform') }}" method="GET">
                         @csrf
                         <button type="submit"
                             class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-700 text-white hover:bg-blue-800 ">Nuevo

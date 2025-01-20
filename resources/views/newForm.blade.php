@@ -127,10 +127,12 @@
                             <label for="area"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Área</label>
                             <select id="area"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                                <option></option>
-
+                                <option value="" class="uppercase">--Selecciona una área--</option>
+                                @foreach($area as $area)
+                                <option class="uppercase" value="{{$area->id}}">{{$area->areas_name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         {{-- sistema --}}
@@ -138,9 +140,12 @@
                             <label for="system"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sistema</label>
                             <select id="system"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                                <option></option>
+                                <option value="" class="uppercase">--Selecciona un sistema--</option>
+                                @foreach($system as $system)
+                                <option class="uppercase" value="{{$system->id}}">{{$system->systems_name}}</option>
+                                @endforeach
 
                             </select>
                         </div>
@@ -150,9 +155,12 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo
                                 de reporte</label>
                             <select id="type_report"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                                <option></option>
+                                <option value="" class="uppercase">--Selecciona el tipo--</option>
+                                @foreach($type as $type)
+                                <option class="uppercase" value="{{$type->id}}">{{$type->name_types_reports}}</option>
+                                @endforeach
 
                             </select>
                         </div>
@@ -170,9 +178,12 @@
                             <label for="report_user"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario</label>
                             <select id="report_user"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                                <option></option>
+                                <option value="" class="uppercase">--Selecciona al usuario--</option>
+                                @foreach($user as $user)
+                                <option class="uppercase" value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
 
                             </select>
                         </div>
@@ -181,7 +192,7 @@
                             <label for="description"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
                             <input type="textarea" id="description" name="description"
-                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                class="uppercase shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                                 placeholder="Ingresa aquí" required />
                         </div>
                         {{-- Evidencia --}}

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\areaController;
+use App\Http\Controllers\newformController;
+use App\Http\Controllers\newuserController;
 use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tableController;
@@ -26,9 +28,9 @@ Route::middleware([
 Route::view('/table', 'table')->name('table');
 Route::view('/catalogos', 'catalogos')->name('catalogos'); //Ver en la barra de navegacion
 
-Route::view('/newform', 'newform')->name('newform'); //para ver el diseño del formulario de nuevo registro
+
 Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
-Route::view('/newuser','newuser')->name('newuser');
+
 
 
 // Rutas para los controllers TABLA
@@ -50,3 +52,7 @@ Route::post('newSystem', [systemController::class, 'store'])->name('register.sys
 
 // Ruta para la tabla de usuarios
 Route::get('users',[userController::class, 'index'])->name('users')->middleware('auth.basic');
+Route::get('newuser',[newuserController::class,'create_function'])->name('newuser')->middleware('auth.basic');
+
+//Rutas de nuevo reporte
+Route::get('/newform', [newformController::class,'create_function'])->name('newform')->middleware('auth.basic'); //para ver el diseño del formulario de nuevo registro
