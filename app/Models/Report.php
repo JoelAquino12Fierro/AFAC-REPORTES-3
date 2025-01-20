@@ -8,18 +8,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Report extends Model
 {
-    // Para imprimir en la tabla
-    // use HasFactory;
+    
+    // Para imprimir los nombres de la relaciones
+    protected $fillable = ['systems', 'areas', 'types_reports','reporting_user'];
 
-    // protected $fillable = ['systems', 'areas'];
-
-    public function system()
+    public function system() //Funcionando
     {
-        return $this->hasOne(System::class, 'id', 'report_id');
+        return $this->hasOne(System::class,'id','systems');
     }
 
-    public function area()
+    public function area() //Funcionando
     {
-        return $this->hasOne(Area::class);
+        return $this->hasOne(Area::class,'id','areas');
+
+    }
+    public function type()
+    {
+        return $this->hasOne(types_report::class,'id','types_reports');
+    }
+    public function user()
+    {
+        return $this->hasOne(User::class,'id','reporting_user');
     }
 }

@@ -96,22 +96,19 @@
                                     {{ $reporte->report_date }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{-- @foreach($area as $area) --}}
-                                    {{ $reporte->areas}}
-                                    {{-- {{ $reporte->area->areas_name}} --}}
-                                    {{-- @endforeach --}}
-                                    
+                                    {{ $reporte->area->areas_name}}  
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{-- {{ $reporte->systems->systems_name }} --}}
-                                    {{ $reporte->systems }}
+                                    {{ $reporte->system->systems_name}}
+                              
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{-- {{ $reporte->types_reports->name_types_reports}} --}}
-                                    {{ $reporte->types_reports }}
+                                    {{ $reporte->type->name_types_reports}}
+                            
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $reporte->reporting_user }}
+                                    {{-- como se define el foreach->la funcion del modelo->lo que se quiere traer --}}
+                                    {{ $reporte->user->name }}
                                 </td>
 
 
