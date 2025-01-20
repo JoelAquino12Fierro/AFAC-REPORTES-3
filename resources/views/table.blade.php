@@ -96,7 +96,11 @@
                                     {{ $reporte->report_date }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $reporte->areas }}
+                                    {{-- @foreach($area as $area) --}}
+                                    {{ $reporte->areas}}
+                                    {{-- {{ $reporte->area->areas_name}} --}}
+                                    {{-- @endforeach --}}
+                                    
                                 </td>
                                 <td class="px-6 py-4">
                                     {{-- {{ $reporte->systems->systems_name }} --}}

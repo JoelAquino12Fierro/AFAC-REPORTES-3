@@ -13,13 +13,13 @@ class Report extends Model
 
     // protected $fillable = ['systems', 'areas'];
 
-    public function system(): HasMany
+    public function system()
     {
-        return $this->hasMany(System::class);
+        return $this->hasOne(System::class, 'id', 'report_id');
     }
 
     public function area()
     {
-        return $this->belongsTo(Area::class);
+        return $this->hasOne(Area::class);
     }
 }

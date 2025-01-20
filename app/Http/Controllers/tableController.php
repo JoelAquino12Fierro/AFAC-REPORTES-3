@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Report;
 
+use App\Models\Area;
+use App\Models\Report;
+use App\Models\System;
+use App\Models\types_report;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class tableController extends Controller
@@ -13,7 +17,11 @@ class tableController extends Controller
         // $reportes = Report::with(['systems','areas'])->get();
         // return view('table', compact('reportes'));
         $reporte = Report::paginate();
-        return view('table', compact('reporte'));
+        $area=Area::all();
+        $system=System::all();
+        $type=types_report::all();
+        $user=User::all();
+        return view('table', compact('reporte','area','system','type','user'));
     }
     public function edit($id) // Manda a la vista de actualizar
     {
