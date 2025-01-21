@@ -11,7 +11,7 @@ use App\Models\Report;
 
 class newformController extends Controller
 {
-    // Mostrar el formulario
+    // Mostrar en el formulario
     public function create_function()
     {
         $area = Area::all();
@@ -23,7 +23,7 @@ class newformController extends Controller
         return view('newForm', compact('area', 'system', 'type', 'user', 'folio'));
     }
 
-    // Guardar un nuevo reporte
+    // Guardar un nuevo reporte(Al presionar el botón)
     public function store(Request $request)
     {
         // Validaciones
@@ -40,7 +40,7 @@ class newformController extends Controller
         // Crear el reporte con los datos iniciales
         $report = new Report();
 
-        $report->folio = 'DTIARS-' . uniqid();
+        // $report->folio = 'DTIARS-' . uniqid();
         $report->application_date = now();
         $report->area_id = $request->area;
         $report->system_id = $request->system;
