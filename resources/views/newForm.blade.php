@@ -16,7 +16,7 @@
                             <label for="folio"
                                 class="block mb-2 text-sm font-medium text-gray-900">Folio</label>
                             <input type="text" id="disabled-input" aria-label="disabled input" name="folio"
-                                class="uppercase mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
+                                class="uppercase font-bold mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 value="{{$folio}}" disabled>
                         </div>
                         {{-- Fecha de creación --}}
