@@ -31,7 +31,7 @@ return new class extends Migration
             
             $table->unsignedBigInteger('modules_systems'); //Relacion de la llave forane de modulos
             $table->string('descriptionA');
-            $table->string('evidenceA');
+            $table->string('evidenceA')->nullable();
             $table->string('responsible'); //Responsable (Puede ser o no un usuario)
             $table->boolean('status')->default('0'); // Estatus que por defecto se asigna 0 
             $table->timestamps();
