@@ -35,12 +35,12 @@ class tableController extends Controller
         return view('verDetalles', compact('reporte','modules_system'));
     }
     
-    public function update(Request $request, $id) // Actualiza
-    {
-        $reporte = Report::findOrFail($id);
-        $reporte->update($request->all());
-        return redirect()->route('table.index')->with('success', 'Usuario actualizado correctamente');
-    }
+    // public function update(Request $request, $id) // Actualiza
+    // {
+    //     $reporte = Report::findOrFail($id);
+    //     $reporte->update($request->all());
+    //     return redirect()->route('table.index')->with('success', 'Usuario actualizado correctamente');
+    // }
     public function destroy($id) //Elimina
     {
         // Encuentra al usuario

@@ -8,6 +8,7 @@ use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tableController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\verdetallesController;
 use Barryvdh\DomPDF\Facade\Pdf AS PDF;
 
 Route::get('/', function () {
@@ -36,8 +37,8 @@ Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
 
 // Rutas para los controllers TABLA
 Route::get('tables',[tableController::class, 'index'])->name('table.index')->middleware('auth.basic'); //Mostrar en tabla
-Route::put('/update/{id}', [tableController::class, 'update'])->name('reports.update'); //Editar
-Route::get('/reports/{id}/update', [tableController::class, 'edit'])->name('reports.edit'); //vista editar
+Route::post('/detalles/{id}', [verdetallesController::class, 'store'])->name('reports.detalles'); //Editar
+Route::get('/reports/{id}/detalles', [tableController::class, 'edit'])->name('reports.edit'); //vista editar
 Route::delete('/delete/{id}', [tableController::class, 'destroy'])->name('reports.destroy')->middleware('auth.basic');
 
 Route::get('/pdf', function (){
@@ -58,4 +59,5 @@ Route::get('users',[userController::class, 'index'])->name('users')->middleware(
 Route::get('newuser',[userController::class,'create_function'])->name('newuser')->middleware('auth.basic');
 
 //Rutas de nuevo reporte
-Route::get('/newform', [newformController::class,'create_function'])->name('newform')->middleware('auth.basic'); //para ver el diseño del formulario de nuevo registro
+Route::get('/newform', [newformController::class,'create_function'])->name('newform')->middleware('auth.basic'); 
+Route::post('/addreport', [newformController::class,'store'])->name('addreport')->middleware('auth.basic');//para ver el diseño del formulario de nuevo registro
