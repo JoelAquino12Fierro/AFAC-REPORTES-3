@@ -22,19 +22,25 @@ return new class extends Migration
             $table->date('application_date'); //Fecha creación
             $table->date('report_date'); //Fecha del reporte (generacion)
             $table->string('actions');  //
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->string('evidence')->nullable(); //string de la ruta de la imagen
             $table->unsignedBigInteger('areas'); //Area
             $table->unsignedBigInteger('systems'); //Sistema
             $table->unsignedBigInteger('types_reports'); //Tipo
             $table->unsignedBigInteger('reporting_user'); //usuario
-            $table->boolean('status')->default('0');
+            
+            $table->unsignedBigInteger('modules_systems'); //Relacion de la llave forane de modulos
+            $table->string('descriptionA');
+            $table->string('evidenceA');
+            $table->string('responsible'); //Responsable (Puede ser o no un usuario)
+            $table->boolean('status')->default('0'); // Estatus que por defecto se asigna 0 
             $table->timestamps();
 
             $table->foreign('reporting_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('systems')->references('id')->on('systems')->onDelete('cascade');
             $table->foreign('areas')->references('id')->on('areas')->onDelete('cascade');
             $table->foreign('types_reports')->references('id')->on('types_reports')->onDelete('cascade');
+            $table->foreign('modules_systems')->references('id')->on('modules_systems')->onDelete('cascade');
         });
     }
 
