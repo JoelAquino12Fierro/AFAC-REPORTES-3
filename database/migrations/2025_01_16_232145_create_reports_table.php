@@ -17,22 +17,26 @@ return new class extends Migration
         });
 
         Schema::create('reports', function (Blueprint $table) {
+            // Primera parte del reporte
             $table->id();
             $table->string('folio')->unique(); //Folio
             $table->date('application_date'); //Fecha creación
-            $table->date('report_date'); //Fecha del reporte (generacion)
-            $table->string('actions');  //
-            $table->text('description');
-            $table->string('evidence')->nullable(); //string de la ruta de la imagen
             $table->unsignedBigInteger('areas'); //Area
             $table->unsignedBigInteger('systems'); //Sistema
             $table->unsignedBigInteger('types_reports'); //Tipo
             $table->unsignedBigInteger('reporting_user'); //usuario
+            $table->text('description');
+            $table->string('evidence')->nullable(); //string de la ruta de la imagen
+            $table->date('report_date'); //Fecha del reporte (generacion)
             
-            $table->unsignedBigInteger('modules_systems'); //Relacion de la llave forane de modulos
-            $table->string('descriptionA');
+            // $table->string('actions');  //
+           
+            // Segunda parte del reporte
+            
+            $table->unsignedBigInteger('modules_systems')->nullable(); //Relacion de la llave forane de modulos
+            $table->string('descriptionA')->nullable();
             $table->string('evidenceA')->nullable();
-            $table->string('responsible'); //Responsable (Puede ser o no un usuario)
+            $table->string('responsible')->nullable(); //Responsable (Puede ser o no un usuario)
             $table->boolean('status')->default('0'); // Estatus que por defecto se asigna 0 
             $table->timestamps();
 
