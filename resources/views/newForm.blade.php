@@ -4,10 +4,11 @@
             {{ __('NUEVO REGISTRO') }}
         </h2>
     </x-slot>
- 
+
     <div class="px-14 py-14 ">
         <div class="p-7 lg:p-8 bg-white border-b border-gray-200">
-            <form name="formRegister" id="formRegister" action="{{route('addreport')}}" method="POST" enctype="multipart/form-data">
+            <form name="formRegister" id="formRegister" action="{{ route('addreport') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="space-y-12">
                     <div class="grid grid-cols-1">
@@ -17,7 +18,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Folio</label>
                             <input type="text" id="disabled-input" aria-label="disabled input" name="folio"
                                 class="uppercase font-bold mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                value="{{$folio}}" disabled>
+                                value="{{ $folio }}" disabled>
                         </div>
                         {{-- Fecha de creación --}}
                         <div class="mb-5">
@@ -33,25 +34,27 @@
                         <div class="mb-5">
                             <label for="area"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Área</label>
-                            <select id="area"
+                            <select id="area" name="area"
                                 class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
                                 <option value="" class="uppercase">--Selecciona un área--</option>
-                                @foreach($area as $area)
-                                <option class="uppercase" value="{{$area->id}}">{{$area->areas_name}}</option>
+                                @foreach ($area as $area)
+                                    <option class="uppercase" value="{{ $area->id }}">{{ $area->areas_name }}
+                                    </option>
                                 @endforeach
                             </select>
+
                         </div>
                         {{-- sistema --}}
                         <div class="mb-5">
                             <label for="system"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sistema</label>
-                            <select id="system"
+                            <select id="system" name="system"
                                 class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                 <option value="" class="uppercase">--Selecciona un sistema--</option>
-                                @foreach($system as $system)
-                                <option class="uppercase" value="{{$system->id}}">{{$system->systems_name}}</option>
+                                @foreach ($system as $system)
+                                    <option class="uppercase" value="{{ $system->id }}">{{ $system->systems_name }}
+                                    </option>
                                 @endforeach
 
                             </select>
@@ -61,12 +64,13 @@
                             <label for="type_report"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo
                                 de reporte</label>
-                            <select id="type_report"
+                            <select id="type_report" name="type_report"
                                 class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                 <option value="" class="uppercase">--Selecciona el tipo--</option>
-                                @foreach($type as $type)
-                                <option class="uppercase" value="{{$type->id}}">{{$type->name_types_reports}}</option>
+                                @foreach ($type as $type)
+                                    <option class="uppercase" value="{{ $type->id }}">
+                                        {{ $type->name_types_reports }}</option>
                                 @endforeach
 
                             </select>
@@ -84,12 +88,12 @@
                         <div class="mb-5">
                             <label for="report_user"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario</label>
-                            <select id="report_user"
+                            <select id="report_user" name="report_user"
                                 class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                 <option value="" class="uppercase">--Selecciona al usuario--</option>
-                                @foreach($user as $user)
-                                <option class="uppercase" value="{{$user->id}}">{{$user->name}}</option>
+                                @foreach ($user as $user)
+                                    <option class="uppercase" value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
 
                             </select>
@@ -104,9 +108,9 @@
                         </div>
                         {{-- Evidencia --}}
                         <div class="col-span-full">
-                            <label for="file-upload" class="block text-sm font-medium text-gray-900">Subir
+                            <label for="file" class="block text-sm font-medium text-gray-900">Subir
                                 Evidencia</label>
-                                {{-- <input id="file-upload" name="file-upload" type="file" > --}}
+                            {{-- <input id="file-upload" name="file-upload" type="file" > --}}
                             <div
                                 class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                                 <div class="text-center">
@@ -118,7 +122,7 @@
                                         <label for="file"
                                             class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600">
                                             <span>Upload a file</span>
-                                            <input id="file" name="file" type="file" >
+                                            <input id="file" name="file" type="file">
                                         </label>
                                         <p class="pl-1">or drag and drop</p>
                                     </div>

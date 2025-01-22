@@ -23,46 +23,51 @@ class newformController extends Controller
         return view('newForm', compact('area', 'system', 'type', 'user', 'folio'));
     }
 
-    // Guardar un nuevo reporte(Al presionar el botón)
+    // Guardar
     public function store(Request $request)
     {
-        // Validaciones
-        $request->validate([
-            'area' => 'required|exists:areas,id',
+
+        // Lo de los id corresponde al nombre de la tabla
+        $validated = $request->validate([
+            'area' => 'required|exists:areas,id', 
             'system' => 'required|exists:systems,id',
             'type_report' => 'required|exists:types_reports,id',
-            'report_date' => 'required|date',
-            'report_user' => 'required|exists:users,id',
-            'description' => 'required|string|max:1000',
-            'file-upload' => 'nullable|file|mimes:png,jpg,jpeg|max:10240',
+            'report_date' => 'required|date', 
+            'report_user' => 'required|exists:users,id', 
+            'description' => 'required|string', 
+            'file' => 'nullable|file|mimes:png,jpg,jpeg|max:10240'
         ]);
 
-        // Crear el reporte con los datos iniciales
+
+
+        $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
+        $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
+
+        $actions='actions';
+
         $report = new Report();
-
-        // $report->folio = 'DTIARS-' . uniqid();
+        $report->folio = $folio;
         $report->application_date = now();
-        $report->area_id = $request->area;
-        $report->system_id = $request->system;
-        $report->type_report_id = $request->type_report;
-        $report->report_date = $request->report_date;
-        $report->user_id = $request->report_user;
-        $report->description = strtoupper($request->description);
+        $report->report_date=now();
+        $report->description = $request->description;
+        $report->areas = $request->area;
+        $report->systems = $request->system;
+        $report->reporting_user = $request->report_user;
+        $report->types_reports=$request->type_report;
 
-        // Guardar temporalmente el reporte para generar el ID
+
         $report->save();
-
-        // Si existe un archivo cargado, procesarlo
-        if ($request->hasFile('file-upload')) {
+        // Si existe el archivo
+        if ($request->hasFile('file')) {
             // Obtener el archivo
-            $file = $request->file('file-upload');
+            $file = $request->file('file');
 
             // Crear el nombre basado en el folio y el ID
-            $filename = $report->folio . '-' . $report->id . '.' . $file->getClientOriginalExtension();
+            $filename = $report->folio . '.' . $file->getClientOriginalExtension();
 
             // Guardar el archivo en la carpeta 'public/evidences'
-            $filePath = $file->storeAs('evidences', $filename, 'public');
-
+            $filePath = $file->move('evidence', $filename, 'public');
+                       
             // Asignar la ruta del archivo al modelo
             $report->evidence = $filePath;
         }
@@ -71,9 +76,12 @@ class newformController extends Controller
         $report->save();
 
         // Redirigir con un mensaje de éxito
-        return redirect()->route('reports.create')->with('success', 'Reporte creado correctamente.');
+        return redirect()->route('newform')->with('success', 'Reporte creado correctamente.');
     }
 }
+
+
+
 
 
 
