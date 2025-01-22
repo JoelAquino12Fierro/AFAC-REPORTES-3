@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\areaController;
+use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
 use App\Http\Controllers\newuserController;
 use App\Http\Controllers\systemController;
@@ -49,6 +50,8 @@ Route::get('/pdf', function (){
 // Controllers de catalogos
 Route::post('newArea', [areaController::class, 'store'])->name('register.area');
 Route::post('newSystem', [systemController::class, 'store'])->name('register.system');
+Route::post('newModuleForm', [moduleController::class, 'store'])->name('register.module');
+Route::post('newModule', [moduleController::class, 'create'])->name('register.newModule');
 
 // Ruta para la tabla de usuarios
 Route::get('users',[userController::class, 'index'])->name('users')->middleware('auth.basic');
