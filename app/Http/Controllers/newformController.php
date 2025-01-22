@@ -43,12 +43,10 @@ class newformController extends Controller
         $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
         $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
 
-        $actions='actions';
-
         $report = new Report();
         $report->folio = $folio;
         $report->application_date = now();
-        $report->report_date=now();
+        $report->report_date=now(); //Corregir
         $report->description = $request->description;
         $report->areas = $request->area;
         $report->systems = $request->system;
