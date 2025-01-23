@@ -10,7 +10,7 @@ class Report extends Model
 {
     
     // Para imprimir los nombres de la relaciones
-    protected $fillable = ['systems', 'areas', 'types_reports','reporting_user'];
+    protected $fillable = ['systems', 'areas', 'types_reports','reporting_user', 'modules_systems'];
 
     public function system() //Funcionando
     {
@@ -29,5 +29,8 @@ class Report extends Model
     public function user()
     {
         return $this->hasOne(User::class,'id','reporting_user');
+    }
+    public function modules_systems(){
+        return $this->hasOne(modules_system::class,'id','id_systems','id_modules');
     }
 }

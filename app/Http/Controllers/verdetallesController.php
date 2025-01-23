@@ -7,32 +7,44 @@ use Illuminate\Http\Request;
 
 class verdetallesController extends Controller
 {
-    public function store(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        //Validacion del formulario(name que se les da a los inputs)
+      
         $request->validate([
-            'module' => 'required',
+            'module' => 'required|exists:modules_systems,id_modules',
             'description' => 'required|string',
             'evidence' => 'nullable|file|mimes:png,jpg,jpeg|max:10240',
-            'responsable' => 'required|exists:users,id',
+            'responsable' => 'required',
         ]);
-        
-        //Encuentra el reporte
-        $report=Report::findOrFail($id);
-        //BD = name inputs
-        $report->id=$request->id;
-        $report->module=$request->module;
-        $report->descriptionA=$request->descriptionA;
-        // $report->evidenceA=$request->evidence;
-        $report->responsible=$request->responsable;
-        // $report->status=update($request->status->1);
 
-        if ($request->hasFile('evidence')) {
-            $filePath = $request->file('evidence')->store('public', 'evidence');
-            $report->evidence = $filePath;
-        }
-        // Guarda el reporte
+        $report = Report::findOrFail($id);
+
+        // Actualizar solo los campos que no son null
+        $report->update([
+            'modules_systems' => $request->module,
+            'descriptionA' => $request->description,
+            'responsible' => $request->responsable
+        ]);
+
+        // if ($request->hasFile('evidence')) {
+        //     // Obtener el archivo
+        //     $file = $request->file('evidence');
+
+        //     // Crear el nombre basado en el folio y el ID
+        //     $filename = $report->folio . 'A' . '.' . $file->getClientOriginalExtension();
+
+        //     // Guardar el archivo en la carpeta 'public/evidences'
+        //     $filePath = $file->move('evidence', $filename, 'public');
+
+        //     // Asignar la ruta del archivo al modelo
+        //     $report->evidence = $filePath;
+        //     $report->save();
+        // }
+
+        // Guardar el reporte con la información actualizada
         $report->save();
-        return redirect()->route('reports.create')->with('success', 'Reporte creado correctamente.');
+
+        // Redireccionar o devolver respuesta
+        // return redirect()->route('reports.detalles', $report->id)->with('success', 'Reporte actualizado correctamente.');
     }
 }

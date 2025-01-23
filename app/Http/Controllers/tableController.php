@@ -13,34 +13,64 @@ use Illuminate\Http\Request;
 class tableController extends Controller
 {
     public function index() //Mostrar en tabla
-    { 
+    {
         // Para traer los nombres
         // $reportes = Report::with(['systems','areas'])->get();
         // return view('table', compact('reportes'));
         $reporte = Report::paginate();
-        $area=Area::all();
-        $system=System::all();
-        $type=types_report::all();
-        $user=User::all();
-        return view('table', compact('reporte','area','system','type','user'));
+        $area = Area::all();
+        $system = System::all();
+        $type = types_report::all();
+        $user = User::all();
+        return view('table', compact('reporte', 'area', 'system', 'type', 'user'));
     }
     public function edit($id) // Manda a la vista de actualizar
     {
         // Encuentra el reporte
         $reporte = Report::findOrFail($id);
-        // Encuentra el sistema
-        // $systems=System::findOrFail($id);
-
-        $modules_system=modules_system::all();
-        return view('verDetalles', compact('reporte','modules_system'));
+        $modules_system = modules_system::all();
+        return view('verDetalles', compact('reporte', 'modules_system'));
     }
-    
-    // public function update(Request $request, $id) // Actualiza
-    // {
-    //     $reporte = Report::findOrFail($id);
-    //     $reporte->update($request->all());
-    //     return redirect()->route('table.index')->with('success', 'Usuario actualizado correctamente');
-    // }
+
+    public function update(Request $request, $id)
+    {
+        //Validacion del formulario(name que se les da a los inputs)
+        $request->validate([
+            'module' => 'required|exists:modules_systems,id_modules',
+            'description' => 'required|string',
+            'evidence' => 'nullable|file|mimes:png,jpg,jpeg|max:10240',
+            'responsable' => 'required',
+        ]);
+
+        $report = Report::findOrFail($id);
+       
+        $report->update($report->descriptionA=$request->description);
+        $report->modules_systems=$request->module;
+        $report->descriptionA=$request->evidence;
+        $report->responsible=$request->responsible;
+
+        $report->update();
+
+        if ($request->hasFile('evidence')) {
+            // Obtener el archivo
+            $file = $request->file('evidence');
+
+            // Crear el nombre basado en el folio y el ID
+            $filename = $report->folio .'A' . '.' . $file->getClientOriginalExtension();
+
+            // Guardar el archivo en la carpeta 'public/evidences'
+            $filePath = $file->move('evidence', $filename, 'public');
+
+            // Asignar la ruta del archivo al modelo
+            $report->evidence = $filePath;
+        }
+
+        // Guardar el reporte con la información actualizada
+        $report->save();
+
+    }
+
+
     public function destroy($id) //Elimina
     {
         // Encuentra al usuario
