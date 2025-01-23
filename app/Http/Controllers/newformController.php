@@ -20,7 +20,9 @@ class newformController extends Controller
         $user = User::all();
         $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
         $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
-        return view('newForm', compact('area', 'system', 'type', 'user', 'folio'));
+        $date=date("d/m/Y");
+        
+        return view('newForm', compact('area', 'system', 'type', 'user', 'folio','date'));
     }
 
     // Guardar
@@ -42,11 +44,12 @@ class newformController extends Controller
 
         $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
         $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
+        // $date=date("d-m-Y");
 
         $report = new Report();
         $report->folio = $folio;
         $report->application_date = now();
-        $report->report_date=now(); //Corregir
+        $report->report_date=$request->report_date;
         $report->description = $request->description;
         $report->areas = $request->area;
         $report->systems = $request->system;
