@@ -67,7 +67,7 @@ class newformController extends Controller
             $filename = $report->folio . '.' . $file->getClientOriginalExtension();
 
             // Guardar el archivo en la carpeta 'public/evidences'
-            $filePath = $file->move('evidence', $filename, 'public');
+            $filePath = $file->move('evidence\user', $filename, 'public');
                        
             // Asignar la ruta del archivo al modelo
             $report->evidence = $filePath;

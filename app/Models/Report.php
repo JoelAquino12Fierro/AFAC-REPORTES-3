@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Report extends Model
 {
-    
+    protected $table = 'reports'; 
     // Para imprimir los nombres de la relaciones
-    protected $fillable = ['systems', 'areas', 'types_reports','reporting_user', 'modules_systems'];
+    protected $fillable = ['id','systems', 'areas', 'types_reports','reporting_user', 'modules_systems', 'status'];
 
     public function system() //Funcionando
     {
