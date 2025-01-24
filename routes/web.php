@@ -5,6 +5,7 @@ use App\Http\Controllers\catalogsController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
 use App\Http\Controllers\newuserController;
+use App\Http\Controllers\pdfController;
 use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tableController;
@@ -42,10 +43,11 @@ Route::put('/detalles/{id}', [verdetallesController::class, 'update'])->name('re
 Route::get('/reports/{id}/detalles', [tableController::class, 'edit'])->name('reports.edit'); //vista editar
 Route::delete('/delete/{id}', [tableController::class, 'destroy'])->name('reports.destroy')->middleware('auth.basic');
 
-Route::get('/pdf', function (){
-    $pdf = PDF::loadView('pdf');
-    return $pdf->stream();
-}) ->name('pdf');
+Route::get('pdf/{id}',[pdfController::class,'index'])->name('pdf')->middleware('auth.basic');
+// Route::get('/pdf{id}', function (){
+//     $pdf = PDF::loadView('pdf');
+//     return $pdf->stream();
+// }) ->name('pdf');
 //Temporal para la creacíon del pdf
 
 
