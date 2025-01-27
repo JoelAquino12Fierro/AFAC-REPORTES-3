@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tableController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\verdetallesController;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf AS PDF;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,6 +61,13 @@ Route::post('newModule', [moduleController::class, 'create'])->name('register.ne
 // Ruta para la tabla de usuarios
 Route::get('users',[userController::class, 'index'])->name('users')->middleware('auth.basic');
 Route::get('newuser',[userController::class,'create_function'])->name('newuser')->middleware('auth.basic');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::get('/search-users', function (HttpRequest $request) {
+    $query = $request->input('query');
+    $users = User::where('name', 'LIKE', "%{$query}%")->get();
+    return response()->json($users);
+});
 
 //Rutas de nuevo reporte
 Route::get('/newform', [newformController::class,'create_function'])->name('newform')->middleware('auth.basic'); 

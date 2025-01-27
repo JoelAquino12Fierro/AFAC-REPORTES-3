@@ -20,7 +20,7 @@
                             <label for="folio"
                                 class="block mb-2 text-sm font-medium text-gray-900">Folio</label>
                             <input type="text" id="disabled-input" aria-label="disabled input" name="folio"
-                                class="uppercase font-bold mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="uppercase font-bold mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 value="{{ $folio }}" disabled>
                         </div>
                         {{-- Fecha de creación --}}
@@ -30,15 +30,15 @@
                                 creacion</label>
                             <input type="text" id="application_date" aria-label="disabled input"
                                 name="application_date"
-                                class="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed"
                                 value="{{ $date }}" disabled>
                         </div>
                         {{-- Area --}}
                         <div class="mb-5">
                             <label for="area"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Área</label>
+                                class="block mb-2 text-sm font-medium text-gray-900">Área</label>
                             <select id="area" name="area"
-                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                 <option value="" class="uppercase">--Selecciona un área--</option>
                                 @foreach ($area as $area)
                                     <option class="uppercase" value="{{ $area->id }}">{{ $area->areas_name }}
@@ -50,9 +50,9 @@
                         {{-- sistema --}}
                         <div class="mb-5">
                             <label for="system"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sistema</label>
+                                class="block mb-2 text-sm font-medium text-gray-900">Sistema</label>
                             <select id="system" name="system"
-                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                                 <option value="" class="uppercase">--Selecciona un sistema--</option>
                                 @foreach ($system as $system)
@@ -68,7 +68,7 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 ">Tipo
                                 de reporte</label>
                             <select id="type_report" name="type_report"
-                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                                 <option value="" class="uppercase">--Selecciona el tipo--</option>
                                 @foreach ($type as $type)
@@ -90,9 +90,9 @@
                         {{-- Usuario --}}
                         <div class="mb-5">
                             <label for="report_user"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Usuario</label>
+                                class="block mb-2 text-sm font-medium text-gray-900">Usuario</label>
                             <select id="report_user" name="report_user"
-                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                                 <option value="" class="uppercase">--Selecciona al usuario--</option>
                                 @foreach ($user as $user)

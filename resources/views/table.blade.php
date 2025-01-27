@@ -84,9 +84,9 @@
                     <tbody>
                         @foreach ($reporte as $reporte)
                             <tr
-                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                class="bg-white border-b hover:bg-gray-50">
                                 <th scope="row"
-                                    class="uppercase px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    class="uppercase px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     {{ $reporte->folio }}
                                 </th>
                                 <td class="px-6 py-4 uppercase">
@@ -115,8 +115,8 @@
                                 <td>
                                     <form action="{{ route('reports.edit', $reporte->id) }}" method="GET">
                                         @csrf
-                                        <button type="submit" class=" text-left font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                            {{-- class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        <button type="submit" class=" text-left font-medium text-blue-600 hover:underline">
+                                            {{-- class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">
                         Verdetalles --}}
                                             {{-- <x-codicon-eye class="h-7 w-7 text-azul-afac" /> --}}
                                             Ver detalles
@@ -129,7 +129,7 @@
                                         @method('DELETE')
                                         <button type="submit">
                                             <x-uiw-delete class="h-7 w-7 text-red-600" />
-                                            {{-- class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                            {{-- class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                         Eliminar --}}
                                         </button>
                                     </form>
@@ -144,7 +144,7 @@
                                         </button>
                                         {{-- <button type="sumbit" --}}
 
-                                        {{-- class="text-orange-400 hover:text-white border border-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-orange-300 dark:text-orange-300 dark:hover:text-white dark:hover:bg-orange-400 dark:focus:ring-yellow-900">PDF</button> --}}
+                                        {{-- class="text-orange-400 hover:text-white border border-orange-400 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">PDF</button> --}}
                                     </form>
                                 </td>
                             </tr>

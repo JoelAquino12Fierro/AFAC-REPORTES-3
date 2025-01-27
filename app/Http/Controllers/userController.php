@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class userController extends Controller
 {
+    
     public function index() //Mostrar en tabla
     { 
         // Para traer los nombres
@@ -15,10 +16,10 @@ class userController extends Controller
         return view('users', compact('user'));
     }
 
-    public function create_function()
-    {
-        $data=Role::all();
-        return view('newuser',compact('data'));
-    }
+    // public function create_function()
+    // {
+    //     $data=Role::all();
+    //     return view('newuser',compact('data'));
+    // }
 
 }
