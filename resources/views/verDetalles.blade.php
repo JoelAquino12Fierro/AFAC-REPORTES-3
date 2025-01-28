@@ -14,8 +14,7 @@
                     @method('PUT')
                     <div class="space-y-12">
                         <div class="grid grid-cols-1">
-
-                            {{-- Module --}}
+                             {{-- Module --}}
                             <div class="mb-5">
                                 <label for="module"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Módulo</label>
@@ -24,8 +23,8 @@
 
                                     <option value=""  class="uppercase">--Selecciona el módulo--
                                     </option>
-                                    @foreach ($modules_system as $modules_system)
-                                    <option class="uppercase" name="module" value="{{$modules_system->id}}">{{$modules_system->module->modules_name}}</option>
+                                    @foreach ($modules_system as $modules)
+                                    <option class="uppercase" name="module" value="{{$modules->modules}}">{{$modules->module->modules_name}}</option>
                                     @endforeach
                                 </select>
                             </div>

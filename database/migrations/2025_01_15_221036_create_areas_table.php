@@ -27,6 +27,7 @@ return new class extends Migration
         });
 
         Schema::create('positions_areas', function(Blueprint $table){
+            // $table->id();
             $table->unsignedBigInteger('areas');
             $table->unsignedBigInteger('positions');
             $table->timestamps();

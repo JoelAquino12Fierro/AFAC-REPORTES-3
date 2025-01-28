@@ -28,7 +28,8 @@ class tableController extends Controller
     {
         // Encuentra el reporte
         $reporte = Report::findOrFail($id);
-        $modules_system = modules_system::all();
+        $system_id = $reporte->systems; //Relaciona el id de systems
+        $modules_system = modules_system::where('systems', $system_id)->get(); //Filtro (Primero es el de la bd)
         return view('verDetalles', compact('reporte', 'modules_system'));
     }
 

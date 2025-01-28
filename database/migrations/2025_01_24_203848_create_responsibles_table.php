@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('responsibles', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
             $table->unsignedBigInteger('users');
             $table->unsignedBigInteger('areas');
             $table->unsignedBigInteger('positions');
@@ -20,8 +20,7 @@ return new class extends Migration
         
             $table->foreign('areas')->references('areas')->on('positions_areas')->onDelete('cascade'); 
             $table->foreign('positions')->references('positions')->on('positions_areas')->onDelete('cascade'); 
-            $table->foreign('users')->references('id')->on('users')->onDelete('cascade'); 
-            
+            $table->foreign('users')->references('id')->on('users')->onDelete('cascade');
         
         });
 

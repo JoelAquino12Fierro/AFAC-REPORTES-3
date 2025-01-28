@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\types_report;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,8 @@ return new class extends Migration
             $table->string('name_types_reports');
             $table->timestamps();
         });
+
+        
 
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
@@ -42,8 +45,8 @@ return new class extends Migration
             $table->foreign('systems')->references('id')->on('systems')->onDelete('cascade');
             $table->foreign('areas')->references('id')->on('areas')->onDelete('cascade');
             $table->foreign('types_reports')->references('id')->on('types_reports')->onDelete('cascade');
-            $table->foreign('modules_systems')->references('id')->on('modules_systems')->onDelete('cascade');
-            $table->foreign('responsibles')->references('id')->on('resposibles')->onDelete('cascade'); //Relacion con los responsables
+            $table->foreign('modules_systems')->references('systems')->on('modules_systems')->onDelete('cascade');
+            $table->foreign('responsibles')->references('users')->on('responsibles')->onDelete('cascade'); //Relacion con los responsables
         });
     }
 
@@ -53,5 +56,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('reports');
+        Schema::dropIfExists('types_reports');
+        
     }
 };
