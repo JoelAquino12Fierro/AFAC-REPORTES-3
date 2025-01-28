@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <td>fecha plantilla</td>
-                        <td>{{$fecha_aplication}}</td>
+                        <td>{{ $fecha_aplication }}</td>
                     </tr>
                     <tr>
                         <td colspan="2"><strong>SOLICITUDES DE ATENCIÓN</strong></td>
@@ -50,7 +50,7 @@
             </div>
         </header>
         <div class="folio">
-            <h4>Folio: {{$folio}}</h4>
+            <h4>Folio: {{ $folio }}</h4>
         </div>
         <section class="info">
             <table>
@@ -81,7 +81,7 @@
                 <tr>
                     <td>
                         <strong>Fecha de entrega:</strong>
-                        <p>{{$report_date}}</p>
+                        <p>{{ $report_date }}</p>
                     </td>
 
                     <td>
@@ -119,9 +119,10 @@
                     <td>Descripción</td>
                 </tr>
                 <tr>
-                    {{-- @foreach ($module as $module) --}}
-                    <td>{{$module}}</td>
-                    {{-- @endforeach --}}
+                    {{-- NO FUNCIONAA --}}
+                    @foreach ($module as $module)
+                    <td>{{ $module->modules}}</td>
+                    @endforeach
                     {{-- <td></td> --}}
                     <td>
                         {{ $descriptionA }}
@@ -143,21 +144,21 @@
                     <th>Cargo</th>
                     <th>Observaciones</th>
                 </tr>
-                
+
                 <tr>
-                   
+
                     <td>
-                         {{-- @foreach ($responsables as $respon) --}} 
-                        {{$responsables}}
-                        {{-- @endforeach  --}}
+                        @foreach ($responsables as $respon)
+                            {{-- {{ $respon->users }} --}}
+                        @endforeach
                     </td>
-                    
+
                     <td>JEFA DE DEPARTAMENTO</td>
                     <td>JEFA DE DEPARTAMENTO</td>
                     <td></td>
-                    
+
                 </tr>
-                
+
             </table>
         </section>
     </div>
