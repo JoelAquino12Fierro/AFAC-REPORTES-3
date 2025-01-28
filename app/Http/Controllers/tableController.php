@@ -14,9 +14,6 @@ class tableController extends Controller
 {
     public function index() //Mostrar en tabla
     {
-        // Para traer los nombres
-        // $reportes = Report::with(['systems','areas'])->get();
-        // return view('table', compact('reportes'));
         $reporte = Report::paginate();
         $area = Area::all();
         $system = System::all();

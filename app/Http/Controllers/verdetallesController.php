@@ -32,6 +32,7 @@ class verdetallesController extends Controller
 
         }
         $reporte->save();
+        return redirect()->route('table.index')->with('success', 'Reporte creado correctamente.');
     }
 }
 
