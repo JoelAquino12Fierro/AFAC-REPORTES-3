@@ -18,6 +18,24 @@ return new class extends Migration
             $table->timestamps(); //create and update
         });
 
+        // Tabla de cargo=positions
+
+        Schema::create('positions', function (Blueprint $table){
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('positions_areas', function(Blueprint $table){
+            $table->unsignedBigInteger('areas');
+            $table->unsignedBigInteger('positions');
+            $table->timestamps();
+
+            $table->foreign('areas')->references('id')->on('areas')->onDelete('cascade');
+            $table->foreign('positions')->references('id')->on('positions')->onDelete('cascade');
+        });
+
+
         
     }
 
@@ -26,6 +44,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('positions_areas');
         Schema::dropIfExists('areas');
+        Schema::dropIfExists('positions');
+        
     }
 };

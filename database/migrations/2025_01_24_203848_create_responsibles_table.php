@@ -17,7 +17,15 @@ return new class extends Migration
             $table->unsignedBigInteger('areas');
             $table->unsignedBigInteger('positions');
             $table->timestamps();
+        
+            $table->foreign('areas')->references('areas')->on('positions_areas')->onDelete('cascade'); 
+            $table->foreign('positions')->references('positions')->on('positions_areas')->onDelete('cascade'); 
+            $table->foreign('users')->references('id')->on('users')->onDelete('cascade'); 
+            
+        
         });
+
+        
     }
 
     /**

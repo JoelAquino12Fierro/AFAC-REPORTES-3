@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('types_reports', function(Blueprint $table){
+        Schema::create('types_reports', function (Blueprint $table) {
             $table->id();
             $table->string('name_types_reports');
+            $table->timestamps();
         });
 
         Schema::create('reports', function (Blueprint $table) {
-            // Primera parte del reporte
             $table->id();
             $table->string('folio')->unique(); //Folio
             $table->date('application_date'); //Fecha creación
@@ -29,22 +29,21 @@ return new class extends Migration
             $table->string('evidence')->nullable(); //string de la ruta de la imagen
             $table->date('report_date'); //Fecha del reporte (generacion)
             
-            // $table->string('actions');  //
-           
             // Segunda parte del reporte
-            
             $table->unsignedBigInteger('modules_systems')->nullable(); //Relacion de la llave forane de modulos
             $table->string('descriptionA')->nullable();
             $table->string('evidenceA')->nullable();
-            $table->string('responsible')->nullable(); //Responsable (Puede ser o no un usuario)
+            $table->unsignedBigInteger('responsibles')->nullable(); //Responsable (Puede ser o no un usuario)
             $table->boolean('status')->default('0'); // Estatus que por defecto se asigna 0 
             $table->timestamps();
 
+            // Llaves foranes
             $table->foreign('reporting_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('systems')->references('id')->on('systems')->onDelete('cascade');
             $table->foreign('areas')->references('id')->on('areas')->onDelete('cascade');
             $table->foreign('types_reports')->references('id')->on('types_reports')->onDelete('cascade');
             $table->foreign('modules_systems')->references('id')->on('modules_systems')->onDelete('cascade');
+            $table->foreign('responsibles')->references('id')->on('resposibles')->onDelete('cascade'); //Relacion con los responsables
         });
     }
 
@@ -54,6 +53,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('reports');
-        Schema::dropIfExists('types_reports');
     }
 };
