@@ -16,7 +16,7 @@
             <div class="header-right">
                 <table>
                     <tr>
-                    <td rowspan="5">
+                        <td rowspan="5">
                             <img src="{{ public_path('img/AFAC_color.png') }}" alt="" class="logo">
                             {{-- Logo AFAC --}}
                         </td>
@@ -25,8 +25,8 @@
                             <p>
                                 DEPARTAMENTO DE TECNOLOGÍA INFORMÁTICA Y ATENCIÓN A USUARIOS
                                 DIRECCIÓN DE DESARROLLO ESTRATÉGICO
-                            </p> 
-                            </td>
+                            </p>
+                        </td>
                         <td>Hoja</td>
                         <td>1 de 1</td>
                     </tr>
@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <td>fecha plantilla</td>
-                        <td>26/07/2024</td>
+                        <td>{{$fecha_aplication}}</td>
                     </tr>
                     <tr>
                         <td colspan="2"><strong>SOLICITUDES DE ATENCIÓN</strong></td>
@@ -50,32 +50,61 @@
             </div>
         </header>
         <div class="folio">
-            <h4>Folio: DTIARS-0108</h4>
+            <h4>Folio: {{$folio}}</h4>
         </div>
         <section class="info">
             <table>
                 <tr>
-                    <td><strong>Área:</strong></td>
-                    <td><strong>Sistema:</strong></td>
-                    <td><strong>Tipo de reporte:</strong></td>
+                    @foreach ($area as $area)
+                        <td>
+                            <strong>Área: </strong>
+                            <br>
+                            <p> {{ $area->area->areas_name }} </p>
+                        </td>
+                    @endforeach
+
+                    @foreach ($system as $system)
+                        <td>
+                            <strong>Sistema:</strong>
+                            <br>
+                            <p> {{ $system->system->systems_name }} </p>
+                        </td>
+                    @endforeach
+                    @foreach ($type as $type)
+                        <td>
+                            <strong>Tipo de reporte:</strong>
+                            <br>
+                            <p>{{ $type->type->name_types_reports }}</p>
+                        </td>
+                    @endforeach
                 </tr>
                 <tr>
-                    <td><strong>Fecha de entrega:</strong></td>
-                    <td><strong>Usuario que Genera el Reporte:</strong></td>
-                    <td>Solicitud</td>
+                    <td>
+                        <strong>Fecha de entrega:</strong>
+                        <p>{{$report_date}}</p>
+                    </td>
+
+                    <td>
+                        <strong>Usuario que Genera el Reporte:</strong>
+                        <br>
+                        @foreach ($user as $user)
+                            <p>{{ $user->name }}</p>
+                        @endforeach
+                    </td>
+
+                    <td></td>
                 </tr>
-                <tr>
+                {{-- <tr>
                     <td>19/10/2024</td>
                     <td>Oscar Manuel Cornelio Vazquez</td>
                     <td></td>
-                </tr>
+                </tr> --}}
                 <tr>
-                    <td colspan="3"> 
+                    <td colspan="3">
                         Descripción de la solicitud:
                         <p>
-                            Se solicita el apoyo con la corrección del siguiente dato, en la plataforma de citas, a continuación detallado.
-                            Se concluyó con error el trámite del usuario Rolando Manuel Sanchez Díaz, ya que dice "Atendido Apto" y DEBE DECIR "ATENDIDO NO APTO".
-                        </p>                       
+                            {{ $description }}
+                        </p>
                     </td>
                 </tr>
             </table>
@@ -83,20 +112,21 @@
         <section class="solicitud">
             <table>
                 <tr>
-                <th colspan="2"><strong>SOLICITUD</strong></th>
+                    <th colspan="2"><strong>SOLICITUD</strong></th>
                 </tr>
                 <tr>
                     <td>Módulo</td>
                     <td>Descripción</td>
                 </tr>
                 <tr>
-                    <td>CITAS AGENDADAS</td>
+                    {{-- @foreach ($module as $module) --}}
+                    <td>{{$module}}</td>
+                    {{-- @endforeach --}}
+                    {{-- <td></td> --}}
                     <td>
-                        ROLANDO MANUEL SANCHEZ DIAZ<br>
-                        CURP: SADRB60326HCNSNL07<br>
-                        ANTES: ATENDIDO APTO<br>
-                        ACTUALIZACIÓN: ATENDIDO NO APTO
+                        {{ $descriptionA }}
                     </td>
+
                 </tr>
             </table>
         </section>
@@ -113,26 +143,24 @@
                     <th>Cargo</th>
                     <th>Observaciones</th>
                 </tr>
+                
                 <tr>
-                    <td>JUAREZ JESSICA</td>
+                   
+                    <td>
+                         {{-- @foreach ($responsables as $respon) --}} 
+                        {{$responsables}}
+                        {{-- @endforeach  --}}
+                    </td>
+                    
                     <td>JEFA DE DEPARTAMENTO</td>
                     <td>JEFA DE DEPARTAMENTO</td>
                     <td></td>
+                    
                 </tr>
-                <tr>
-                    <td>ANGEL CAMEZCO</td>
-                    <td>DESARROLLO</td>
-                    <td>INSPECTOR B</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>MANUEL ORTEGA</td>
-                    <td>SISTEMAS</td>
-                    <td>INSPECTOR B</td>
-                    <td></td>
-                </tr>
+                
             </table>
         </section>
     </div>
 </body>
+
 </html>
