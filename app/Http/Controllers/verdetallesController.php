@@ -11,16 +11,16 @@ class verdetallesController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'module' => 'required|exists:modules_systems,id_modules', // Corregido "exists"
+            'module' => 'required|exists:modules_systems,modules', // Corregido "exists"
             'description' => 'required|string',
             'evidence' => 'nullable|file|mimes:png,jpg,jpeg|max:10240',
-            'responsable' => 'required|string'
+            'responsable' => 'required|exists:responsibles,users'
         ]);
         
         $reporte = Report::findOrFail($id);
         $reporte->modules_systems = $validatedData['module'];
         $reporte->descriptionA=$validatedData['description'];
-        $reporte->responsible=$validatedData['responsable'];
+        $reporte->responsibles=$validatedData['responsable'];
         $reporte->status='1';
         $reporte->save();
         
