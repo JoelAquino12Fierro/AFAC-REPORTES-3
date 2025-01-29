@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\Module;
 use App\Models\modules_system;
 use App\Models\Report;
@@ -34,26 +35,46 @@ class pdfController extends Controller
         $user = User::where('id', $user_id)->get();
 
         $description = $reporte->description;
-
-        // NO FUNCIONAAA
-        $module_id = $reporte->modules_systems;
-        $module=Report::where('modules_systems',$module_id)->get();
-
         $descriptionA = $reporte->descriptionA;
 
-        // Este por ahora es con el user
 
-        // NO FUNCIONAAA
-        $responsables_id = $reporte->responsibles;
-        $responsables=Report::where('responsibles',$responsables_id)->get();
+        $module_id = $reporte->modules_systems;
+        $module = Module::where('id', $module_id)->get();
 
+
+        // NO FUNCIONAAA //////////////////////////////
+        $responsibilities = $reporte->responsibles;//Obtener el id del departamento
+        $dep=Area::where('id',$responsibilities)->get(); //Nombre del departamento
+
+        // Regla sql
+        // SELECT users, name, paternal_surname, maternal_surname FROM responsibles r join users u on u.id=r.users WHERE areas=1; 
+
+        $name = responsible::table('responsibles as r')
+        ->join('users as u', 'u.id', '=', 'r.users')
+        ->select('u.id as user_id', 'u.name', 'u.paternal_surname', 'u.maternal_surname')
+        ->where('areas', '=', $responsibilities)
+        ->get();
+
+        // $responsables=responsible::where('users',$responsibilities)->get();
+        // $profession = responsible::table('responsibilities')->where('areas', '=', $responsibilities)->first();
+        // $namerespo=User::()
+        // $responsables = User::where('id', $responsibilities)->get();
+        // Para el departamento
+        
+
+
+
+
+
+
+        //////////////////////////////////////////////////////7
         $fecha = $reporte->application_date;
         $fecha_aplication = date("d/m/Y", strtotime($fecha));  //Formateo de fecha
-       
+
 
         $reportdate = $reporte->report_date;
         $report_date = date("d/m/Y", strtotime($reportdate));
-        $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'responsables', 'fecha_aplication', 'report_date')); //Para mostrar desde el navegador
+        $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date','dep','name')); //Para mostrar desde el navegador
 
         return $pdf->stream();
     }

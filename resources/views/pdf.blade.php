@@ -121,7 +121,7 @@
                 <tr>
                     {{-- NO FUNCIONAA --}}
                     @foreach ($module as $module)
-                    <td>{{ $module->modules}}</td>
+                    <td>{{ $module->modules_name}}</td>
                     @endforeach
                     {{-- <td></td> --}}
                     <td>
@@ -146,17 +146,22 @@
                 </tr>
 
                 <tr>
-
+                    
                     <td>
-                        @foreach ($responsables as $respon)
-                            {{-- {{ $respon->users }} --}}
-                        @endforeach
+                        {{-- @foreach ($responsables as $respon)
+                            {{ $respon->areas }}
+                            @endforeach --}}
                     </td>
 
-                    <td>JEFA DE DEPARTAMENTO</td>
+                    <td>
+                        @foreach ($dep as $dep)
+                        {{ $dep->areas_name }}
+                        @endforeach
+
+                    </td>
                     <td>JEFA DE DEPARTAMENTO</td>
                     <td></td>
-
+                    
                 </tr>
 
             </table>
