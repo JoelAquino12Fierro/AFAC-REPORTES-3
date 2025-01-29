@@ -148,9 +148,9 @@
                 <tr>
                     
                     <td>
-                        {{-- @foreach ($responsables as $respon)
-                            {{ $respon->areas }}
-                            @endforeach --}}
+                        {{-- @foreach ($responsables as $respon)--}}
+                            {{-- {{ $name }} --}}
+                            {{-- @endforeach  --}}
                     </td>
 
                     <td>

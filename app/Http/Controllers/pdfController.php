@@ -49,11 +49,11 @@ class pdfController extends Controller
         // Regla sql
         // SELECT users, name, paternal_surname, maternal_surname FROM responsibles r join users u on u.id=r.users WHERE areas=1; 
 
-        $name = responsible::table('responsibles as r')
-        ->join('users as u', 'u.id', '=', 'r.users')
-        ->select('u.id as user_id', 'u.name', 'u.paternal_surname', 'u.maternal_surname')
-        ->where('areas', '=', $responsibilities)
-        ->get();
+        // $name = responsible::responsibilities('responsibles as r')
+        // ->join('users as u', 'u.id', '=', 'r.users')
+        // ->select('u.id as user_id', 'u.name', 'u.paternal_surname', 'u.maternal_surname')
+        // ->where('areas', '=', $responsibilities)
+        // ->get();
 
         // $responsables=responsible::where('users',$responsibilities)->get();
         // $profession = responsible::table('responsibilities')->where('areas', '=', $responsibilities)->first();
@@ -74,7 +74,7 @@ class pdfController extends Controller
 
         $reportdate = $reporte->report_date;
         $report_date = date("d/m/Y", strtotime($reportdate));
-        $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date','dep','name')); //Para mostrar desde el navegador
+        $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date','dep')); //Para mostrar desde el navegador
 
         return $pdf->stream();
     }
