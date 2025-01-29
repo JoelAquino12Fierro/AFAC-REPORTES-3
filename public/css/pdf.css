@@ -114,6 +114,11 @@ td {
     font-size: 14px;
 }
 
-p{
+p, .mayusculas{
     text-transform:uppercase;
+}
+
+.azul{
+    color: #012542;
+    font-size: medium;
 }

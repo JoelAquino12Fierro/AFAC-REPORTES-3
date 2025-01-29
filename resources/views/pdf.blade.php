@@ -50,42 +50,42 @@
             </div>
         </header>
         <div class="folio">
-            <h4>Folio: {{ $folio }}</h4>
+            <h4 class="azul">Folio: {{ $folio }}</h4>
         </div>
         <section class="info">
             <table>
                 <tr>
                     @foreach ($area as $area)
                         <td>
-                            <strong>Área: </strong>
+                            <strong class="azul">Área: </strong>
                             <br>
-                            <p> {{ $area->area->areas_name }} </p>
+                            <p> {{ $area->areas_name }} </p>
                         </td>
                     @endforeach
 
                     @foreach ($system as $system)
                         <td>
-                            <strong>Sistema:</strong>
+                            <strong class="azul">Sistema:</strong>
                             <br>
-                            <p> {{ $system->system->systems_name }} </p>
+                            <p> {{ $system->systems_name }} </p>
                         </td>
                     @endforeach
                     @foreach ($type as $type)
                         <td>
-                            <strong>Tipo de reporte:</strong>
+                            <strong class="azul">Tipo de reporte:</strong>
                             <br>
-                            <p>{{ $type->type->name_types_reports }}</p>
+                            <p>{{ $type->name_types_reports }}</p>
                         </td>
                     @endforeach
                 </tr>
                 <tr>
                     <td>
-                        <strong>Fecha de entrega:</strong>
+                        <strong class="azul">Fecha de entrega:</strong>
                         <p>{{ $report_date }}</p>
                     </td>
 
                     <td>
-                        <strong>Usuario que Genera el Reporte:</strong>
+                        <strong class="azul">Usuario que Genera el Reporte:</strong>
                         <br>
                         @foreach ($user as $user)
                             <p>{{ $user->name }}</p>
@@ -101,7 +101,7 @@
                 </tr> --}}
                 <tr>
                     <td colspan="3">
-                        Descripción de la solicitud:
+                       <strong class="azul"> Descripción de la solicitud: </strong>
                         <p>
                             {{ $description }}
                         </p>
@@ -121,7 +121,7 @@
                 <tr>
                     {{-- NO FUNCIONAA --}}
                     @foreach ($module as $module)
-                    <td>{{ $module->modules_name}}</td>
+                        <td class="mayusculas">{{ $module->modules_name }}</td>
                     @endforeach
                     {{-- <td></td> --}}
                     <td>
@@ -144,26 +144,29 @@
                     <th>Cargo</th>
                     <th>Observaciones</th>
                 </tr>
+                @foreach ($name as $name)
+                    <tr>
 
-                <tr>
-                    
-                    <td>
-                        {{-- @foreach ($responsables as $respon)--}}
-                            {{-- {{ $name }} --}}
-                            {{-- @endforeach  --}}
-                    </td>
+                        <td>
+                            {{-- @foreach ($name as $name) --}}
+                            {{ $name->name . ' ' . $name->p . ' ' . $name->m }}
+                            {{-- <p>{{ $usuario->nombre . ' ' . $usuario->apellido }}</p> --}}
+                            {{-- @endforeach --}}
+                        </td>
 
-                    <td>
-                        @foreach ($dep as $dep)
+                        <td>
+                            {{-- @foreach ($dep as $dep)
                         {{ $dep->areas_name }}
-                        @endforeach
+                        @endforeach --}}
+                            {{ $name->area }}
+                        </td>
+                        <td>
+                            {{ $name->position }}
+                        </td>
+                        <td></td>
 
-                    </td>
-                    <td>JEFA DE DEPARTAMENTO</td>
-                    <td></td>
-                    
-                </tr>
-
+                    </tr>
+                @endforeach
             </table>
         </section>
     </div>

@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Area;
 use App\Models\Module;
 use App\Models\modules_system;
 use App\Models\Report;
 use App\Models\responsible;
 use App\Models\System;
+use App\Models\types_report;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+
 use Illuminate\Http\Request;
 
 class pdfController extends Controller
@@ -21,13 +24,13 @@ class pdfController extends Controller
         $folio = $reporte->folio;
 
         $area_id = $reporte->areas;
-        $area = Report::where('areas', $area_id)->get();
+        $area = Area::where('id', $area_id)->get();
 
         $system_id = $reporte->systems;
-        $system = Report::where('systems', $system_id)->get();
+        $system = System::where('id', $system_id)->get();
 
         $type_id = $reporte->types_reports;
-        $type = Report::where('types_reports', $type_id)->get();
+        $type = types_report::where('id', $type_id)->get();
 
         // Aqui va lo de la fecha de entrega
 
@@ -43,24 +46,41 @@ class pdfController extends Controller
 
 
         // NO FUNCIONAAA //////////////////////////////
-        $responsibilities = $reporte->responsibles;//Obtener el id del departamento
-        $dep=Area::where('id',$responsibilities)->get(); //Nombre del departamento
+        $responsibilities = $reporte->responsibles; //Obtener el id del departamento
+        $dep = Area::where('id', $responsibilities)->get(); //Nombre del departamento
 
         // Regla sql
         // SELECT users, name, paternal_surname, maternal_surname FROM responsibles r join users u on u.id=r.users WHERE areas=1; 
 
-        // $name = responsible::responsibilities('responsibles as r')
-        // ->join('users as u', 'u.id', '=', 'r.users')
-        // ->select('u.id as user_id', 'u.name', 'u.paternal_surname', 'u.maternal_surname')
-        // ->where('areas', '=', $responsibilities)
-        // ->get();
+        //    $name = DB::table('responsibles as r')
+        //         ->join('users as u', 'u.id', '=', 'r.users')
+        //         ->select( 'u.name as name', 'u.paternal_surname as p', 'u.maternal_surname as m')
+        //         ->where('r.areas', $responsibilities)
+        //         ->get();
+
+        // $name = DB::table('responsibles as r')
+        //     ->join('users as u', 'u.id', '=', 'r.users')
+        //     ->join('positions as p', 'p.id', '=', 'r.positions')
+        //     ->select('u.name as name', 'u.paternal_surname as p', 'u.maternal_surname as m', 'p.position_name as position')
+        //     ->where('r.areas', $responsibilities)
+        //     ->get();
+
+        $name = DB::table('responsibles as r')
+            ->join('users as u', 'u.id', '=', 'r.users')
+            ->join('positions as p', 'p.id', '=', 'r.positions')
+            ->join('areas as a', 'a.id', '=', 'r.areas')
+            ->select('u.name as name', 'u.paternal_surname as p', 'u.maternal_surname as m', 'p.name as position', 'a.areas_name as area')
+            ->where('r.areas', $responsibilities)
+            ->get();
+
+
 
         // $responsables=responsible::where('users',$responsibilities)->get();
         // $profession = responsible::table('responsibilities')->where('areas', '=', $responsibilities)->first();
         // $namerespo=User::()
         // $responsables = User::where('id', $responsibilities)->get();
         // Para el departamento
-        
+
 
 
 
@@ -74,7 +94,7 @@ class pdfController extends Controller
 
         $reportdate = $reporte->report_date;
         $report_date = date("d/m/Y", strtotime($reportdate));
-        $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date','dep')); //Para mostrar desde el navegador
+        $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date', 'dep', 'name')); //Para mostrar desde el navegador
 
         return $pdf->stream();
     }

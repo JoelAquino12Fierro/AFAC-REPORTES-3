@@ -31,7 +31,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('evidence')->nullable(); //string de la ruta de la imagen
             $table->date('report_date'); //Fecha del reporte (generacion)
-            
+            // agregar user que reporta
+
             // Segunda parte del reporte
             $table->unsignedBigInteger('modules_systems')->nullable(); //Relacion de la llave forane de modulos
             $table->string('descriptionA')->nullable();
