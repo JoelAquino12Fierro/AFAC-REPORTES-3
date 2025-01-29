@@ -46,7 +46,7 @@ return new class extends Migration
             $table->foreign('areas')->references('id')->on('areas')->onDelete('cascade');
             $table->foreign('types_reports')->references('id')->on('types_reports')->onDelete('cascade');
             $table->foreign('modules_systems')->references('systems')->on('modules_systems')->onDelete('cascade');
-            $table->foreign('responsibles')->references('users')->on('responsibles')->onDelete('cascade'); //Relacion con los responsables
+            $table->foreign('responsibles')->references('areas')->on('responsibles')->onDelete('cascade'); //Relacion con los responsables
         });
     }
 
