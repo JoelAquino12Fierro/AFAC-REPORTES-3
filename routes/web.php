@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\areaController;
+use App\Http\Controllers\catalogsController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
 use App\Http\Controllers\newuserController;
+use App\Http\Controllers\pdfController;
 use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tableController;
@@ -32,7 +34,7 @@ Route::middleware([
 // Rutas para las vistas
 
 Route::view('/table', 'table')->name('table');
-Route::view('/catalogos', 'catalogos')->name('catalogos'); //Ver en la barra de navegacion
+
 
 
 Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
@@ -41,22 +43,24 @@ Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
 
 // Rutas para los controllers TABLA
 Route::get('tables',[tableController::class, 'index'])->name('table.index')->middleware('auth.basic'); //Mostrar en tabla
-Route::post('/detalles/{id}', [verdetallesController::class, 'store'])->name('reports.detalles'); //Editar
+Route::put('/detalles/{id}', [verdetallesController::class, 'update'])->name('reports.detalles'); //Guarda el nuevo formulario
 Route::get('/reports/{id}/detalles', [tableController::class, 'edit'])->name('reports.edit'); //vista editar
 Route::delete('/delete/{id}', [tableController::class, 'destroy'])->name('reports.destroy')->middleware('auth.basic');
 
-Route::get('/pdf', function (){
-    $pdf = PDF::loadView('pdf');
-    return $pdf->stream();
-}) ->name('pdf');
+Route::get('pdf/{id}',[pdfController::class,'index'])->name('pdf')->middleware('auth.basic');
+// Route::get('/pdf{id}', function (){
+//     $pdf = PDF::loadView('pdf');
+//     return $pdf->stream();
+// }) ->name('pdf');
 //Temporal para la creacíon del pdf
 
 
 // Controllers de catalogos
+Route::get('catalogos', [catalogsController::class,'index'])->name('catalogos'); //Ver en la barra de navegacion
 Route::post('newArea', [areaController::class, 'store'])->name('register.area');
 Route::post('newSystem', [systemController::class, 'store'])->name('register.system');
-Route::post('newModuleForm', [moduleController::class, 'store'])->name('register.module');
-Route::post('newModule', [moduleController::class, 'create'])->name('register.newModule');
+Route::post('systeModule', [catalogsController::class, 'store'])->name('register.sysmod');
+Route::post('newModule', [moduleController::class, 'store'])->name('register.module');
 
 // Ruta para la tabla de usuarios
 Route::get('users',[userController::class, 'index'])->name('users')->middleware('auth.basic');
@@ -72,3 +76,5 @@ Route::get('/search-users', function (HttpRequest $request) {
 //Rutas de nuevo reporte
 Route::get('/newform', [newformController::class,'create_function'])->name('newform')->middleware('auth.basic'); 
 Route::post('/addreport', [newformController::class,'store'])->name('addreport')->middleware('auth.basic');//para ver el diseño del formulario de nuevo registro
+
+

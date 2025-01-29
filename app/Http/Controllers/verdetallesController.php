@@ -7,32 +7,35 @@ use Illuminate\Http\Request;
 
 class verdetallesController extends Controller
 {
-    public function store(Request $request, $id)
+
+    public function update(Request $request, $id)
     {
-        //Validacion del formulario(name que se les da a los inputs)
-        $request->validate([
-            'module' => 'required',
+        $validatedData = $request->validate([
+            'module' => 'required|exists:modules_systems,modules', // Corregido "exists"
             'description' => 'required|string',
             'evidence' => 'nullable|file|mimes:png,jpg,jpeg|max:10240',
-            'responsable' => 'required|exists:users,id',
+            'responsable' => 'required|exists:responsibles,users'
         ]);
         
-        //Encuentra el reporte
-        $report=Report::findOrFail($id);
-        //BD = name inputs
-        $report->id=$request->id;
-        $report->module=$request->module;
-        $report->descriptionA=$request->descriptionA;
-        // $report->evidenceA=$request->evidence;
-        $report->responsible=$request->responsable;
-        // $report->status=update($request->status->1);
+        $reporte = Report::findOrFail($id);
+        $reporte->modules_systems = $validatedData['module'];
+        $reporte->descriptionA=$validatedData['description'];
+        $reporte->responsibles=$validatedData['responsable'];
+        $reporte->status='1';
+        $reporte->save();
+        
+        if ($request->hasFile('evidence')){
+            $file=$request->file('evidence');
+            $filename = $reporte->folio .'A' . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->move('evidence\admi', $filename, 'public');
+            $reporte->evidenceA=$filePath;
 
-        if ($request->hasFile('evidence')) {
-            $filePath = $request->file('evidence')->store('public', 'evidence');
-            $report->evidence = $filePath;
         }
-        // Guarda el reporte
-        $report->save();
-        return redirect()->route('reports.create')->with('success', 'Reporte creado correctamente.');
+        $reporte->save();
+        return redirect()->route('table.index')->with('success', 'Reporte creado correctamente.');
     }
 }
+
+
+
+

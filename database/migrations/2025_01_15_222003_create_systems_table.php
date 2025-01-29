@@ -24,13 +24,13 @@ return new class extends Migration
         });
 
         Schema::create('modules_systems', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_systems');
-            $table->unsignedBigInteger('id_modules');
+            // $table->id();
+            $table->unsignedBigInteger('systems');
+            $table->unsignedBigInteger('modules');
             $table->timestamps();
 
-            $table->foreign('id_systems')->references('id')->on('systems')->onDelete('cascade');
-            $table->foreign('id_modules')->references('id')->on('modules')->onDelete('cascade');
+            $table->foreign('systems')->references('id')->on('systems')->onDelete('cascade');
+            $table->foreign('modules')->references('id')->on('modules')->onDelete('cascade');
         });
 
       
@@ -41,8 +41,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('modules_systems');
         Schema::dropIfExists('systems');
         Schema::dropIfExists('modules');
-        Schema::dropIfExists('modules_systems');
+        
     }
 };

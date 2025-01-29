@@ -136,7 +136,7 @@
                                 </td>
                                 {{-- PDF --}}
                                 <td>
-                                    <form action="{{ route('pdf') }}" method="GET">
+                                    <form action="{{ route('pdf', $reporte->id) }}" method="GET">
                                         @csrf
                                         {{-- @method('DELETE') --}}
                                         <button type="submit">

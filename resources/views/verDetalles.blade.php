@@ -8,30 +8,23 @@
     <body>
         <div class="px-14 py-14 ">
             <div class="p-7 lg:p-8 bg-white border-b border-gray-200">
-                <form name="formA" id="formA" class="max-w-md mx-auto " action="{{ route('reports.detalles', $reporte->id) }}" method="post">
+              
+                <form name="formA" id="formA" class="max-w-md mx-auto " action="{{ route('reports.detalles', $reporte->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="space-y-12">
                         <div class="grid grid-cols-1">
-                            {{-- Folio --}}
-                            {{-- <div class="mb-5">
-                                <label for="folio"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Folio</label>
-                                <input type="text" id="disabled-input" aria-label="disabled input" name="folio"
-                                    class="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    value="DTIARS-" disabled>
-                            </div> --}}
-
-                            {{-- Module --}}
+                             {{-- Module --}}
                             <div class="mb-5">
                                 <label for="module"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Módulo</label>
-                                <select id="module"
+                                <select id="module" name="module"
                                     class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                     <option value=""  class="uppercase">--Selecciona el módulo--
                                     </option>
-                                    @foreach ($modules_system as $modules_system)
-                                    <option class="uppercase" name="module" value="{{$modules_system->id}}">{{$modules_system->module->modules_name}}</option>
+                                    @foreach ($modules_system as $modules)
+                                    <option class="uppercase" name="module" value="{{$modules->modules}}">{{$modules->module->modules_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -62,7 +55,7 @@
                                                 class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600">
                                                 <span>Upload a file</span>
                                                 <input id="evidence" name="evidence" type="file"
-                                                    class="sr-only">
+                                                    >
                                             </label>
                                             <p class="pl-1">or drag and drop</p>
                                         </div>
