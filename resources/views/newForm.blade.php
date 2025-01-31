@@ -110,10 +110,11 @@
                                     placeholder="Ingresa aquí" required />
                             </div>
                             {{-- Evidencia --}}
+
                             <div class="col-span-full">
                                 <label for="file" class="block text-sm font-medium text-gray-900">Subir
                                     Evidencia</label>
-                                {{-- <input id="file-upload" name="file-upload" type="file" > --}}
+                            
                                 <div
                                     class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                                     <div class="text-center">
@@ -133,8 +134,9 @@
                                         <p class="text-xs text-gray-600">PNG, JPG, GIF up to 10MB</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
 
+                           
                             <!-- Botón de enviar -->
                             <div class="mt-6 flex items-center justify-end gap-x-6">
                                 <button type="submit"

@@ -1,4 +1,4 @@
-<div class="p-4 sm:p-6 md:p-8 lg:p-10">
+ <div class="p-4 sm:p-6 md:p-8 lg:p-10">
     <x-edit-button
     wire:click="$set('open', true)">
         Editar

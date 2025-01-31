@@ -4,18 +4,15 @@ use App\Http\Controllers\areaController;
 use App\Http\Controllers\catalogsController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
-use App\Http\Controllers\newuserController;
 use App\Http\Controllers\pdfController;
+use App\Http\Controllers\roles;
 use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\tableController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\verdetallesController;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf AS PDF;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request as HttpRequest;
-use Illuminate\Support\Facades\Request as FacadesRequest;
 
 Route::get('/', function () {
     return view('welcome');
@@ -78,3 +75,6 @@ Route::get('/newform', [newformController::class,'create_function'])->name('newf
 Route::post('/addreport', [newformController::class,'store'])->name('addreport')->middleware('auth.basic');//para ver el diseño del formulario de nuevo registro
 
 
+// Ruta de roles
+
+Route::get('rol', [roles::class,'index'])->name('roles'); //Ver en la barra de navegacion
