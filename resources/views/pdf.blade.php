@@ -119,11 +119,11 @@
                     <td>Descripción</td>
                 </tr>
                 <tr>
-                    {{-- NO FUNCIONAA --}}
+                
                     @foreach ($module as $module)
                         <td class="mayusculas">{{ $module->modules_name }}</td>
                     @endforeach
-                    {{-- <td></td> --}}
+                
                     <td>
                         {{ $descriptionA }}
                     </td>
@@ -147,20 +147,20 @@
                 @foreach ($name as $name)
                     <tr>
 
-                        <td>
+                        <td class="mayusculas">
                             {{-- @foreach ($name as $name) --}}
                             {{ $name->name . ' ' . $name->p . ' ' . $name->m }}
                             {{-- <p>{{ $usuario->nombre . ' ' . $usuario->apellido }}</p> --}}
                             {{-- @endforeach --}}
                         </td>
 
-                        <td>
+                        <td class="mayusculas"> 
                             {{-- @foreach ($dep as $dep)
                         {{ $dep->areas_name }}
                         @endforeach --}}
                             {{ $name->area }}
                         </td>
-                        <td>
+                        <td class="mayusculas">
                             {{ $name->position }}
                         </td>
                         <td></td>

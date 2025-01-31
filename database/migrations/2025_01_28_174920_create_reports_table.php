@@ -27,7 +27,8 @@ return new class extends Migration
             $table->unsignedBigInteger('areas'); //Area
             $table->unsignedBigInteger('systems'); //Sistema
             $table->unsignedBigInteger('types_reports'); //Tipo
-            $table->unsignedBigInteger('reporting_user'); //usuario
+            // $table->unsignedBigInteger('reporting_user'); //usuario
+            $table->text('report_user'); //text del usuario que reporta
             $table->text('description');
             $table->string('evidence')->nullable(); //string de la ruta de la imagen
             $table->date('report_date'); //Fecha del reporte (generacion)
@@ -42,7 +43,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Llaves foranes
-            $table->foreign('reporting_user')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('reporting_user')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('systems')->references('id')->on('systems')->onDelete('cascade');
             $table->foreign('areas')->references('id')->on('areas')->onDelete('cascade');
             $table->foreign('types_reports')->references('id')->on('types_reports')->onDelete('cascade');

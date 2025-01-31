@@ -108,7 +108,7 @@
                                 </td>
                                 <td class="px-6 py-4 uppercase">
                                     {{-- como se define el foreach->la funcion del modelo->lo que se quiere traer --}}
-                                    {{ $reporte->user->name }}
+                                    {{ $reporte->report_user }}
                                 </td>
 
 
