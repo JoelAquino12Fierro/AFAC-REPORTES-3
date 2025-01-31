@@ -7,10 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PDF</title>
     <link rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
+    <style>
+        body {
+            background-image: url('file://$fondo'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
 </head>
 
 
 <body>
+
+    <div class="watermark">
+        <img src="{{ public_path('img/fondo.png') }}" alt="Marca de Agua">
+    </div>
     <div class="container">
         <header>
             <div class="header-right">
@@ -87,9 +99,9 @@
                     <td>
                         <strong class="azul">Usuario que Genera el Reporte:</strong>
                         <br>
-                        @foreach ($user as $user)
-                            <p>{{ $user->name }}</p>
-                        @endforeach
+                        {{-- @foreach ($user as $user) --}}
+                        <p>{{ $user }}</p>
+                        {{-- @endforeach --}}
                     </td>
 
                     <td></td>
@@ -101,10 +113,12 @@
                 </tr> --}}
                 <tr>
                     <td colspan="3">
-                       <strong class="azul"> Descripción de la solicitud: </strong>
-                        <p>
+                        <strong class="azul"> Descripción de la solicitud: </strong>
+                        <p class="mayusuculas">
                             {{ $description }}
                         </p>
+
+                     
                     </td>
                 </tr>
             </table>
@@ -115,17 +129,20 @@
                     <th colspan="2"><strong>SOLICITUD</strong></th>
                 </tr>
                 <tr>
-                    <td>Módulo</td>
-                    <td>Descripción</td>
+                    <td class="negritas">Módulo</td>
+                    <td class="negritas">Descripción</td>
                 </tr>
                 <tr>
-                
+
                     @foreach ($module as $module)
-                        <td class="mayusculas">{{ $module->modules_name }}</td>
+                        <td class="modulo">{{ $module->modules_name }}</td>
                     @endforeach
-                
-                    <td>
+
+                    <td class="mayusculas">
                         {{ $descriptionA }}
+                        <br>
+                        <img class="evidence" src="{{public_path($img)}}" >
+                        {{-- src="{{ public_path('img/fondo.png') }}" --}}
                     </td>
 
                 </tr>
@@ -134,10 +151,13 @@
         <section class="usuarios">
             <table>
                 <tr>
-                    <th colspan="4">
-                        <h4>USUARIOS RESPONSABLES</h4>
-                    </th>
+                    <th colspan="4" class="u"><strong>USUARIOS RESPONSABLES</strong></th>
                 </tr>
+                {{-- <tr>
+                    <th  colspan="4">
+                        <strong>USUARIOS RESPONSABLES</strong>
+                    </th>
+                </tr> --}}
                 <tr>
                     <th>Nombre</th>
                     <th>Departamento</th>
@@ -154,7 +174,7 @@
                             {{-- @endforeach --}}
                         </td>
 
-                        <td class="mayusculas"> 
+                        <td class="mayusculas">
                             {{-- @foreach ($dep as $dep)
                         {{ $dep->areas_name }}
                         @endforeach --}}
