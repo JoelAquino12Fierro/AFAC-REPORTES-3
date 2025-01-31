@@ -17,12 +17,12 @@ class newformController extends Controller
         $area = Area::all();
         $system = System::all();
         $type = types_report::all();
-        $user = User::all();
+        // $user = User::all();
         $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
         $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
         $date=date("d/m/Y");
         
-        return view('newForm', compact('area', 'system', 'type', 'user', 'folio','date'));
+        return view('newForm', compact('area', 'system', 'type', 'folio','date'));
     }
 
     // Guardar
@@ -35,12 +35,11 @@ class newformController extends Controller
             'system' => 'required|exists:systems,id',
             'type_report' => 'required|exists:types_reports,id',
             'report_date' => 'required|date', 
-            'report_user' => 'required|exists:users,id', 
+            // 'report_user' => 'required|exists:users,id', 
             'description' => 'required|string', 
+            'report_user' => 'required|string',
             'file' => 'nullable|file|mimes:png,jpg,jpeg|max:10240'
         ]);
-
-
 
         $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
         $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
@@ -53,9 +52,8 @@ class newformController extends Controller
         $report->description = $request->description;
         $report->areas = $request->area;
         $report->systems = $request->system;
-        $report->reporting_user = $request->report_user;
+        $report->report_user = $request->report_user;
         $report->types_reports=$request->type_report;
-
 
         $report->save();
         // Si existe el archivo
