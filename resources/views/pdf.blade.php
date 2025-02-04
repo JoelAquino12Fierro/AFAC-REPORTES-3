@@ -7,17 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PDF</title>
     <link rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
-
 </head>
-
 
 <body>
 
-    <div class="watermark">
-        <img src="{{ asset('img/fondo.png') }}" class="watermark">
-        <!-- <img src="{{ url('img/fondo.png') }}"> -->
-
-
+    <div class="background">
+        <img src="{{ public_path('img/fondo.png') }}" alt="Fondo">
     </div>
     <div class="container">
         <header>
@@ -28,7 +23,6 @@
 
                             <img src="{{ asset('img/AFAC_color.png') }}" class="logo">
 
-                            {{-- Logo AFAC --}}
                         </td>
                         <td rowspan="4">
                             <p> <strong>AGENCIA FEDERAL DE AVIACIÓN CIVIL</strong></p>
@@ -160,23 +154,17 @@
                 </tr>
                 @foreach ($name as $name)
                 <tr>
-
                     <td class="mayusculas">
-                        {{-- @foreach ($name as $name) --}}
                         {{ $name->name . ' ' . $name->p . ' ' . $name->m }}
-                        {{-- <p>{{ $usuario->nombre . ' ' . $usuario->apellido }}</p> --}}
-                        {{-- @endforeach --}}
                     </td>
 
                     <td class="mayusculas">
-
                         {{ $name->area }}
                     </td>
                     <td class="mayusculas">
                         {{ $name->position }}
                     </td>
                     <td></td>
-
                 </tr>
                 @endforeach
             </table>
