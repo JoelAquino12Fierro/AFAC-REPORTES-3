@@ -92,11 +92,17 @@
                     </div>
                 </div>
 
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg">Crear Usuario</button>
             </form>
         </x-slot>
         <x-slot name="footer">
-            <button wire:click="$set('open', false)" class="bg-red-500 text-white px-4 py-2 rounded-lg">Cerrar</button>
+            <div class="flex justify-between w-full">
+                <div>
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-lg">Guardar Usuario</button>
+                </div>
+                <div>
+                    <button wire:click="$set('open', false)" class="bg-red-500 text-white px-4 py-2 rounded-lg">Cerrar</button>
+                </div>
+            </div>
         </x-slot>
     </x-dialog-modal>
 </div>
