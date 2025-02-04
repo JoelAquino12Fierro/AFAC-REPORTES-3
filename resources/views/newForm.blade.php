@@ -7,9 +7,7 @@
 
     <div class="px-14 py-14 ">
         <div class="p-7 lg:p-8 bg-white border-b border-gray-200">
-            <form name="formRegister" id="formRegister" action="{{ route('addreport') }}" method="POST"
-                enctype="multipart/form-data">
-                @csrf
+            
                 <form name="formRegister" id="formRegister" action="{{ route('addreport') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -137,8 +135,7 @@
 
                             <!-- Botón de enviar -->
                             <div class="mt-6 flex items-center justify-end gap-x-6">
-                                <button type="submit"
-                                    class="rounded-md bg-blue-700 px-3 py-2 text-sm font-semibold  border border-transparent  text-white hover:bg-blue-800">Guardar</button>
+                                    @livewire('save-report-modal')
                             </div>
                         </div>
                     </div>
