@@ -13,7 +13,19 @@ class NewUserModal extends Component
     }
 
     public $open = false; // Variable para controlar el estado del modal
+    public $confirmOpen =false;
 
+    public function showConfirmationModal()
+{
+    $this->confirmOpen = true;
+}
+   public function createUser()
+{
+    // Aquí guardas los datos en la base de datos
+    $this->confirmOpen = false; // Cierra el modal de confirmación
+    $this->open = false; // Cierra el modal principal
+    session()->flash('message', 'Usuario creado exitosamente.');
+}
     //función para los roles
     // public function create_function(){
     //     $datas=Role::all();
