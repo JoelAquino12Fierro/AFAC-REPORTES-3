@@ -7,21 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PDF</title>
     <link rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
-    <style>
-        body {
-            background-image: url('file://$fondo'); 
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-    </style>
 </head>
-
 
 <body>
 
-    <div class="watermark">
-        <img src="{{ public_path('img/fondo.png') }}" alt="Marca de Agua">
+    <div class="background">
+        <img src="{{ public_path('img/fondo.png') }}" alt="Fondo">
     </div>
     <div class="container">
         <header>
@@ -29,8 +20,9 @@
                 <table>
                     <tr>
                         <td rowspan="5">
-                            <img src="{{ public_path('img/AFAC_color.png') }}" alt="" class="logo">
-                            {{-- Logo AFAC --}}
+
+                            <img src="{{ asset('img/AFAC_color.png') }}" class="logo">
+
                         </td>
                         <td rowspan="4">
                             <p> <strong>AGENCIA FEDERAL DE AVIACIÓN CIVIL</strong></p>
@@ -68,26 +60,26 @@
             <table>
                 <tr>
                     @foreach ($area as $area)
-                        <td>
-                            <strong class="azul">Área: </strong>
-                            <br>
-                            <p> {{ $area->areas_name }} </p>
-                        </td>
+                    <td>
+                        <strong class="azul">Área: </strong>
+                        <br>
+                        <p> {{ $area->areas_name }} </p>
+                    </td>
                     @endforeach
 
                     @foreach ($system as $system)
-                        <td>
-                            <strong class="azul">Sistema:</strong>
-                            <br>
-                            <p> {{ $system->systems_name }} </p>
-                        </td>
+                    <td>
+                        <strong class="azul">Sistema:</strong>
+                        <br>
+                        <p> {{ $system->systems_name }} </p>
+                    </td>
                     @endforeach
                     @foreach ($type as $type)
-                        <td>
-                            <strong class="azul">Tipo de reporte:</strong>
-                            <br>
-                            <p>{{ $type->name_types_reports }}</p>
-                        </td>
+                    <td>
+                        <strong class="azul">Tipo de reporte:</strong>
+                        <br>
+                        <p>{{ $type->name_types_reports }}</p>
+                    </td>
                     @endforeach
                 </tr>
                 <tr>
@@ -99,18 +91,14 @@
                     <td>
                         <strong class="azul">Usuario que Genera el Reporte:</strong>
                         <br>
-                        {{-- @foreach ($user as $user) --}}
+
                         <p>{{ $user }}</p>
-                        {{-- @endforeach --}}
+
                     </td>
 
                     <td></td>
                 </tr>
-                {{-- <tr>
-                    <td>19/10/2024</td>
-                    <td>Oscar Manuel Cornelio Vazquez</td>
-                    <td></td>
-                </tr> --}}
+
                 <tr>
                     <td colspan="3">
                         <strong class="azul"> Descripción de la solicitud: </strong>
@@ -118,7 +106,7 @@
                             {{ $description }}
                         </p>
 
-                     
+
                     </td>
                 </tr>
             </table>
@@ -135,14 +123,18 @@
                 <tr>
 
                     @foreach ($module as $module)
-                        <td class="modulo">{{ $module->modules_name }}</td>
+                    <td class="modulo">{{ $module->modules_name }}</td>
                     @endforeach
 
                     <td class="mayusculas">
                         {{ $descriptionA }}
                         <br>
-                        <img class="evidence" src="{{public_path($img)}}" >
-                        {{-- src="{{ public_path('img/fondo.png') }}" --}}
+                        @if (!empty($img) && file_exists(public_path($img)))
+                        <img class="evidence" src="{{ public_path($img) }}">
+                        @else
+                        <br>
+                        @endif
+
                     </td>
 
                 </tr>
@@ -153,11 +145,7 @@
                 <tr>
                     <th colspan="4" class="u"><strong>USUARIOS RESPONSABLES</strong></th>
                 </tr>
-                {{-- <tr>
-                    <th  colspan="4">
-                        <strong>USUARIOS RESPONSABLES</strong>
-                    </th>
-                </tr> --}}
+
                 <tr>
                     <th>Nombre</th>
                     <th>Departamento</th>
@@ -165,27 +153,19 @@
                     <th>Observaciones</th>
                 </tr>
                 @foreach ($name as $name)
-                    <tr>
+                <tr>
+                    <td class="mayusculas">
+                        {{ $name->name . ' ' . $name->p . ' ' . $name->m }}
+                    </td>
 
-                        <td class="mayusculas">
-                            {{-- @foreach ($name as $name) --}}
-                            {{ $name->name . ' ' . $name->p . ' ' . $name->m }}
-                            {{-- <p>{{ $usuario->nombre . ' ' . $usuario->apellido }}</p> --}}
-                            {{-- @endforeach --}}
-                        </td>
-
-                        <td class="mayusculas">
-                            {{-- @foreach ($dep as $dep)
-                        {{ $dep->areas_name }}
-                        @endforeach --}}
-                            {{ $name->area }}
-                        </td>
-                        <td class="mayusculas">
-                            {{ $name->position }}
-                        </td>
-                        <td></td>
-
-                    </tr>
+                    <td class="mayusculas">
+                        {{ $name->area }}
+                    </td>
+                    <td class="mayusculas">
+                        {{ $name->position }}
+                    </td>
+                    <td></td>
+                </tr>
                 @endforeach
             </table>
         </section>

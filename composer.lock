@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "624ed37a4b4cccb8274bc52fb9563210",
+    "content-hash": "99bf405a770ef2a6803f459b5432a216",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -62,16 +62,16 @@
         },
         {
             "name": "barryvdh/laravel-dompdf",
-            "version": "v3.0.1",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-dompdf.git",
-                "reference": "d2b3a158ba6e6c0fbb97208aa37dc764642ce5d5"
+                "reference": "8d698b4aec2be91fe1e47ba71ba258acbf23357d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/d2b3a158ba6e6c0fbb97208aa37dc764642ce5d5",
-                "reference": "d2b3a158ba6e6c0fbb97208aa37dc764642ce5d5",
+                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/8d698b4aec2be91fe1e47ba71ba258acbf23357d",
+                "reference": "8d698b4aec2be91fe1e47ba71ba258acbf23357d",
                 "shasum": ""
             },
             "require": {
@@ -123,7 +123,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-dompdf/issues",
-                "source": "https://github.com/barryvdh/laravel-dompdf/tree/v3.0.1"
+                "source": "https://github.com/barryvdh/laravel-dompdf/tree/v3.1.0"
             },
             "funding": [
                 {
@@ -135,7 +135,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-30T10:10:17+00:00"
+            "time": "2025-01-21T20:24:00+00:00"
         },
         {
             "name": "blade-ui-kit/blade-icons",
@@ -990,16 +990,16 @@
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v3.0.2",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "baf4084b27c7f4b5b7a221b19a94d11327664eb8"
+                "reference": "a51bd7a063a65499446919286fb18b518177155a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/baf4084b27c7f4b5b7a221b19a94d11327664eb8",
-                "reference": "baf4084b27c7f4b5b7a221b19a94d11327664eb8",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/a51bd7a063a65499446919286fb18b518177155a",
+                "reference": "a51bd7a063a65499446919286fb18b518177155a",
                 "shasum": ""
             },
             "require": {
@@ -1048,9 +1048,9 @@
             "homepage": "https://github.com/dompdf/dompdf",
             "support": {
                 "issues": "https://github.com/dompdf/dompdf/issues",
-                "source": "https://github.com/dompdf/dompdf/tree/v3.0.2"
+                "source": "https://github.com/dompdf/dompdf/tree/v3.1.0"
             },
-            "time": "2024-12-27T20:27:37+00:00"
+            "time": "2025-01-15T14:09:04+00:00"
         },
         {
             "name": "dompdf/php-font-lib",
