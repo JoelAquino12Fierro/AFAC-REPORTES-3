@@ -19,7 +19,8 @@ class pdfController extends Controller
 {
     public function index(Request $request, $id)
     {
-      
+
+        
         $reporte = Report::findOrFail($id); //Buscar el id del reporte
 
         $folio = $reporte->folio;
@@ -45,7 +46,7 @@ class pdfController extends Controller
         $responsibilities = $reporte->responsibles; //Obtener el id del departamento
         $dep = Area::where('id', $responsibilities)->get(); //Nombre del departamento
 
-        $img=$reporte->evidenceA;
+        $img = $reporte->evidenceA;
 
         $name = DB::table('responsibles as r')
             ->join('users as u', 'u.id', '=', 'r.users')
@@ -61,8 +62,11 @@ class pdfController extends Controller
         $reportdate = $reporte->report_date;
         $report_date = date("d/m/Y", strtotime($reportdate));
 
-        $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date', 'dep', 'name','img')); //Para mostrar desde el navegador
+        $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date', 'dep', 'name', 'img')); //Para mostrar desde el navegador
         // $pdf->setWatermarkImage(public_path('img/AFAC_color.png'));
         return $pdf->stream();
+        // $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date', 'dep', 'name', 'img'));
+        // $pdf->setOption('chroot', public_path()); // Asegura que Dompdf tenga acceso a los recursos
+        // return $pdf->stream();
     }
 }

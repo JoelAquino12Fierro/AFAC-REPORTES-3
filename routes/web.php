@@ -12,6 +12,7 @@ use App\Http\Controllers\tableController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\verdetallesController;
 use App\Models\User;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request as HttpRequest;
 
 Route::get('/', function () {

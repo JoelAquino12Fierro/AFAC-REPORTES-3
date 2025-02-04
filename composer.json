@@ -7,7 +7,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "barryvdh/laravel-dompdf": "^3.0",
+        "barryvdh/laravel-dompdf": "^3.1",
         "codeat3/blade-codicons": "^1.33",
         "codeat3/blade-fluentui-system-icons": "^1.33",
         "codeat3/blade-ikonate": "^1.5",
