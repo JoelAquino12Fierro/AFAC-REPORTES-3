@@ -67,7 +67,8 @@
                                         </td>
                                         <td class="px-4 py-4 text-center">
                                             <form>
-                                                <button type="submit" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                                                <!-- <button type="submit" class="font-medium text-red-600 hover:underline">Eliminar</button> -->
+                                                 @livewire('confirm-delete-modal')
                                             </form>
                                         </td>
                                     </tr>

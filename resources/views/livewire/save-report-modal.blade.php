@@ -1,7 +1,7 @@
 <div>
     {{-- MODAL PARA LA CREACIÓN DE UN NUEVO REPORTE --}}
-    <x-button wire:click="$set('çonfirmReport', true)">
-        btn guardar
+    <x-button class="rounded-md bg-[#003764] px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b]" wire:click="$set('çonfirmReport', true)">
+        Guardar
     </x-button>
 
 <x-dialog-modal wire:model="confirmReport">

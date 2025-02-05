@@ -115,12 +115,13 @@
                                 <td>
                                     <form action="{{ route('reports.edit', $reporte->id) }}" method="GET">
                                         @csrf
-                                        <button type="submit" class=" text-left font-medium text-blue-600 hover:underline">
+                                        <!-- <button type="submit" class="text-left font-medium text-blue-600 hover:underline">
                                             {{-- class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">
                         Verdetalles --}}
                                             {{-- <x-codicon-eye class="h-7 w-7 text-azul-afac" /> --}}
                                             Ver detalles
-                                        </button>
+                                        </button> -->
+                                        @livewire('ver-detalles-modal')
                                     </form>
                                 </td>
                                 <td>
