@@ -111,6 +111,36 @@
                             </td>
 
 
+                                <td>
+                                    <form action="{{ route('reports.edit', $reporte->id) }}" method="GET">
+                                        @csrf
+                                        <!-- <button type="submit" class="text-left font-medium text-blue-600 hover:underline">
+                                            {{-- class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">
+                        Verdetalles --}}
+                                            {{-- <x-codicon-eye class="h-7 w-7 text-azul-afac" /> --}}
+                                            Ver detalles
+                                        </button> -->
+                                        @livewire('ver-detalles-modal')
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="{{ route('reports.destroy', $reporte->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">
+                                            <x-uiw-delete class="h-7 w-7 text-red-600" />
+                                            {{-- class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                        Eliminar --}}
+                                        </button>
+                                    </form>
+                                </td>
+                                {{-- PDF --}}
+                                <td>
+                                    <form action="{{ route('pdf', $reporte->id) }}" method="GET">
+                                        @csrf
+                                        {{-- @method('DELETE') --}}
+                                        <button type="submit">
+                                            <x-bi-file-pdf class=" h-7 w-7 text-dorado-afac" />
                             <td>
                                 <form action="{{ route('reports.edit', $reporte->id) }}" method="GET">
                                     @csrf
