@@ -1,5 +1,5 @@
- <div class="p-4 sm:p-6 md:p-8 lg:p-10">
-    <x-edit-button
+<div class="p-4 sm:p-6 md:p-8 lg:p-10">
+    <x-edit-button class="font-semibold text-base"
     wire:click="$set('open', true)">
         Editar
     </x-edit-button>

@@ -17,9 +17,9 @@
                              {{-- Module --}}
                             <div class="mb-5">
                                 <label for="module"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Módulo</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900">Módulo</label>
                                 <select id="module" name="module"
-                                    class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                                     <option value=""  class="uppercase">--Selecciona el módulo--
                                     </option>
@@ -32,9 +32,9 @@
                             {{-- Descripcion --}}
                             <div class="mb-5">
                                 <label for="description"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
+                                    class="block mb-2 text-sm font-medium text-gray-900">Descripción</label>
                                 <input type="textarea" id="description" name="description"
-                                    class="uppercase shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                    class="uppercase shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-10"
                                     placeholder="Ingresa aquí" required />
                             </div>
 
@@ -68,10 +68,10 @@
                             <div class="grid md:grid-cols-4 md:gap-6">
                                 <div class="col-span-3  mt-4 relative z-0 w-full mb-5 group">
                                     <label for="responsable"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        class="block mb-2 text-sm font-medium text-gray-900">
                                         Responsable</label>
                                     <input type="text" name="responsable" id="responsable"
-                                        class="uppercase shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                                        class="uppercase shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                                         placeholder=" " required />
 
                                 </div>
