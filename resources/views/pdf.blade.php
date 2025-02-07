@@ -59,7 +59,7 @@
         <section class="info">
             <table>
                 <tr>
-                    @foreach ($area as $area)
+                    @foreach ($area )
                     <td>
                         <strong class="azul">Área: </strong>
                         <br>
@@ -67,14 +67,14 @@
                     </td>
                     @endforeach
 
-                    @foreach ($system as $system)
+                    @foreach ($system )
                     <td>
                         <strong class="azul">Sistema:</strong>
                         <br>
                         <p> {{ $system->systems_name }} </p>
                     </td>
                     @endforeach
-                    @foreach ($type as $type)
+                    @foreach ($type)
                     <td>
                         <strong class="azul">Tipo de reporte:</strong>
                         <br>
