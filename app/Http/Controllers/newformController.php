@@ -8,6 +8,7 @@ use App\Models\System;
 use App\Models\types_report;
 use App\Models\User;
 use App\Models\Report;
+use Illuminate\Support\Facades\Validator;
 
 class newformController extends Controller
 {
@@ -20,9 +21,9 @@ class newformController extends Controller
         // $user = User::all();
         $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
         $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
-        $date=date("d/m/Y");
-        
-        return view('newForm', compact('area', 'system', 'type', 'folio','date'));
+        $date = date("d/m/Y");
+
+        return view('newForm', compact('area', 'system', 'type', 'folio', 'date'));
     }
 
     // Guardar
@@ -30,54 +31,114 @@ class newformController extends Controller
     {
 
         // Lo de los id corresponde al nombre de la tabla
-        $validated = $request->validate([
-            'area' => 'required|exists:areas,id', 
+        // $validated = $request->validate([
+        //     'area' => 'required|exists:areas,id',
+        //     'system' => 'required|exists:systems,id',
+        //     'type_report' => 'required|exists:types_reports,id',
+        //     'report_date' => 'required|date',
+        //     // 'report_user' => 'required|exists:users,id', 
+        //     'description' => 'required|string',
+        //     'report_user' => 'required|string',
+        //     'file' => 'nullable|file|mimes:png,jpg,jpeg|max:10240'
+        // ]);
+
+        // $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
+        // $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
+        // // $date=date("d-m-Y");
+
+        // $report = new Report();
+        // $report->folio = $folio;
+        // $report->application_date = now();
+        // $report->report_date=$request->report_date;
+        // $report->description = $request->description;
+        // $report->areas = $request->area;
+        // $report->systems = $request->system;
+        // $report->report_user = $request->report_user;
+        // $report->types_reports=$request->type_report;
+
+        // $report->save();
+        // // Si existe el archivo
+        // if ($request->hasFile('file')) {
+        //     // Obtener el archivo
+        //     $file = $request->file('file');
+
+        //     // Crear el nombre basado en el folio y el ID
+        //     $filename = $report->folio . '.' . $file->getClientOriginalExtension();
+
+        //     // Guardar el archivo en la carpeta 'public/evidences'
+        //     $filePath = $file->move('evidence\user', $filename, 'public');
+
+        //     // Asignar la ruta del archivo al modelo
+        //     $report->evidence = $filePath;
+        // }
+
+        // // Guardar el reporte con la información actualizada
+        // $report->save();
+
+        // Redirigir con un mensaje de éxito
+        // return redirect()->route('newform')->with('success', 'Reporte creado correctamente.');
+
+        // Validación de los datos
+        $validator = Validator::make($request->all(), [
+            'area' => 'required|exists:areas,id',
             'system' => 'required|exists:systems,id',
             'type_report' => 'required|exists:types_reports,id',
-            'report_date' => 'required|date', 
-            // 'report_user' => 'required|exists:users,id', 
-            'description' => 'required|string', 
+            'report_date' => 'required|date',
+            'description' => 'required|string',
             'report_user' => 'required|string',
             'file' => 'nullable|file|mimes:png,jpg,jpeg|max:10240'
         ]);
-
-        $lastFolio = Report::max('id') + 1; //Encontrar el ultimo id
-        $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
-        // $date=date("d-m-Y");
-
-        $report = new Report();
-        $report->folio = $folio;
-        $report->application_date = now();
-        $report->report_date=$request->report_date;
-        $report->description = $request->description;
-        $report->areas = $request->area;
-        $report->systems = $request->system;
-        $report->report_user = $request->report_user;
-        $report->types_reports=$request->type_report;
-
-        $report->save();
-        // Si existe el archivo
-        if ($request->hasFile('file')) {
-            // Obtener el archivo
-            $file = $request->file('file');
-
-            // Crear el nombre basado en el folio y el ID
-            $filename = $report->folio . '.' . $file->getClientOriginalExtension();
-
-            // Guardar el archivo en la carpeta 'public/evidences'
-            $filePath = $file->move('evidence\user', $filename, 'public');
-                       
-            // Asignar la ruta del archivo al modelo
-            $report->evidence = $filePath;
+        // Si la validación falla, devolver errores en JSON
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 400);
         }
 
-        // Guardar el reporte con la información actualizada
-        $report->save();
+        try {
+            // Generar el folio
+            $lastFolio = Report::max('id') + 1;
+            $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
 
-        // Redirigir con un mensaje de éxito
-        return redirect()->route('newform')->with('success', 'Reporte creado correctamente.');
+            // Crear el reporte
+            $report = new Report();
+            $report->folio = $folio;
+            $report->application_date = now();
+            $report->report_date = $request->report_date;
+            $report->description = $request->description;
+            $report->areas = $request->area;
+            $report->systems = $request->system;
+            $report->report_user = $request->report_user;
+            $report->types_reports = $request->type_report;
+
+            // Si existe un archivo, guardarlo
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $filename = $folio . '.' . $file->getClientOriginalExtension();
+                $filePath = $file->storeAs('evidence/user', $filename, 'public'); // Guardar en storage/app/public/evidence/user
+                $report->evidence = $filePath;
+            }
+
+            $report->save();
+
+            // Respuesta de éxito en JSON
+            return response()->json([
+                'success' => true,
+                'message' => 'Reporte creado correctamente.',
+                'folio' => $folio
+            ]);
+        } catch (\Exception $e) {
+            // Respuesta de error en JSON
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al guardar el reporte.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }
+
 
 
 

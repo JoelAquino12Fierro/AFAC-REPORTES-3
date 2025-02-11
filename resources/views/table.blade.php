@@ -9,7 +9,7 @@
 
         <!-- Modal Eliminar-->
         <!-- El id modalOverlay Funciona como un fondo semitransparente detrás del modal. -->
-        <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm z-40"></div>
+        <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-filter-none z-40"></div>
         <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <div class="flex flex-col items-center justify-center text-center">
@@ -287,6 +287,6 @@
                 </table>
             </div>
     </body>
-    <script src="{{ asset('js/ver-detalles/delete.js') }}"></script>
+    <script src="{{ asset(path: 'js/ver-detalles/delete.js') }}"></script>
 
 </x-app-layout>
