@@ -167,7 +167,6 @@
         <div id="errorModal" class="flex items-center justify-center  hidden fixed inset-0  z-50">
             <div class="bg-white rounded-lg shadow-lg p-4 w-80 relative border-t-4 border-red-600">
                 <div class="flex items-center mb-4">
-                    <!-- <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-16 mr-2"> -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="white">
                         <circle cx="12" cy="12" r="10" fill="#F87171" />
                         <path fill="white" d="M8 8L16 16M16 8L8 16" stroke="white" stroke-width="2" stroke-linecap="round" />
