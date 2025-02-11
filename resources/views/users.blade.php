@@ -23,8 +23,7 @@
                                         </div>
                                         <input type="text" id="table-search-users" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Buscar Usuario">
                                     </div>
-                                    <!-- boton para el modal de nuevo usuario -->
-                                    @livewire('new-user-modal')
+                                    <button type="submit" class="mt-4 right-2 text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-base font-semibold px-6 py-3 text-center inline-flex items-center shadow-lg">Nuevo</button>
                                 </div>
                             </form>
                         </div>
@@ -62,13 +61,13 @@
                                         </td>
                                         <td class="px-4 py-4 text-center">
                                             <form>
-                                                @livewire('edit-user-modal')
+                                            <button type="submit" class="font-semibold text-base">Editar</button>
                                             </form>
                                         </td>
                                         <td class="px-4 py-4 text-center">
                                             <form>
-                                                <!-- <button type="submit" class="font-medium text-red-600 hover:underline">Eliminar</button> -->
-                                                 @livewire('confirm-delete-modal')
+                                                <button type="submit" class="font-medium text-red-600 hover:underline">Eliminar</button>
+                                                 
                                             </form>
                                         </td>
                                     </tr>

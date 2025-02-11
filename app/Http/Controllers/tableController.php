@@ -41,7 +41,6 @@ class tableController extends Controller
         ]);
 
         $report = Report::findOrFail($id);
-       
         $report->update($report->descriptionA=$request->description);
         $report->modules_systems=$request->module;
         $report->descriptionA=$request->evidence;
@@ -76,4 +75,31 @@ class tableController extends Controller
         $reporte->delete();
         return redirect()->route('table.index')->with('success', 'Usuario eliminado correctamente');
     }
+
+    // public function updatever(Request $request, $id)
+    // {
+    //     $validatedData = $request->validate([
+    //         'module' => 'required|exists:modules_systems,modules', // Corregido "exists"
+    //         'description' => 'required|string',
+    //         'evidence' => 'nullable|file|mimes:png,jpg,jpeg|max:10240',
+    //         'responsable' => 'required|exists:responsibles,users'
+    //     ]);
+        
+    //     $reporte = Report::findOrFail($id);
+    //     $reporte->modules_systems = $validatedData['module'];
+    //     $reporte->descriptionA=$validatedData['description'];
+    //     $reporte->responsibles=$validatedData['responsable'];
+    //     $reporte->status='1';
+    //     $reporte->save();
+        
+    //     if ($request->hasFile('evidence')){
+    //         $file=$request->file('evidence');
+    //         $filename = $reporte->folio .'A' . '.' . $file->getClientOriginalExtension();
+    //         $filePath = $file->move('evidence\admi', $filename, 'public');
+    //         $reporte->evidenceA=$filePath;
+
+    //     }
+    //     $reporte->save();
+    //     return redirect()->route('table.index')->with('success', 'Reporte creado correctamente.');
+    // }
 }

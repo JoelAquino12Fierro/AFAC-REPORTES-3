@@ -6,6 +6,7 @@
     </x-slot>
 
     <body>
+    
         <div class="px-4 py-10 md:px-10 md:py-14 flex flex-col md:flex-row gap-4 rounded-md">
             <div class="basis-1/3 mr-2 bg-white rounded-md p-4">
                 <a href="#" onclick="showForm('area-form')"
@@ -118,6 +119,7 @@
                         class="mt-4 text-white bg-[#003764] hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Registrar</button>
                 </form>
             </div>
+           
         </div>
 
         <script>
