@@ -137,6 +137,7 @@
         </div>
         <!-- Fondo oscurecido -->
         <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-filter-none z-40"></div>
+
         <!-- Modal de Éxito -->
         <div id="successModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
             <div class="bg-white p-6 rounded-lg shadow-lg w-auto  ">
@@ -144,16 +145,12 @@
                 <div class="flex items-center justify-between p-4 border-b">
                     <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
                     <p class="text-center text-azul-afac font-bold text-xl ml-2">REGISTRO EXITOSO</p>
-                    <button onclick="closeModal('successModal')" class=" ml-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" stroke="currentColor" stroke-width="2" class="bi bi-x-lg text-gray-500 hover:text-gray-700 " viewBox="0 0 16 16">
-                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-                        </svg>
-                    </button>
+
                 </div>
                 <!-- Cuerpo del modal -->
                 <div class="p-4 justify-center">
-                    <p class="text-gray-700 mt-2 text-center">¡Reporte generado con éxito!</p> 
-                    <p class="text-gray-700 mt-2 text-center">Número de folio:</p>    
+                    <p class="text-gray-700 mt-2 text-center">¡Reporte generado con éxito!</p>
+                    <p class="text-gray-700 mt-2 text-center">Número de folio:</p>
                     <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p> <!-- Asegurar este ID -->
                 </div>
                 <!-- Pie del modal -->
@@ -167,15 +164,29 @@
 
 
         <!-- Modal de Error -->
-        <div id="errorModal" class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden">
-            <div class="bg-white p-6 rounded-lg shadow-lg text-center w-80">
-                <h2 class="text-lg font-bold text-red-600">¡Error!</h2>
-                <p class="text-gray-700 mt-2" id="errorModalMessage"></p>
-                <button onclick="closeModal('errorModal')" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-md">
-                    Intentar de nuevo
-                </button>
+        <div id="errorModal" class="flex items-center justify-center  hidden fixed inset-0  z-50">
+            <div class="bg-white rounded-lg shadow-lg p-4 w-80 relative border-t-4 border-red-600">
+                <div class="flex items-center mb-4">
+                    <!-- <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-16 mr-2"> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="white">
+                        <circle cx="12" cy="12" r="10" fill="#F87171" />
+                        <path fill="white" d="M8 8L16 16M16 8L8 16" stroke="white" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <div class="ml-3">
+                        <h2 class="text-red-600 font-semibold text-xl text-center">ERROR</h2>
+                    </div>
+                </div>
+                <div class="mb-4 justify-center">
+                    <p class="text-black text-sm text-center" id="errorModalMessage"></p>
+                </div>
+                <div class="flex justify-end mt-2">
+                    <button onclick="closeModal('errorModal')" class="px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-sm text-white tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                        Intentar de nuevo
+                    </button>
+                </div>
             </div>
         </div>
+
         <script>
             var addReportUrl = "{{ route('addreport') }}"; // Definir URL para JavaScript
         </script>

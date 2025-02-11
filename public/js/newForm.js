@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 showModal('successModal', ` ${data.folio}`);
             } else {
                 // Mostrar modal de error
-                showModal('errorModal', 'Error al guardar el reporte.');
+                showModal('errorModal', 'Error al generar el reporte');
             }
         } catch (error) {
             console.error("Error:", error);
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const overlay=document.getElementById('modalOverlay');
         modalMessage.textContent = message;
         modal.classList.remove("hidden");  // Mostrar modal
-        overlay.classList.remove("hidden");
+        overlay.classList.remove("hidden"); //Fondo 
 
     }
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const modal = document.getElementById(modalId);
         const overlay=document.getElementById('modalOverlay');
         modal.classList.add("hidden");  // Ocultar modal
-        overlay.classList.add("hidden");
+        overlay.classList.add("hidden"); //FOndo
     }
 
     // Añadir la función de cerrar a los botones de los modales
