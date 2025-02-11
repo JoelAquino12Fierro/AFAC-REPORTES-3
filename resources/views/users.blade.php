@@ -12,7 +12,7 @@
                     <div class="px-10 py-10"> 
                         <div>
                             <form>
-                                <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-50 p-4 rounded-t-lg border-b border-gray-300"> 
+                                <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-100 p-4 rounded-t-lg"> 
         
                                     <div class="relative">
                                         <label for="table-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Buscar</label>

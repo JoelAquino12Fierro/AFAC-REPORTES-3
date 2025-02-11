@@ -113,23 +113,20 @@
 
                                 {{-- VER DETALLES --}}
                             <td>
-                                <!-- <form action="{{ route('reports.edit', $reporte->id) }}" method="GET">
+                                <form action="{{ route('reports.edit', $reporte->id) }}" method="GET">
                                     @csrf
-                                    <button type="submit" class="bg-teal-500 text-white font-bold py-2 px-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out hover:bg-teal-600 active:bg-teal-700">
+                                    <!-- <button type="submit" class="bg-teal-500 text-white font-bold py-2 px-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out hover:bg-teal-600 active:bg-teal-700">
                                         Ver detalles
-                                    </button>
-                                </form> -->
-                                @livewire('ver-detalles-modal')
+                                    </button> -->
+                                    @livewire('ver-detalles-modal')
+                                </form>
                             </td>
                             {{--DELETE--}}
                             <td>
                                 <form action="{{ route('reports.destroy', $reporte->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white font-bold p-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out hover:bg-red-600 active:bg-red-700">
-                                    
-                                        Eliminar
-                                    </button>
+                                    @livewire('confirm-delete-modal')
                                 </form>
                             </td>
                             {{-- PDF --}}

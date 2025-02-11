@@ -22,7 +22,7 @@ class NewUserModal extends Component
    public function createUser()
 {
     // Aquí guardas los datos en la base de datos
-    $this->confirmOpen = false; // Cierra el modal de confirmación
+    $this->confirmOpen = true; // abre el modal de confirmación
     $this->open = false; // Cierra el modal principal
     session()->flash('message', 'Usuario creado exitosamente.');
 }

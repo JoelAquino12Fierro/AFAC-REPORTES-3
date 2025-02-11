@@ -1,6 +1,6 @@
 <div>
     {{-- MODAL PARA CONFIRMACIÓN DE ELIMINACIÓN. --}}
-    <x-danger-button wire:click="$set('item', true)">
+    <x-danger-button wire:click="$set('item', true)" class="mr-4">
         eliminar
     </x-danger-button>
 
@@ -22,7 +22,9 @@
         </div>    
     </x-slot>
     <x-slot name="content">
-        ¿Estás seguro de que deseas eliminar este elemento?
+        <p class="text-center">
+            ¿Estás seguro de que deseas eliminar este elemento?
+        </p>
     </x-slot>
     <x-slot name="footer">
     <div class="flex w-full gap-4">

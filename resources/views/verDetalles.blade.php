@@ -77,8 +77,7 @@
                                 </div>
                                 <div class="mt-11 relative z-0 w-full mb-5 group right-0">
                                     <button type="submit">
-                                        <!-- <x-fluentui-add-square-24-o class="h-9 w-9 text-gray-600" /> -->
-                                    </button>
+                                        </button>
 
                                 </div>
                             </div>
