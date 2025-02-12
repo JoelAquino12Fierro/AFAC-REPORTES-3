@@ -151,7 +151,7 @@
                 <div class="p-4 justify-center">
                     <p class="text-gray-700 mt-2 text-center">¡Reporte generado con éxito!</p>
                     <p class="text-gray-700 mt-2 text-center">Número de folio:</p>
-                    <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p> <!-- Asegurar este ID -->
+                    <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p> 
                 </div>
                 <!-- Pie del modal -->
                 <div class="flex justify-end p-4 border-t ">

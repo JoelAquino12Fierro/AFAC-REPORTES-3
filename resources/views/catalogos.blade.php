@@ -6,7 +6,54 @@
     </x-slot>
 
     <body>
-    
+        <!-- Fondo oscurecido -->
+        <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-filter-none z-40"></div>
+
+        <!-- Modal de Éxito -->
+        <div id="successModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-auto  ">
+                <!-- Encabezado -->
+                <div class="flex items-center justify-between p-4 border-b">
+                    <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
+                    <p class="text-center text-azul-afac font-bold text-xl ml-2">REGISTRO EXITOSO</p>
+
+                </div>
+                <!-- Cuerpo del modal -->
+                <div class="p-4 justify-center">
+                    <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p> <!-- Asegurar este ID -->
+                </div>
+                <!-- Pie del modal -->
+                <div class="flex justify-end p-4 border-t ">
+                    <button onclick="closeModal('successModal')" class="mt-4 bg-azul-afac text-white px-4 py-2 rounded-md">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Error -->
+        <div id="errorModal" class="flex items-center justify-center  hidden fixed inset-0  z-50">
+            <div class="bg-white rounded-lg shadow-lg p-4 w-80 relative border-t-4 border-red-600">
+                <div class="flex items-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="white">
+                        <circle cx="12" cy="12" r="10" fill="#F87171" />
+                        <path fill="white" d="M8 8L16 16M16 8L8 16" stroke="white" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <div class="ml-3">
+                        <h2 class="text-red-600 font-semibold text-xl text-center">ERROR</h2>
+                    </div>
+                </div>
+                <div class="mb-4 justify-center">
+                    <p class="text-black text-sm text-center" id="errorModalMessage"></p>
+                </div>
+                <div class="flex justify-end mt-2">
+                    <button onclick="closeModal('errorModal')" class="px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-sm text-white tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                        Intentar de nuevo
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="px-4 py-10 md:px-10 md:py-14 flex flex-col md:flex-row gap-4 rounded-md">
             <div class="basis-1/3 mr-2 bg-white rounded-md p-4">
                 <a href="#" onclick="showForm('area-form')"
@@ -53,9 +100,10 @@
 
 
             {{-- Formularios --}}
-
+            <!-- AREA -->
             <div class="flex-1 bg-white rounded-md p-6" id="area-form">
-                <form action="{{ route('register.area') }}" method="POST">
+                <!-- <form action="{{ route('register.area') }}" method="POST"> -->
+                <form id="f-area-form">
                     @csrf
                     <label for="area" class="block mb-2 text-sm font-medium text-gray-900">NOMBRE ÁREA</label>
                     <input type="text" id="area" name="area"
@@ -66,17 +114,18 @@
                 </form>
             </div>
 
-            
+            <!-- SISTEMA-MODULE -->
             <div class="flex-1 bg-white rounded-md p-6 hidden" id="module-form">
-                <form action="{{ route('register.sysmod') }}" method="POST">
+                <!-- <form action="{{ route('register.sysmod') }}" method="POST"> -->
+                <form id="f-module-sys-form">
                     @csrf
                     <label for="system" class="block mb-2 text-sm font-medium text-gray-900">SISTEMA</label>
                     <select id="system" name="system" onchange="updateModules()"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         {{-- <option value="">Selecciona un sistema</option> --}}
                         @foreach ($system as $system)
-                            <option class="uppercase" value="{{ $system->id }}">{{ $system->systems_name }}
-                            </option>
+                        <option class="uppercase" value="{{ $system->id }}">{{ $system->systems_name }}
+                        </option>
                         @endforeach
                     </select>
 
@@ -93,9 +142,10 @@
                         class="mt-4 text-white bg-[#003764] hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Registrar</button>
                 </form>
             </div>
-
+<!-- SISTEMA -->
             <div class="flex-1 bg-white rounded-md p-6 hidden" id="system-form">
-                <form action="{{ route('register.system') }}" method="POST">
+                <!-- <form action="{{ route('register.system') }}" method="POST"> -->
+                <form id="f-system-form">
                     @csrf
                     <label for="system" class="block mb-2 text-sm font-medium text-gray-900">NOMBRE DEL
                         SISTEMA</label>
@@ -108,7 +158,8 @@
             </div>
 
             <div class="flex-1 bg-white rounded-md p-6 hidden" id="create-module-form">
-                <form action="{{ route('register.module') }}" method="POST">
+                <!-- <form action="{{ route('register.module') }}" method="POST"> -->
+                <form id="module-form">
                     @csrf
                     <label for="newModule" class="block mb-2 text-sm font-medium text-gray-900">NOMBRE DEL
                         MÓDULO</label>
@@ -119,39 +170,16 @@
                         class="mt-4 text-white bg-[#003764] hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Registrar</button>
                 </form>
             </div>
-           
+
         </div>
-
         <script>
-            function showForm(formId) {
-                document.getElementById('area-form').classList.add('hidden');
-                document.getElementById('module-form').classList.add('hidden');
-                document.getElementById('system-form').classList.add('hidden');
-                document.getElementById('create-module-form').classList.add('hidden');
-                document.getElementById(formId).classList.remove('hidden');
-            }
-
-            // function updateModules() {
-            //     // const modules = {
-            //     //     'SistemaCitasAFAC': ['Administrador de Accesos', 'Administrador de Sedes', 'Catalogos',
-            //     //         'Administrador de Horarios', 'Administrador de Citas'
-            //     //     ],
-            //     //     'SistemaCitasSICT': ['Administrador de Accesos', 'Administrador de Sedes', 'Catalogos',
-            //     //         'Administrador de Horarios', 'Administrador de Citas'
-            //     //     ]
-            //     // };
-            //     const systemSelect = document.getElementById('system');
-            //     const moduleSelect = document.getElementById('module');
-            //     moduleSelect.innerHTML = '<option value="">Selecciona un módulo</option>';
-            //     if (systemSelect.value) {
-            //         modules[systemSelect.value].forEach(module => {
-            //             let option = document.createElement('option');
-            //             option.text = module;
-            //             option.value = module;
-            //             moduleSelect.add(option);
-            //         });
-            //     }
-            // }
+            var formRoutes = {
+                "f-area-form": "{{ url('newArea') }}",
+                "f-module-sys-form": "{{ url('systeModule') }}",
+                "f-system-form": "{{ url('newSystem') }}",
+                "module-form": "{{ url('newModule') }}"
+            };
         </script>
     </body>
+    <script src="{{ asset('js/catalogos.js') }}"></script>
 </x-app-layout>
