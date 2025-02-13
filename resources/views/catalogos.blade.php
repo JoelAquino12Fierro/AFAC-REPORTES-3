@@ -62,7 +62,7 @@
                         class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
                         placeholder="Ingresa aquí..." required />
                     <button type="submit"
-                        class=" mt-4 text-white bg-[#003764] hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Registrar</button>
+                        class="mt-4 text-white bg-[#003764] hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Registrar</button>
                 </form>
             </div>
 

@@ -19,10 +19,10 @@
             </style>
         @endif
     </head>
-    <body class="font-sans antialiased ">
-        <div class="bg-gray-50 text-black/50">
+    <body class=" font-sans antialiased ">
+        <div class="bg-gray-900 text-black/50">
             <!-- imagen de BACKGROUND -->
-            <img id="background" class="absolute left-0 top-0 w-full" src="https://cdn-3.expansion.mx/dims4/default/80c66c8/2147483647/strip/true/crop/724x483+0+0/resize/1200x801!/format/webp/quality/60/?url=https%3A%2F%2Fcherry-brightspot.s3.amazonaws.com%2F0e%2Fea%2F4169f6b94c50a54cbbc2ad6b4c78%2Fistock-537714779.jpg" alt="Background de un avion " />
+            <img id="background" class="absolute left-0 top-0 w-full" src="https://files.oaiusercontent.com/file-7fKkZSMv7DBZqvN3D7wg6a?se=2025-02-12T21%3A10%3A44Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D82856ab0-98e6-4a43-bef6-3b42be2d7f83.webp&sig=T1/yQq1LpVmkMFl2AnQprhUcgNodoayaIuXeTULHsOs%3D" alt="Background de un avion " />
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#0000FF] selection:text-white">
                 <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                     <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
@@ -65,10 +65,15 @@
 
                             <a
                                 href="{{ route('login') }}"
-                                 class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
+                                 class="flex items-start gap-4 rounded-lg bg-white/70 p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
                                 >
                                 <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#0000FF]/10 sm:size-16">
-                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#003764" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                                        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
+                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                    </svg>
+                                </div>
+
 
                                 <div class="pt-3 sm:pt-5">
                                     <h2 class="text-xl font-semibold text-black">Iniciar sesión</h2>
@@ -80,13 +85,16 @@
 
                                 <svg class="size-6 shrink-0 self-center stroke-[#0000FF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
                             </a>
-
+                            
                             <a
-                                href="{{route('register')}}"
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
+                                href="{{route('password.request')}}"
+                                class="flex items-start gap-4 rounded-lg bg-white/70 p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
                             >
                                 <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#0000FF]/10 sm:size-16">
-                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#003764" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+                                    </svg>
+                                </div>
                                 <div class="pt-3 sm:pt-5">
                                     <h2 class="text-xl font-semibold text-black">Restablecer Contraseña</h2>
 

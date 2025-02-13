@@ -5,6 +5,7 @@ use App\Http\Controllers\catalogsController;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
 use App\Http\Controllers\pdfController;
+use App\Http\Controllers\RecoverPasswordController;
 use App\Http\Controllers\roles;
 use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
@@ -79,3 +80,6 @@ Route::post('/addreport', [newformController::class,'store'])->name('addreport')
 // Ruta de roles
 
 Route::get('rol', [roles::class,'index'])->name('roles'); //Ver en la barra de navegacion
+
+//ruta de recuperación de contraseña 
+Route::get('/recover-password', [RecoverPasswordController::class, 'index'])->name('recover');

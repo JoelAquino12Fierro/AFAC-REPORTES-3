@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('REGISTRO') }}
+            {{ __('ASIGNACIÓN DE ROLES') }}
         </h2>
     </x-slot>
 
@@ -45,18 +45,17 @@
                                 <table class="w-full text-sm text-left text-gray-700" id="user-table">
                                     <thead class="text-xs text-black uppercase">
                                         <tr>
-                                            <th scope="col" class="px-6 py-3"> Nombre del rol</th>
-                                            <th scope="col" class="px-6 py-3"> Permiso</th>
+                                            <th scope="col" class="px-6 py-3">Usuarios</th>
+                                            <th scope="col" class="px-6 py-3"> </th>
                                             <th class="px-4 py-3 text-center" colspan="2">acciones</th>
                                         </tr>
                                     </thead>
 
                                     <tbody id="user-results">
-                                        @foreach ($rol as $rol)
-                                            <tr
-                                                class="bg-white border-b hover:bg-gray-100 transition duration-300 ease-in-out">
+                                        @foreach ($users as $user)
+                                            <tr class="bg-white border-b hover:bg-gray-100 transition duration-300 ease-in-out">
                                                 <td class="px-6 py-4 text-gray-900 font-medium">
-                                                    {{ $rol->name }}
+                                                    {{ $user->name }}
                                                 </td>
                                               
                                         
@@ -72,7 +71,7 @@
                                                     </form>
                                                   
                                                 </td>
-                                                <td>
+                                                <td class="px-4 py-4 text-center">
                                                     <form>
                                                         <button type="submit"
                                                             class="font-medium text-red-600 hover:underline">Eliminar</button>
@@ -89,6 +88,10 @@
                         </div>
 
                     </body>
+                                    {{--paginación--}}
+                                    <div class="mt-4">
+                                        {{$users->links()}}
+                                    </div>
                 </div>
             </div>
         </div>
