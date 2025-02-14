@@ -201,7 +201,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($reporte as $reporte)
+                        @foreach ($reportes as $reporte)
                         <tr
                             class="bg-white border-b hover:bg-gray-50">
                             <th scope="row"
@@ -226,7 +226,7 @@
                             </td>
                             <td class="px-6 py-4 uppercase">
                                 {{-- como se define el foreach->la funcion del modelo->lo que se quiere traer --}}
-                                {{ $reporte->report_user }}
+                                {{ $reporte->user->name }}
                             </td>
 
                             {{-- VER DETALLES --}}
@@ -287,6 +287,11 @@
                 </table>
             </div>
     </body>
+
+                                    {{--paginación--}}
+                                    <div class="mt-4">
+                                        {{$reportes->links()}}
+                                    </div>
     <script src="{{ asset(path: 'js/ver-detalles/delete.js') }}"></script>
 
 </x-app-layout>

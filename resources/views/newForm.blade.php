@@ -128,7 +128,7 @@
 
                             <!-- Botón de enviar -->
                             <div class="mt-6 flex items-center justify-end gap-x-6">
-                                <button type="submit">Guardar</button>
+                                <button type="submit" class="mt-4 text-white bg-[#003764] hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Guardar</button>
                             </div>
                         </div>
                     </div>

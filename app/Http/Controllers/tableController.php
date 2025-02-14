@@ -9,17 +9,19 @@ use App\Models\System;
 use App\Models\types_report;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Livewire\WithPagination;
 
 class tableController extends Controller
 {
+    use WithPagination;
     public function index() //Mostrar en tabla
     {
-        $reporte = Report::paginate();
+        $reportes = Report::paginate(5);
         $area = Area::all();
         $system = System::all();
         $type = types_report::all();
-        $user = User::all();
-        return view('table', compact('reporte', 'area', 'system', 'type', 'user'));
+        $users = User::all();
+        return view('table', compact('reportes', 'area', 'system', 'type', 'users'));
     }
     public function edit($id) // Manda a la vista de actualizar
     {

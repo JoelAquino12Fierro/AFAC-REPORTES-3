@@ -41,7 +41,7 @@
                                 </thead>
 
                                 <tbody id="user-results">
-                                    @foreach ($user as $user)
+                                    @foreach ($users as $user)
                                     <tr class="bg-white border-b hover:bg-gray-100 transition duration-300 ease-in-out">
                                         <td class="px-6 py-4 text-gray-900 font-medium">
                                             {{ $user->id }}
@@ -76,7 +76,10 @@
                             </table>
 <!-- Formulario para editar usuario (inicialmente oculto) -->
 
-
+                                    {{--paginación--}}
+                                    <div class="mt-4">
+                                        {{$users->links()}}
+                                    </div>
                         </div>
                     </div>
                     
