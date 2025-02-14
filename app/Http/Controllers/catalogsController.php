@@ -6,27 +6,61 @@ use App\Models\Module;
 use App\Models\modules_system;
 use App\Models\System;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class catalogsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $system = System::all();
+        // $system = System::all();
+        // $modules = Module::all();
+        // return view('catalogos', compact('system', 'modules'));
+        $systems = System::all();
         $modules = Module::all();
-        return view('catalogos', compact('system', 'modules'));
+        // Obtener todas las relaciones existentes (ID de sistema => [ID de módulos])
+        $relations = modules_system::select('systems', 'modules')->get()->groupBy('systems');
+
+        return view('catalogos', compact('systems', 'modules', 'relations'));
     }
+
     public function store(Request $request)
     {
+        try {
+            // Obtener ID
+            $systemId = $request->system;
+            $moduleId = $request->module;
 
-        // $validate = $request->validate([
-        //     'system' => 'required|exists:systems,id',
-        //     'module' => 'required|existe:modules,id'
-        // ]);
+            // Verificar si la relaciónexiste
+            $existingRelation = modules_system::where('systems', $systemId)
+                ->where('modules', $moduleId)
+                ->first();
 
-        $sysmod= new modules_system();
-        $sysmod->id_systems=$request->system;
-        $sysmod->id_modules=$request->module;
-        $sysmod->save();
-        return redirect()->route('catalogos')->with('success', 'Relación creada correctamente.');
+            if ($existingRelation) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Este módulo ya está relacionado con el sistema seleccionado.",
+                ], 400);
+            }
+
+            // Obtener nombres del sistema y módulo
+            $system = System::find($systemId);
+            $module = Module::find($moduleId);
+            // Crear la relación si no existe
+            $sysmod = new modules_system();
+            $sysmod->systems = $systemId;
+            $sysmod->modules = $moduleId;
+            $sysmod->save();
+
+            return response()->json([
+                'success' => true,
+                'message' => "El módulo: <br><strong>" . strtoupper($module->modules_name) . "</strong> <br>ha sido asociado correctamente con el sistema: <br><strong>" . strtoupper($system->systems_name) . "</strong>.",
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => "Error al guardar la relación.",
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\verdetallesController;
 use App\Models\User;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request as HttpRequest;
+use Laravel\Fortify\Http\Controllers\RecoveryCodeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -82,4 +83,4 @@ Route::post('/addreport', [newformController::class,'store'])->name('addreport')
 Route::get('rol', [roles::class,'index'])->name('roles'); //Ver en la barra de navegacion
 
 //ruta de recuperación de contraseña 
-Route::get('/recover-password', [RecoverPasswordController::class, 'index'])->name('recover');
+Route::get('/recover-password', [RecoveryCodeController::class, 'index'])->name('recover');
