@@ -5,15 +5,48 @@
         </h2>
     </x-slot>
 
-    <div class="py-12 bg-gray-100 min-h-screen">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <body>
-                    <div class="px-10 py-10"> 
+    <body>
+
+        <!-- Modal Eliminar-->
+        <!-- El id modalOverlay Funciona como un fondo semitransparente detrás del modal. -->
+        <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-filter-none z-40"></div>
+        <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex flex-col items-center justify-center text-center">
+                    <div class="flex size-12 items-center justify-center rounded-full bg-[#e70909]/20 sm:size-16">
+                        {{-- Icono centrado --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="size-6 sm:size-8 bi bi-plus-square" viewBox="0 0 16 16">
+                            <g fill="#da0000">
+                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                            </g>
+                        </svg>
+                    </div>
+                    {{-- Título centrado debajo del icono --}}
+                    <p class="mt-2 text-lg font-semibold text-gray-900">ELIMINAR REPORTE</p>
+                </div>
+                <div class="flex w-full gap-4"></div>
+                <p class="text-gray-600">¿Estás seguro de que deseas eliminar este reporte?</p>
+
+                <form id="deleteForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="flex justify-end mt-4">
+                        <button type="button" onclick="closeModal()" class="flex-1 mr-1 inline-flex items-center border border-transparent rounded-md justify-center p-2 text-base font-semibold text-black text-center bg-white hover:bg-gray-100 focus:ring-gray-300">Cancelar</button>
+                        <button type="submit" class="flex-1 ml-1 inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-base text-white tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="py-12 bg-gray-100 min-h-screen">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+
+
+                    <div class="px-10 py-10">
                         <div>
                             <form>
-                                <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-50 p-4 rounded-t-lg border-b border-gray-300"> 
-        
+                                <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-gray-50 p-4 rounded-t-lg border-b border-gray-300">
+
                                     <div class="relative">
                                         <label for="table-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Buscar</label>
                                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -61,83 +94,32 @@
                                         </td>
                                         <td class="px-4 py-4 text-center">
                                             <form>
-                                            <button type="submit" class="font-semibold text-base">Editar</button>
+                                                <button type="submit" class="font-semibold text-base">Editar</button>
                                             </form>
                                         </td>
                                         <td class="px-4 py-4 text-center">
                                             <form>
-                                                <button type="submit" class="font-medium text-red-600 hover:underline">Eliminar</button>
-                                                 
+
+                                                <button type="submit" class="font-medium text-red-600 hover:underline" onclick="openModal(this)" >Eliminar</button>
+
                                             </form>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-<!-- Formulario para editar usuario (inicialmente oculto) -->
+                            <!-- Formulario para editar usuario (inicialmente oculto) -->
 
 
                         </div>
                     </div>
-                    
-                </body>
+
+
+                </div>
             </div>
         </div>
-    </div>
-    <script>
-    document.getElementById('table-search-users').addEventListener('input', function() {
-        let query = this.value.trim();  // Elimina espacios vacíos
+    </body>
 
-        fetch(`/search-users?query=${encodeURIComponent(query)}`, {
-            method: 'GET'
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            let resultsTable = document.getElementById('user-results');
-            resultsTable.innerHTML = ''; // Limpiar la tabla
+    <script src="{{ asset(path: 'js/users.js') }}"></script>
 
-            if (data.length === 0) {
-                resultsTable.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-gray-500">No se encontraron resultados</td></tr>';
-                return;
-            }
-
-            data.forEach(user => {
-                let row = `
-                    <tr>
-                        <td class="px-4 py-4">${user.id}</td>
-                        <td class="px-4 py-4">${user.name}</td>
-                        <td class="px-4 py-4">React Developer</td>
-                        <td class="px-2 py-4"><button class="text-blue-600 hover:underline">Editar</button></td>
-                        <td class="px-2 py-4"><button class="text-red-600 hover:underline">Eliminar</button></td>
-                    </tr>
-                `;
-                resultsTable.innerHTML += row;
-            });
-        })
-        .catch(error => console.error('Error:', error));
-    });
-
-    function showAddForm() {
-        document.getElementById('addUserForm').classList.remove('hidden');
-        document.getElementById('editUserForm').classList.add('hidden');
-    }
-
-    function showEditForm(id, name, email) {
-        document.getElementById('editUserForm').classList.remove('hidden');
-        document.getElementById('addUserForm').classList.add('hidden');
-
-        // Rellenar los datos del formulario de edición
-        document.getElementById('editId').value = id;
-        document.getElementById('editName').value = name;
-        document.getElementById('editEmail').value = email;
-
-        // Actualizar la acción del formulario con la URL correcta
-        document.getElementById('editForm').action = `/users/${id}`;
-    }
-</script>
 </x-app-layout>

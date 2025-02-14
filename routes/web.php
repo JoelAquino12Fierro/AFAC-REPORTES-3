@@ -32,12 +32,7 @@ Route::middleware([
 // Rutas para las vistas
 
 Route::view('/table', 'table')->name('table');
-
-
-
 Route::view('/reports','table')->name('reports'); //Boton tabla de reportes
-
-
 
 // Rutas para los controllers TABLA
 Route::get('tables',[tableController::class, 'index'])->name('table.index')->middleware('auth.basic'); //Mostrar en tabla
@@ -46,11 +41,7 @@ Route::get('/reports/{id}/detalles', [tableController::class, 'edit'])->name('re
 Route::delete('/delete/{id}', [tableController::class, 'destroy'])->name('reports.destroy')->middleware('auth.basic');
 
 Route::get('pdf/{id}',[pdfController::class,'index'])->name('pdf')->middleware('auth.basic');
-// Route::get('/pdf{id}', function (){
-//     $pdf = PDF::loadView('pdf');
-//     return $pdf->stream();
-// }) ->name('pdf');
-//Temporal para la creacíon del pdf
+
 
 
 // Controllers de catalogos
@@ -62,14 +53,18 @@ Route::post('newModule', [moduleController::class, 'store'])->name('register.mod
 
 // Ruta para la tabla de usuarios
 Route::get('users',[userController::class, 'index'])->name('users')->middleware('auth.basic');
-Route::get('newuser',[userController::class,'create_function'])->name('newuser')->middleware('auth.basic');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-Route::get('/search-users', function (HttpRequest $request) {
-    $query = $request->input('query');
-    $users = User::where('name', 'LIKE', "%{$query}%")->get();
-    return response()->json($users);
-});
+Route::delete('/user/{id}', [UserController::class, 'destroy'])
+    ->name('user.destroy')
+    ->middleware('auth.basic');
+
+// Route::get('newuser',[userController::class,'create_function'])->name('newuser')->middleware('auth.basic');
+// Route::post('/users', [UserController::class, 'store'])->name('users.store');
+// Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+// Route::get('/search-users', function (HttpRequest $request) {
+//     $query = $request->input('query');
+//     $users = User::where('name', 'LIKE', "%{$query}%")->get();
+//     return response()->json($users);
+// });
 
 //Rutas de nuevo reporte
 Route::get('/newform', [newformController::class,'create_function'])->name('newform')->middleware('auth.basic'); 
