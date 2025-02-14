@@ -102,7 +102,6 @@
             {{-- Formularios --}}
             <!-- AREA -->
             <div class="flex-1 bg-white rounded-md p-6" id="area-form">
-                <!-- <form action="{{ route('register.area') }}" method="POST"> -->
                 <form id="f-area-form">
                     @csrf
                     <label for="area" class="block mb-2 text-sm font-medium text-gray-900">NOMBRE ÁREA</label>
@@ -116,20 +115,16 @@
 
             <!-- SISTEMA-MODULE -->
 
-            <div class="flex-1 bg-white rounded-md p-6 hidden" id="module-form">
-                <!-- <form action="{{ route('register.sysmod') }}" method="POST"> -->
+            <div class="flex-1 bg-white rounded-md p-6 hidden" id="module-form"> 
                 <form id="f-module-sys-form">
                     @csrf
                     <label for="system" class="block mb-2 text-sm font-medium text-gray-900">SISTEMA</label>
                     <select id="system" name="system" onchange="updateModules()"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-                        {{-- <option value="">Selecciona un sistema</option> --}}
-
                         @foreach($systems as $system)
                         <option value="{{ $system->id }}">{{ $system->systems_name }}</option>
                         @endforeach
                     </select>
-
                     <label for="module" class="block mt-4 mb-2 text-sm font-medium text-gray-900">MÓDULO</label>
                     <select id="module" name="module"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
@@ -137,14 +132,13 @@
                         <option value="{{ $module->id }}">{{ $module->modules_name }}</option>
                         @endforeach
                     </select>
-
                     <button type="submit"
                         class="mt-4 text-white bg-[#003764] hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Registrar</button>
                 </form>
             </div>
+
             <!-- SISTEMA -->
             <div class="flex-1 bg-white rounded-md p-6 hidden" id="system-form">
-                <!-- <form action="{{ route('register.system') }}" method="POST"> -->
                 <form id="f-system-form">
                     @csrf
                     <label for="system" class="block mb-2 text-sm font-medium text-gray-900">NOMBRE DEL
@@ -172,16 +166,19 @@
             </div>
 
         </div>
+
+
         <script>
             var formRoutes = {
                 "f-area-form": "{{ url('newArea') }}",
                 "f-module-sys-form": "{{ url('systeModule') }}",
                 "f-system-form": "{{ url('newSystem') }}",
-                "module-form": "{{ url('newModule') }}"
+                "module-form": "{{ url('newModule') }}",
             };
         </script>
 
 
 
     </body>
+    <script src="{{ asset(path: 'js/catalogos.js') }}"></script>
 </x-app-layout>
