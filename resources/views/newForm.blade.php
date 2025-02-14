@@ -117,7 +117,7 @@
                                             <label for="file"
                                                 class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600">
                                                 <span>Upload a file</span>
-                                                <input id="file" name="file" type="file">
+                                                <input id="file" name="file" type="file" >
                                             </label>
                                             <p class="pl-1">or drag and drop</p>
                                         </div>

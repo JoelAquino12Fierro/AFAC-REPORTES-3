@@ -15,12 +15,12 @@
                 <!-- Encabezado -->
                 <div class="flex items-center justify-between p-4 border-b">
                     <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
-                    <p class="text-center text-azul-afac font-bold text-xl ml-2">REGISTRO EXITOSO</p>
+                    <p class="text-center text-azul-afac font-bold text-xl ml-2">¡REGISTRO ÉXITOSO!</p>
 
                 </div>
                 <!-- Cuerpo del modal -->
                 <div class="p-4 justify-center">
-                    <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p> <!-- Asegurar este ID -->
+                    <p class="text-gray-700 mt-2 text-center " id="successModalMessage"></p> <!-- Asegurar este ID -->
                 </div>
                 <!-- Pie del modal -->
                 <div class="flex justify-end p-4 border-t ">
@@ -40,7 +40,7 @@
                         <path fill="white" d="M8 8L16 16M16 8L8 16" stroke="white" stroke-width="2" stroke-linecap="round" />
                     </svg>
                     <div class="ml-3">
-                        <h2 class="text-red-600 font-semibold text-xl text-center">ERROR</h2>
+                        <div class="text-black text-sm text-center" id="errorModalMessage"></div>
                     </div>
                 </div>
                 <div class="mb-4 justify-center">
@@ -115,6 +115,7 @@
             </div>
 
             <!-- SISTEMA-MODULE -->
+
             <div class="flex-1 bg-white rounded-md p-6 hidden" id="module-form">
                 <!-- <form action="{{ route('register.sysmod') }}" method="POST"> -->
                 <form id="f-module-sys-form">
@@ -123,18 +124,17 @@
                     <select id="system" name="system" onchange="updateModules()"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
                         {{-- <option value="">Selecciona un sistema</option> --}}
-                        @foreach ($system as $system)
-                        <option class="uppercase" value="{{ $system->id }}">{{ $system->systems_name }}
-                        </option>
+
+                        @foreach($systems as $system)
+                        <option value="{{ $system->id }}">{{ $system->systems_name }}</option>
                         @endforeach
                     </select>
 
                     <label for="module" class="block mt-4 mb-2 text-sm font-medium text-gray-900">MÓDULO</label>
                     <select id="module" name="module"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-                        {{-- <option value="">Selecciona un módulo</option> --}}
-                        @foreach ($modules as $modules)
-                        <option value="{{$modules->id}}">{{$modules->modules_name}}</option>
+                        @foreach($modules as $module)
+                        <option value="{{ $module->id }}">{{ $module->modules_name }}</option>
                         @endforeach
                     </select>
 
@@ -142,7 +142,7 @@
                         class="mt-4 text-white bg-[#003764] hover:bg-[#002b4b] focus:ring-[#002b4b] focus-visible:outline-[#002b4b] font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Registrar</button>
                 </form>
             </div>
-<!-- SISTEMA -->
+            <!-- SISTEMA -->
             <div class="flex-1 bg-white rounded-md p-6 hidden" id="system-form">
                 <!-- <form action="{{ route('register.system') }}" method="POST"> -->
                 <form id="f-system-form">
@@ -180,6 +180,8 @@
                 "module-form": "{{ url('newModule') }}"
             };
         </script>
+
+
+
     </body>
-    <script src="{{ asset('js/catalogos.js') }}"></script>
 </x-app-layout>

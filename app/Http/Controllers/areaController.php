@@ -23,25 +23,29 @@ class areaController extends Controller
         }
         // Guardar al modelo
         try {
-            // Almacenando en name lo que recibe del formulario
+            // Obtener el nombre del módulo
             $name = $request->area;
+            // Verificar si el módulo ya existe
+            $existingModule = Area::where('areas_name', $name)->first();
+            if ($existingModule) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "El área que intentas crear ya existe",
+                ], 400);
+            }
             $area = new Area();
-            // Primero BD -> Form
-            // $area->areas_name = $request->area;
             $area->areas_name = $name;
-
             $area->save();
             // Respuesta de éxito en JSON
             return response()->json([
                 'success' => true,
-                'message' => 'Area creada con éxito',
-                'areas_name' => $name
+                'message' => 'Área creada con éxito:<br><strong>' . strtoupper($name) . '</strong>',
             ]);
         } catch (\Exception $e) {
             // Respuesta de error en JSON
             return response()->json([
                 'success' => false,
-                'message' => 'Error al guardar el area',
+                'message' => 'Error al guardar el Area',
                 'error' => $e->getMessage()
             ], 500);
         }

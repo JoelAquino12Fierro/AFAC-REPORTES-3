@@ -23,24 +23,31 @@ class systemController extends Controller
         }
         // Guardar al modelo
         try {
-            // Almacenando en name lo que recibe del formulario
-            $name = $request->system;
-            $sys = new System();
-            // Primero BD -> Form
-            $sys->systems_name= $name;
 
+            // Obtener el nombre del sistema
+            $name = $request->system;
+
+            // Verificar existe
+            $existingSys = System::where('systems_name', $name)->first();
+            if ($existingSys) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "El sistema que intentas crear ya existe",
+                ], 400);
+            }
+            $sys = new System();
+            $sys->systems_name = $name;
             $sys->save();
             // Respuesta de éxito en JSON
             return response()->json([
                 'success' => true,
-                'message' => 'Area creada con éxito',
-                'systems_name' => $name
+                'message' => 'Sistema creado con éxito:<br><strong>' . strtoupper($name) . '</strong>',
             ]);
         } catch (\Exception $e) {
             // Respuesta de error en JSON
             return response()->json([
                 'success' => false,
-                'message' => 'Error al guardar el area',
+                'message' => 'Error al guardar el Sistema',
                 'error' => $e->getMessage()
             ], 500);
         }
