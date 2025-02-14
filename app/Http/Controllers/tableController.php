@@ -14,7 +14,7 @@ class tableController extends Controller
 {
     public function index() //Mostrar en tabla
     {
-        $reporte = Report::paginate();
+        $reporte = Report::paginate(10);
         $area = Area::all();
         $system = System::all();
         $type = types_report::all();
