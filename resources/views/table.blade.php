@@ -227,7 +227,7 @@
                                 <button onclick="openDetailsModal(this)" data-url="{{ route('reports.edit', $repo->id) }}"
                                     class="bg-teal-500 text-white font-bold py-2 px-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out 
                                     @if ($repo->status == 1) 
-            bg-teal-300 text-gray-500 cursor-not-allowed 
+            bg-teal-200 text-gray-500 cursor-not-allowed 
         @else 
             bg-teal-500 text-white hover:bg-teal-600 active:bg-teal-700 hover:scale-105
         @endif"

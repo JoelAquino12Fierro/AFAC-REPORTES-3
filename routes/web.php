@@ -3,6 +3,7 @@
 use App\Http\Controllers\areaController;
 use App\Http\Controllers\catalogsController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ejemplo;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
 use App\Http\Controllers\pdfController;
@@ -61,6 +62,8 @@ Route::put('/ud/{id}', [UsController::class, 'update'])->name('editUser')->middl
 //Rutas de nuevo reporte
 Route::get('/newform', [newformController::class, 'create_function'])->name('newform')->middleware('auth.basic');
 Route::post('/addreport', [newformController::class, 'store'])->name('addreport')->middleware('auth.basic'); //para ver el diseño del formulario de nuevo registro
+
+
 
 
 // Ruta de roles

@@ -8,8 +8,7 @@
     <body class="bg-white">
         <div class="px-14 py-14 ">
             <div class="p-7 lg:p-8 bg-white border-b border-gray-200">
-                <form id="registroForm" class="p-6 bg-white shadow-md rounded-lg"
-                    enctype="multipart/form-data">
+                <form id="registroForm" name="registroForm" class="p-6 bg-white shadow-md rounded-lg" enctype="multipart/form-data">
                     @csrf
                     <div class="space-y-12">
                         <div class="grid grid-cols-1">
@@ -36,8 +35,8 @@
                                 <select id="area" name="area"
                                     class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     <option value="" class="uppercase">--Selecciona un área--</option>
-                                    @foreach ($area as $area)
-                                    <option class="uppercase" value="{{ $area->id }}">{{ $area->areas_name }}
+                                    @foreach ($area as $ar)
+                                    <option class="uppercase" value="{{ $ar->id }}">{{ $ar->areas_name }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -51,9 +50,9 @@
                                     class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                                     <option value="" class="uppercase">--Selecciona un sistema--</option>
-                                    @foreach ($system as $system)
-                                    <option class="uppercase" value="{{ $system->id }}">
-                                        {{ $system->systems_name }}
+                                    @foreach ($system as $sys)
+                                    <option class="uppercase" value="{{ $sys->id }}">
+                                        {{ $sys->systems_name }}
                                     </option>
                                     @endforeach
 
@@ -67,9 +66,9 @@
                                     class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
                                     <option value="" class="uppercase">--Selecciona el tipo--</option>
-                                    @foreach ( $type as $type)
-                                    <option class="uppercase" value="{{ $type->id }}">
-                                        {{ $type->name_types_reports }}
+                                    @foreach ( $type as $typ)
+                                    <option class="uppercase" value="{{ $typ->id }}">
+                                        {{ $typ->name_types_reports }}
                                     </option>
                                     @endforeach
 
@@ -117,7 +116,7 @@
                                             <label for="file"
                                                 class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600">
                                                 <span>Upload a file</span>
-                                                <input id="file" name="file" type="file" >
+                                                <input id="file" name="file" type="file">
                                             </label>
                                             <p class="pl-1">or drag and drop</p>
                                         </div>
@@ -151,7 +150,7 @@
                 <div class="p-4 justify-center">
                     <p class="text-gray-700 mt-2 text-center">¡Reporte generado con éxito!</p>
                     <p class="text-gray-700 mt-2 text-center">Número de folio:</p>
-                    <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p> 
+                    <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p>
                 </div>
                 <!-- Pie del modal -->
                 <div class="flex justify-end p-4 border-t ">
@@ -189,7 +188,8 @@
         <script>
             var addReportUrl = "{{ route('addreport') }}"; // Definir URL para JavaScript
         </script>
+        <script src="{{ asset('js/newForm.js') }}"></script>
     </body>
-    <script src="{{ asset('js/newForm.js') }}"></script>
+
 
 </x-app-layout>

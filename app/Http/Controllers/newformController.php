@@ -9,9 +9,13 @@ use App\Models\types_report;
 use App\Models\User;
 use App\Models\Report;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
+
 
 class newformController extends Controller
 {
+
+
     // Mostrar en el formulario
     public function create_function()
     {
@@ -89,9 +93,6 @@ class newformController extends Controller
         }
     }
 }
-
-
-
 
 
 
