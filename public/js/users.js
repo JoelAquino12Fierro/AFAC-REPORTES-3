@@ -1,39 +1,55 @@
 
+
 document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("deleteModal");
-    const overlay = document.getElementById("modalOverlay");
-    const form = document.getElementById("deleteForm");
-    const detailsModal = document.getElementById("verdetallesModal");
+    const editModal = document.getElementById("editModal"); // Contenedor del modal
+    const overlay = document.getElementById("modalOverlay"); // Fondo semitransparente
+    const successModal = document.getElementById("successModal"); // Modal de éxito
+    const editForm = document.getElementById("editForm"); // Formulario dentro del modal
 
-// FUNCION DEL MODAL ELIMINAR ABRIR
-    window.openModal = function (button) {
-        const deleteUrl = button.getAttribute("data-url"); // Obtener la URL del botón
-        form.action = deleteUrl; // Asignar la URL al formulario
 
-        // Mostrar modal y overlay
-        modal.classList.remove("hidden");
-        overlay.classList.remove("hidden");
-        document.body.classList.add("overflow-hidden"); //Se bloquea el scroll de la página
-
-    };
-    
-// FUNCIONAL DEL MODAL ELIMINAR (CERRAR)
-    window.closeModal = function () {
-        modal.classList.add("hidden");
-        overlay.classList.add("hidden");
-        document.body.classList.remove("overflow-hidden");
-    };
-
-    // ABRIR MODAL DE DETALLES
+    // Función para abrir el modal de edición
     window.openDetailsModal = function (button) {
-        detailsModal.classList.remove("hidden");
+        // Obtener los datos del usuario desde el botón
+        const userId = button.getAttribute("data-id");
+        const userName = button.getAttribute("data-name");
+        const userEmail = button.getAttribute("data-email");
+        const userRole = button.getAttribute("data-role");
+        const userStatus = button.getAttribute("data-status");
+        const userApeP = button.getAttribute("data-apeP");
+        const userApeM = button.getAttribute("data-apeM");
+
+        // Asignar los valores a los campos del formulario
+        document.getElementById("userId").value = userId;
+        document.getElementById("name").value = userName;
+        document.getElementById("email").value = userEmail;
+        document.getElementById("role").value = userRole;
+        document.getElementById("status").value = userStatus;
+        document.getElementById("apeP").value = userApeP;
+        document.getElementById("apeM").value = userApeM;
+        document.getElementById("number").value = userId;
+
+        // Mostrar el modal y el fondo semitransparente
+        editModal.classList.remove("hidden");
         overlay.classList.remove("hidden");
-        document.body.classList.add("overflow-hidden");
     };
-        // CERRAR MODAL DE DETALLES
-        window.closeDetailsModal = function () {
-            detailsModal.classList.add("hidden");
-            overlay.classList.add("hidden");
-            document.body.classList.remove("overflow-hidden");
-        };
+
+    // Función para cerrar el modal de edición
+    window.closeDetailsModal = function () {
+        editModal.classList.add("hidden");
+        overlay.classList.add("hidden");
+    };
+
+    // Función para mostrar el modal de éxito
+    function showSuccessModal() {
+        successModal.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+        location.reload(); // Recargar la página para ver los cambios
+    }
+
+    // Función para cerrar el modal de éxito
+    window.closeSuccessModal = function () {
+        successModal.classList.add("hidden");
+        overlay.classList.add("hidden");
+        location.reload(); // Recargar la página para ver los cambios
+    };
 });

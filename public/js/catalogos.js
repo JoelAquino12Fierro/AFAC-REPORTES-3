@@ -7,38 +7,6 @@ function showForm(formId) {
     document.getElementById(formId).classList.remove('hidden');
 }
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const forms = document.querySelectorAll("form");
-//     forms.forEach((form) => {
-//         form.addEventListener("submit", async function (event) {
-//             event.preventDefault(); // Prevenir el envío tradicional del formulario
-
-//             const formData = new FormData(this);
-//             const formId = this.id; // Obtener el ID del formulario
-//             const actionUrl = formRoutes[formId]; // Obtener la URL de acción desde formRoutes
-//             try {
-//                 const response = await fetch(actionUrl, {
-//                     method: "POST",
-//                     body: formData,
-//                     headers: {
-//                         "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
-//                     },
-//                 });
-//                 const result = await response.json();
-//                 console.log("Respuesta JSON del servidor:", result); // Verificar respuesta en consola
-//                 if (response.ok) {
-
-//                     showSuccessModal(result.message); // Pasar el mensaje dinámico del backend
-//                     this.reset(); // Limpiar formulario después de registrar
-//                 } else {
-//                     showErrorModal(result.message || "Ocurrió un error. Inténtalo de nuevo.");
-//                 }
-//             } catch (error) {
-//                 showErrorModal("Error de conexión. Inténtalo más tarde.");
-//             }
-//         });
-//     });
-// });
 
 document.addEventListener("DOMContentLoaded", function () {
     const forms = document.querySelectorAll("form");

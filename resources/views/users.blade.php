@@ -7,9 +7,10 @@
 
     <body>
 
-        <!-- Modal Eliminar-->
         <!-- El id modalOverlay Funciona como un fondo semitransparente detrás del modal. -->
         <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-filter-none z-40"></div>
+
+        <!-- Modal Eliminar-->
         <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
             <div class="bg-white p-6 rounded-lg shadow-lg">
                 <div class="flex flex-col items-center justify-center text-center">
@@ -26,7 +27,6 @@
                 </div>
                 <div class="flex w-full gap-4"></div>
                 <p class="text-gray-600">¿Estás seguro de que deseas eliminar este reporte?</p>
-
                 <form id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
@@ -37,6 +37,112 @@
                 </form>
             </div>
         </div>
+        <!-- Modal de éxito -->
+        <div id="successModal" class="hidden fixed inset-0 flex items-center justifay-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-auto  ">
+                <!-- Encabezado -->
+                <div class="flex items-center justify-between p-4 border-b">
+                    <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
+                    <p class="text-center text-azul-afac font-bold text-xl ml-2">REGISTRO EXITOSO</p>
+
+                </div>
+                <!-- Cuerpo del modal -->
+                <div class="p-4 justify-center">
+                    <p class="text-gray-700 mt-2 text-center">¡Reporte generado con éxito!</p>
+                    <p class="text-gray-700 mt-2 text-center">Número de folio:</p>
+                    <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p> <!-- Asegurar este ID -->
+                </div>
+                <!-- Pie del modal -->
+                <div class="flex justify-end p-4 border-t ">
+                    <button onclick="closeModal('successModal')" class="mt-4 bg-azul-afac text-white px-4 py-2 rounded-md">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Editar Usuario -->
+        <div id="editModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-auto max-w-2xl">
+                <!-- Encabezado -->
+                <div class="flex items-center justify-between p-4 border-b">
+                    <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
+                    <p class="text-center text-azul-afac font-bold text-xl ml-2">EDITAR USUARIO</p>
+                </div>
+
+
+                <!-- Cuerpo del Modal con Formulario -->
+                <div class="p-4">
+                    <form id="editForm" action="" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <!-- ID oculto del usuario -->
+                        <input type="hidden" id="userId" name="userId">
+                        <input type="hidden" name="_method" value="PUT">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Número de empleado -->
+                            <div>
+                                <label for="number" class="block text-sm font-medium text-gray-700">Número de empleado</label>
+                                <input type="text" id="number" name="number" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm bg-gray-100 text-gray-500 cursor-not-allowed opacity-50" placeholder="Nombre del usuario" readonly>
+                            </div>
+                            <!-- Nombre -->
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                                <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
+                            </div>
+                            <!-- Apellido Paterno -->
+                            <div>
+                                <label for="apeP" class="block text-sm font-medium text-gray-700">Apellido Paterno</label>
+                                <input type="text" id="apeP" name="apeP" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="Nombre del usuario">
+                            </div>
+                            <!-- Apellido Materno -->
+                            <div>
+                                <label for="apeM" class="block text-sm font-medium text-gray-700">Apellido Materno</label>
+                                <input type="text" id="apeM" name="apeM" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="Nombre del usuario">
+                            </div>
+
+
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
+                            </div>
+
+                            <!-- Rol -->
+                            <div>
+                                <label for="role" class="block text-sm font-medium text-gray-700">Rol</label>
+                                <select id="role" name="role" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
+                                    <option value="admin">Administrador</option>
+                                    <option value="user">Usuario</option>
+                                </select>
+                            </div>
+
+                            <!-- Area -->
+                            <div>
+                                <label for="status" class="block text-sm font-medium text-gray-700">Estado</label>
+                                <select id="status" name="status" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Pie del Modal -->
+                <div class="flex justify-end p-4 border-t">
+                    <button onclick="closeDetailsModal()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 mr-2">
+                        Cerrar
+                    </button>
+                    <button type="submit" form="editForm" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-lg">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
         <div class="py-12 bg-gray-100 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
@@ -74,18 +180,18 @@
                                 </thead>
 
                                 <tbody id="user-results">
-                                    @foreach ($user as $user)
+                                    @foreach ($user as $us)
                                     <tr class="bg-white border-b hover:bg-gray-100 transition duration-300 ease-in-out">
                                         <td class="px-6 py-4 text-gray-900 font-medium">
-                                            {{ $user->id }}
+                                            {{ $us->id }}
                                         </td>
                                         <th scope="row" class="px-6 py-4 text-gray-900 whitespace-nowrap">
                                             <div class="ps-3">
                                                 <div class="text-base font-semibold text-gray-700">
-                                                    {{ $user->name }}
+                                                    {{ $us->name }}
                                                 </div>
                                                 <div class="font-normal text-gray-500">
-                                                    {{ $user->email }}
+                                                    {{ $us->email }}
                                                 </div>
                                             </div>
                                         </th>
@@ -93,33 +199,34 @@
                                             React Developer
                                         </td>
                                         <td class="px-4 py-4 text-center">
-                                            <form>
-                                                <button type="submit" class="font-semibold text-base">Editar</button>
-                                            </form>
+                                            <button type="button" class="font-semibold text-base" onclick="openDetailsModal(this)"
+                                                data-id="{{ $us->id }}"
+                                                data-name="{{ $us->name }}"
+                                                data-email="{{ $us->email }}"
+                                                data-apeP="{{ $us->paternal_surname }}"
+                                                data-apeM="{{ $us->maternal_surname}}"
+                                                data-role="{{ $us->role }}"
+                                                data-status="{{ $us->status }}"
+                                                data-url="{{ route('editUser', $us->id) }}">
+                                                Editar
+                                            </button>
+                                            <!-- Nombre de la bariable -> campos de la BD -->
                                         </td>
                                         <td class="px-4 py-4 text-center">
-                                            <form>
-
-                                                <button type="submit" class="font-medium text-red-600 hover:underline" onclick="openModal(this)" >Eliminar</button>
-
-                                            </form>
+                                            <button onclick="openModal(this)" data-url="{{ route('deleteUser', $us->id) }}" class="font-medium text-red-600 hover:underline">
+                                                Eliminar
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <!-- Formulario para editar usuario (inicialmente oculto) -->
-
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
+        <script src="{{ asset(path: 'js/users.js') }}"></script>
     </body>
-
-    <script src="{{ asset(path: 'js/users.js') }}"></script>
-
+    
 </x-app-layout>

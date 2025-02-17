@@ -9,6 +9,7 @@ use App\Models\System;
 use App\Models\types_report;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class tableController extends Controller
 {
@@ -19,6 +20,8 @@ class tableController extends Controller
         $system = System::all();
         $type = types_report::all();
         $user = User::all();
+        // dd($reporte);
+
         return view('table', compact('reporte', 'area', 'system', 'type', 'user'));
     }
     public function edit($id) // Manda a la vista de actualizar
@@ -76,30 +79,5 @@ class tableController extends Controller
         return redirect()->route('table.index')->with('success', 'Usuario eliminado correctamente');
     }
 
-    // public function updatever(Request $request, $id)
-    // {
-    //     $validatedData = $request->validate([
-    //         'module' => 'required|exists:modules_systems,modules', // Corregido "exists"
-    //         'description' => 'required|string',
-    //         'evidence' => 'nullable|file|mimes:png,jpg,jpeg|max:10240',
-    //         'responsable' => 'required|exists:responsibles,users'
-    //     ]);
-        
-    //     $reporte = Report::findOrFail($id);
-    //     $reporte->modules_systems = $validatedData['module'];
-    //     $reporte->descriptionA=$validatedData['description'];
-    //     $reporte->responsibles=$validatedData['responsable'];
-    //     $reporte->status='1';
-    //     $reporte->save();
-        
-    //     if ($request->hasFile('evidence')){
-    //         $file=$request->file('evidence');
-    //         $filename = $reporte->folio .'A' . '.' . $file->getClientOriginalExtension();
-    //         $filePath = $file->move('evidence\admi', $filename, 'public');
-    //         $reporte->evidenceA=$filePath;
 
-    //     }
-    //     $reporte->save();
-    //     return redirect()->route('table.index')->with('success', 'Reporte creado correctamente.');
-    // }
 }
