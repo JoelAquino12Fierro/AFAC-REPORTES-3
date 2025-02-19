@@ -64,6 +64,19 @@ Route::get('/newform', [newformController::class, 'create_function'])->name('new
 Route::post('/addreport', [newformController::class, 'store'])->name('addreport')->middleware('auth.basic'); //para ver el diseño del formulario de nuevo registro
 
 
+// RUTA DE EJEMPLO
+Route::get('ejemplo', [ejemplo::class, 'index'])->name('ejemplo')->middleware('auth.basic');
+Route::post('/ejemplo/store', [ejemplo::class, 'store'])->name('ejemplo.store');
+
+
+Route::post('/actualizar-reporte/{id}', [ejemplo::class, 'updateDescripcion'])->name('ejemplo.update');
+
+Route::get('/get-modules/{systemId}', [ejemplo::class, 'getModules']);
+
+Route::get('/get-areas', [ejemplo::class, 'getAreas']);
+Route::post('/upload-evidence', [ejemplo::class, 'uploadEvidence'])->name('upload.evidence');
+
+
 
 
 // Ruta de roles

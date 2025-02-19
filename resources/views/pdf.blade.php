@@ -12,7 +12,7 @@
 <body>
 
     <div class="background">
-        <img src="{{ public_path('img/fondo.png') }}" alt="Fondo">
+        <img src="{{ asset('img/fondo.png') }}" alt="Fondo">
     </div>
     <div class="container">
         <header>
@@ -59,26 +59,26 @@
         <section class="info">
             <table>
                 <tr>
-                    @foreach ($area as $area )
+                   
                     <td>
                         <strong class="azul">Área: </strong>
                         <br>
-                        <p> {{ $area->areas_name }} </p>
+                        <p> {{ $area }} </p>
                     </td>
-                    @endforeach
+                    
 
-                    @foreach ($system as $system)
+                    @foreach ($system as $sys)
                     <td>
                         <strong class="azul">Sistema:</strong>
                         <br>
-                        <p> {{ $system->systems_name }} </p>
+                        <p> {{ $sys->systems_name }} </p>
                     </td>
                     @endforeach
-                    @foreach ($type as $type)
+                    @foreach ($type as $typ)
                     <td>
                         <strong class="azul">Tipo de reporte:</strong>
                         <br>
-                        <p>{{ $type->name_types_reports }}</p>
+                        <p>{{ $typ->name_types_reports }}</p>
                     </td>
                     @endforeach
                 </tr>
@@ -122,16 +122,17 @@
                 </tr>
                 <tr>
 
-                    @foreach ($module as $module)
-                    <td class="modulo">{{ $module->modules_name }}</td>
+                    @foreach ($module as $modu)
+                    <td class="modulo">{{ $modu->modules_name }}</td>
                     @endforeach
 
                     <td class="mayusculas">
                         {{ $descriptionA }}
                         <br>
                         @if (!empty($img) && file_exists(public_path($img)))
-                        <img class="evidence" src="{{ public_path($img) }}">
-                        @else
+                        <img class="evidence" src="{{ asset($img) }}" style="max-width: 500px; height: auto;">
+                        @endif
+
                         <br>
                         @endif
 
@@ -152,17 +153,17 @@
                     <th>Cargo</th>
                     <th>Observaciones</th>
                 </tr>
-                @foreach ($name as $name)
+                @foreach ($name as $na)
                 <tr>
                     <td class="mayusculas">
-                        {{ $name->name . ' ' . $name->p . ' ' . $name->m }}
+                        {{ $na->name . ' ' . $na->p . ' ' . $na->m }}
                     </td>
 
                     <td class="mayusculas">
-                        {{ $name->area }}
+                        {{ $na->area }}
                     </td>
                     <td class="mayusculas">
-                        {{ $name->position }}
+                        {{ $na->position }}
                     </td>
                     <td></td>
                 </tr>

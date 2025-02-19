@@ -35,7 +35,7 @@ return new class extends Migration
             // agregar user que reporta
 
             // Segunda parte del reporte
-            $table->unsignedBigInteger('modules_systems')->nullable(); //Relacion de la llave forane de modulos
+            $table->unsignedBigInteger('modules')->nullable(); //Relacion de la llave forane de modulos
             $table->string('descriptionA')->nullable();
             $table->string('evidenceA')->nullable();
             $table->unsignedBigInteger('responsibles')->nullable(); //Responsable (Puede ser o no un usuario)
@@ -47,7 +47,7 @@ return new class extends Migration
             $table->foreign('systems')->references('id')->on('systems')->onDelete('cascade');
             $table->foreign('areas')->references('id')->on('areas')->onDelete('cascade');
             $table->foreign('types_reports')->references('id')->on('types_reports')->onDelete('cascade');
-            $table->foreign('modules_systems')->references('systems')->on('modules_systems')->onDelete('cascade');
+            $table->foreign('modules')->references('modules')->on('modules_systems')->onDelete('cascade');
             $table->foreign('responsibles')->references('areas')->on('responsibles')->onDelete('cascade'); //Relacion con los responsables
         });
     }

@@ -5,6 +5,13 @@
         </h2>
     </x-slot>
 
+    <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- Agregar Dropzone -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" />
+
+
+    </head>
 
     <body class="bg-white">
 
@@ -41,76 +48,53 @@
 
 
         <!-- Modal de Ver Detalles -->
-        <div id="verdetallesModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+        <div id="editModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <!-- Agregar un campo oculto para almacenar el ID -->
+            <input type="hidden" id="reporte_id">
+
             <div class="bg-white p-6 rounded-lg shadow-lg w-auto  ">
                 <!-- Encabezado -->
                 <div class="flex items-center justify-between p-4 border-b">
                     <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
                     <p class="text-center text-azul-afac font-bold text-xl ml-2">SEGUIMIENTO DE LA SOLICITUD</p>
-                    <button onclick="closeDetailsModal()" class=" ml-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" stroke="currentColor" stroke-width="2" class="bi bi-x-lg text-gray-500 hover:text-gray-700 " viewBox="0 0 16 16">
-                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-                        </svg>
-                    </button>
                 </div>
-
                 <!-- Cuerpo del modal -->
                 <div class="p-4">
-                    <div class="p-4">
-                        <form name="formA" id="formA" class="w-full" action="" method="POST">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="space-y-6">
-                                <!-- Módulo -->
-                                <div>
-                                    <label for="module" class="block text-sm font-medium text-gray-900">Módulo</label>
-                                    <select id="module" name="module" class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                        <option value="" class="uppercase">--Selecciona el módulo--</option>
-                                    </select>
-                                </div>
-
-                                <!-- Descripción -->
-                                <div>
-                                    <label for="description" class="block text-sm font-medium text-gray-900">Descripción</label>
-                                    <textarea id="description" name="description" class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ingresa aquí" required></textarea>
-                                </div>
-
-                                <!-- Evidencia -->
-                                <div>
-                                    <label for="evidence" class="block text-sm font-medium text-gray-900">Subir Evidencia</label>
-                                    <div
-                                        class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                                        <div class="text-center">
-                                            <svg class="mx-auto size-12 text-gray-300" viewBox="0 0 24 24"
-                                                fill="currentColor">
-                                                <path
-                                                    d="M1.5 6a2.25 2.25 0 011.75-2.25h17.5A2.25 2.25 0 0123 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6ZM3 16.06V18a.75.75 0 00.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 01-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0Z" />
-                                            </svg>
-                                            <div class="mt-4 flex text-sm text-gray-600">
-                                                <label for="evidence"
-                                                    class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600">
-                                                    <span>Upload a file</span>
-                                                    <input id="evidence" name="evidence" type="file">
-                                                </label>
-                                                <p class="pl-1">or drag and drop</p>
-                                            </div>
-                                            <p class="text-xs text-gray-600">PNG, JPG, GIF up to 10MB</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Responsable -->
-                                <div>
-                                    <label for="responsable" class="block text-sm font-medium text-gray-900">Responsable</label>
-                                    <input type="text" name="responsable" id="responsable" class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" placeholder="Nombre del responsable" required>
-                                </div>
-                            </div>
-                        </form>
+                    <!-- Selección de Módulo -->
+                    <div class="mt-4">
+                        <label for="modulos" class="block text-sm font-medium text-gray-900">Seleccionar Módulo</label>
+                        <select id="modulos" name="modulos" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="">Selecciona un módulo</option>
+                        </select>
+                    </div>
+                    <!-- Descripción -->
+                    <div class="mt-4">
+                        <label for="descripcion" class="block text-sm font-medium text-gray-900">Descripción</label>
+                        <textarea id="descripcion" name="descripcion" class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ingresa aquí" required></textarea>
                     </div>
 
-                </div>
+                    <!-- Carga de Evidencia -->
+                    <div class="mt-4">
+                        <label for="evidence" class="block text-sm font-medium text-gray-900">Cargar Evidencia</label>
+                        <input type="file" id="evidence" name="evidence" accept="image/png, image/jpeg, image/jpg"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                  focus:border-blue-500 block w-full p-2.5">
+                    </div>
 
+                    <!-- Selección de Responsables (Áreas) -->
+                    <div class="mt-4">
+                        <label for="responsables" class="block text-sm font-medium text-gray-900">Seleccionar Responsable (Área)</label>
+                        <select id="responsables" name="responsables" class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="">Selecciona un área</option>
+                        </select>
+                    </div>
+
+
+
+
+
+
+                </div>
                 <!-- Pie del modal -->
                 <div class="flex justify-end p-4 border-t">
                     <button onclick="closeDetailsModal()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 mr-2">
@@ -220,23 +204,23 @@
                                 {{-- como se define el foreach->la funcion del modelo->lo que se quiere traer --}}
                                 {{ $repo->report_user }}
                             </td>
-
                             {{-- VER DETALLES --}}
                             <td>
-
-                                <button onclick="openDetailsModal(this)" data-url="{{ route('reports.edit', $repo->id) }}"
-                                    class="bg-teal-500 text-white font-bold py-2 px-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out 
-                                    @if ($repo->status == 1) 
-            bg-teal-200 text-gray-500 cursor-not-allowed 
-        @else 
-            bg-teal-500 text-white hover:bg-teal-600 active:bg-teal-700 hover:scale-105
-        @endif"
-                                    @if ($repo->status == 1)
-                                    disabled
-                                    @endif
-                                    >
-                                    Ver detalles
+                                <button class="btn btn-primary btn-editar font-bold py-2 px-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out 
+    @if($repo->status == 0) bg-teal-500 text-white hover:bg-teal-600 active:bg-teal-700 hover:scale-105 
+    @else bg-teal-300 text-white cursor-not-allowed opacity-50 
+    @endif"
+                                    @if($repo->status != 0) disabled @endif
+                                    data-id="{{ $repo->id }}"
+                                    data-descripcion="{{ $repo->descripcion }}"
+                                    data-responsables="{{ $repo->responsibles }}"
+                                    data-system="{{ $repo->systems }}"
+                                    data-route="{{ route('ejemplo.update', $repo->id) }}">
+                                    Editar
                                 </button>
+
+
+
                             </td>
                             {{--DELETE--}}
                             <td>
@@ -256,8 +240,8 @@
                                         bg-azul-afac hover:bg-azul-afac  transition duration-300 hover:scale-105
                                         @endif"
                                         @if ($repo->status == 0)
-                                    disabled
-                                    @endif
+                                        disabled
+                                        @endif
                                         >
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z" />
@@ -271,6 +255,10 @@
                     </tbody>
                 </table>
             </div>
+
+
+
+
             <!-- Paginación -->
             <div class="flex justify-center mt-4">
                 <ul class="flex items-center space-x-2">
@@ -318,8 +306,14 @@
             </div>
 
         </div>
+        <script>
+            var formRoutes =
+                "{{ url('/actualizar-reporte/{id}') }}"
+        </script>
+
 
     </body>
-    <script src="{{ asset(path: 'js/ver-detalles/delete.js') }}"></script>
+    <script src="{{ asset('js/ejemplo.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"></script>
 
 </x-app-layout>

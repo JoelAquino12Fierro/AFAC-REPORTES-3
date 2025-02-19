@@ -26,7 +26,10 @@ class pdfController extends Controller
         $folio = $reporte->folio;
 
         $area_id = $reporte->areas;
-        $area = Area::where('id', $area_id)->get();
+        $area = Area::where('id', $area_id)->value('areas_name');
+
+
+        // $area = Area::where('id', $area_id)->get();
 
         $system_id = $reporte->systems;
         $system = System::where('id', $system_id)->get();
@@ -64,7 +67,11 @@ class pdfController extends Controller
 
         $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date', 'dep', 'name', 'img')); //Para mostrar desde el navegador
         // $pdf->setWatermarkImage(public_path('img/AFAC_color.png'));
-        return $pdf->stream();
+        // return $pdf->stream();
+        $path = storage_path('app/public/reporte_'.$folio.'.pdf');
+
+        $pdf->save($path);
+        return response()->download($path, 'Reporte_'.$folio.'.pdf')->deleteFileAfterSend(true);
         // $pdf = PDF::loadView('pdf', compact('folio', 'area', 'system', 'type', 'user', 'description', 'module', 'descriptionA', 'fecha_aplication', 'report_date', 'dep', 'name', 'img'));
         // $pdf->setOption('chroot', public_path()); // Asegura que Dompdf tenga acceso a los recursos
         // return $pdf->stream();
