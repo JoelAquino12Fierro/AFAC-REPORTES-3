@@ -89,12 +89,16 @@ class ejemplo extends Controller
                 // Guardar la ruta en la BD
                 $reporte->evidenceA = $ruta;
             }
-
+            $reporte->status = '1';
             $reporte->save();
 
             Log::info('✅ Reporte actualizado correctamente.');
 
-            return response()->json(['success' => true, 'message' => 'Reporte actualizado correctamente']);
+            return response()->json([
+                'success' => true,
+                'message' => 'Reporte actualizado correctamente',
+                'folio' => $reporte->folio // Enviar el folio al frontend
+            ]);
         } catch (\Exception $e) {
             Log::error('❌ Error al actualizar reporte: ' . $e->getMessage());
             return response()->json(['success' => false, 'message' => 'Error interno del servidor'], 500);
@@ -131,4 +135,26 @@ class ejemplo extends Controller
             return response()->json(['error' => 'Error interno del servidor'], 500);
         }
     }
+    public function destroy($id) // Elimina el reporte
+{
+    try {
+        $reporte = Report::findOrFail($id);
+
+        // Eliminar la evidencia asociada si existe
+        if ($reporte->evidenceA) {
+            $rutaArchivo = public_path($reporte->evidenceA);
+            if (file_exists($rutaArchivo)) {
+                unlink($rutaArchivo); // Eliminar el archivo físico
+            }
+        }
+
+        $reporte->delete();
+
+        return redirect()->route('table.index')->with('success', 'Reporte eliminado correctamente');
+    } catch (\Exception $e) {
+        Log::error('❌ Error al eliminar reporte: ' . $e->getMessage());
+        return redirect()->route('table.index')->with('error', 'Error al eliminar el reporte');
+    }
+}
+
 }

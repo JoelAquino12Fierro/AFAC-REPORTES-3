@@ -1,6 +1,3 @@
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ El script ejemplo.js ha sido cargado correctamente.");
 
@@ -11,9 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let inputResponsables = document.getElementById("responsables");
     let selectModulos = document.getElementById("modulos");
     let inputEvidencia = document.getElementById("evidence"); // ✅ Se declara aquí
-
-
-
 
     document.querySelectorAll(".btn-editar").forEach(button => {
         button.addEventListener("click", function () {
@@ -35,11 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    window.closeDetailsModal = function () {
-        console.log("Cerrando modal...");
-        modal.classList.add("hidden");
-    };
-
     function obtenerModulos(systemId) {
         console.log("📌 Ejecutando obtenerModulos con ID del Sistema:", systemId);
 
@@ -54,8 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("❌ No se encontró el elemento <select> con id 'modulos'.");
             return;
         }
-
-        fetch(`/AFAC-REPORTES-3/public/get-modules/${systemId}`)
+        let url = getModulesUrl + systemId;
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 console.log("📌 Módulos recibidos:", data);
@@ -77,8 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     function obtenerAreas() {
         let selectResponsables = document.getElementById("responsables");
-
-        fetch(`/AFAC-REPORTES-3/public/get-areas`)
+        let url = getAreasUrl;
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 console.log("📌 Áreas recibidas:", data);
@@ -98,8 +87,68 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error("❌ Error al obtener áreas:", error));
     }
+    function showSuccessModal(message) {
+        let successModal = document.getElementById("successModal");
+        let successModalMessage = document.getElementById("successModalMessage");
 
+        if (successModal && successModalMessage) {
+            successModalMessage.innerHTML = message; // Insertar mensaje personalizado
+            successModal.classList.remove("hidden");
+        }
+    }
+    // Modal de editar
+    window.closeDetailsModal = function () {
+        console.log("Cerrando modal...");
+        let modal = document.getElementById("editModal");
+        let modalOverlay = document.getElementById("modalOverlay");
+    
+        if (modal) {
+            modal.classList.add("hidden");
+        }
+        
+        if (modalOverlay) {
+            modalOverlay.classList.add("hidden");
+        }
+    };
+    // Modal de exito
+    window.closeModal = function (modalId) {
+        let modal = document.getElementById(modalId);
+        let modalOverlay = document.getElementById("modalOverlay");
 
+        if (modal) {
+            modal.classList.add("hidden");
+        }
+
+        if (modalOverlay) {
+            modalOverlay.classList.add("hidden");
+        }
+
+        // Si se cierra el modal de éxito, recargar la página después de cerrarlo
+        if (modalId === "successModal") {
+            location.reload();
+        }
+    };
+
+    // Función para abrir el modal de eliminación
+window.openModal = function (button) {
+    let deleteModal = document.getElementById("deleteModal");
+    let deleteForm = document.getElementById("deleteForm");
+
+    // Obtener la URL de eliminación del botón y asignarla al formulario
+    let deleteUrl = button.getAttribute("data-url");
+    deleteForm.setAttribute("action", deleteUrl);
+
+    // Mostrar el modal de eliminación
+    deleteModal.classList.remove("hidden");
+};
+
+// Función para cerrar cualquier modal (incluyendo el de eliminación)
+window.closeModal = function (modalId) {
+    let modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add("hidden");
+    }
+};
 
     // Evento para el botón "Guardar"
     btnGuardar.addEventListener("click", function (event) {
@@ -124,22 +173,49 @@ document.addEventListener("DOMContentLoaded", function () {
             modulo: moduloSeleccionado,
             evidence: evidenciaArchivo ? evidenciaArchivo.name : "No se seleccionó archivo"
         });
+        let url = updateReporteUrl + reporteId; // ✅ URL dinámica desde Blade
 
-        fetch(`/AFAC-REPORTES-3/public/actualizar-reporte/${reporteId}`, {
+        fetch(url, {
             method: "POST",
             body: formData
         })
             .then(response => response.json())
             .then(data => {
-                console.log("✅ Reporte actualizado con éxito:", data);
-                alert("Reporte actualizado correctamente.");
+                // Extraer el folio de la respuesta del servidor
+                let folio = data.folio ? data.folio : "Desconocido";
                 modal.classList.add("hidden");
-                location.reload();
+                showSuccessModal(`Se ha concluido el reporte con número de folio <br> <strong>${folio}</strong> `);
+                document.getElementById("modalOverlay").classList.add("hidden");
+
             })
             .catch(error => console.error("❌ Error al actualizar reporte:", error));
     });
 });
 
 
+// Cerrar el modal si el usuario hace clic fuera del área del modal
+document.addEventListener("click", function (event) {
+    let successModal = document.getElementById("successModal");
 
+    if (event.target === successModal) {
+        closeModal("successModal");
+    }
+});
 
+// Cerrar el modal si el usuario hace clic fuera del contenido del modal
+document.addEventListener("click", function (event) {
+    let modal = document.getElementById("editModal");
+    let modalOverlay = document.getElementById("modalOverlay");
+
+    if (event.target === modal) {
+        closeModal("editModal");
+    }
+});
+// Cerrar el modal de eliminación si el usuario hace clic fuera de él
+document.addEventListener("click", function (event) {
+    let deleteModal = document.getElementById("deleteModal");
+
+    if (event.target === deleteModal) {
+        closeModal("deleteModal");
+    }
+});

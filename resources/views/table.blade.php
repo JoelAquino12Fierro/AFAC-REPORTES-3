@@ -15,34 +15,60 @@
 
     <body class="bg-white">
 
-        <!-- Modal Eliminar-->
+
         <!-- El id modalOverlay Funciona como un fondo semitransparente detrás del modal. -->
         <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-filter-none z-40"></div>
-        <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <div class="flex flex-col items-center justify-center text-center">
-                    <div class="flex size-12 items-center justify-center rounded-full bg-[#e70909]/20 sm:size-16">
-                        {{-- Icono centrado --}}
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="size-6 sm:size-8 bi bi-plus-square" viewBox="0 0 16 16">
-                            <g fill="#da0000">
-                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                            </g>
-                        </svg>
-                    </div>
-                    {{-- Título centrado debajo del icono --}}
-                    <p class="mt-2 text-lg font-semibold text-gray-900">ELIMINAR REPORTE</p>
-                </div>
-                <div class="flex w-full gap-4"></div>
-                <p class="text-gray-600">¿Estás seguro de que deseas eliminar este reporte?</p>
+        <!-- Modal Eliminar-->
+<!-- Modal de Eliminación -->
+<div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <div class="flex flex-col items-center justify-center text-center">
+            <div class="flex size-12 items-center justify-center rounded-full bg-[#e70909]/20 sm:size-16">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="size-6 sm:size-8 bi bi-plus-square" viewBox="0 0 16 16">
+                    <g fill="#da0000">
+                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                    </g>
+                </svg>
+            </div>
+            <p class="mt-2 text-lg font-semibold text-gray-900">ELIMINAR REPORTE</p>
+        </div>
+        <p class="text-gray-600 text-center">¿Estás seguro de que deseas eliminar este reporte?</p>
 
-                <form id="deleteForm" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <div class="flex justify-end mt-4">
-                        <button type="button" onclick="closeModal()" class="flex-1 mr-1 inline-flex items-center border border-transparent rounded-md justify-center p-2 text-base font-semibold text-black text-center bg-white hover:bg-gray-100 focus:ring-gray-300">Cancelar</button>
-                        <button type="submit" class="flex-1 ml-1 inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-base text-white tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">Eliminar</button>
-                    </div>
-                </form>
+        <form id="deleteForm" method="POST">
+            @csrf
+            @method('DELETE')
+            <div class="flex justify-end mt-4">
+                <button type="button" onclick="closeModal('deleteModal')" class="mr-2 px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
+                    Cancelar
+                </button>
+                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500">
+                    Eliminar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+        <!-- Modal de Éxito -->
+        <div id="successModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-auto">
+                <!-- Encabezado -->
+                <div class="flex items-center justify-between p-4 border-b">
+                    <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
+                    <p class="text-center text-azul-afac font-bold text-xl ml-2">¡REGISTRO ÉXITOSO!</p>
+                </div>
+                <!-- Cuerpo del modal -->
+                <div class="p-4 justify-center">
+                    <p class="text-gray-700 mt-2 text-center" id="successModalMessage"></p>
+                </div>
+                <!-- Pie del modal -->
+                <div class="flex justify-end p-4 border-t">
+                    <button onclick="closeModal('successModal')" class="mt-4 bg-azul-afac text-white px-4 py-2 rounded-md">
+                        Aceptar
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -51,7 +77,6 @@
         <div id="editModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
             <!-- Agregar un campo oculto para almacenar el ID -->
             <input type="hidden" id="reporte_id">
-
             <div class="bg-white p-6 rounded-lg shadow-lg w-auto  ">
                 <!-- Encabezado -->
                 <div class="flex items-center justify-between p-4 border-b">
@@ -72,15 +97,13 @@
                         <label for="descripcion" class="block text-sm font-medium text-gray-900">Descripción</label>
                         <textarea id="descripcion" name="descripcion" class="uppercase bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ingresa aquí" required></textarea>
                     </div>
-
                     <!-- Carga de Evidencia -->
                     <div class="mt-4">
                         <label for="evidence" class="block text-sm font-medium text-gray-900">Cargar Evidencia</label>
                         <input type="file" id="evidence" name="evidence" accept="image/png, image/jpeg, image/jpg"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                  focus:border-blue-500 block w-full p-2.5">
+                            focus:border-blue-500 block w-full p-2.5">
                     </div>
-
                     <!-- Selección de Responsables (Áreas) -->
                     <div class="mt-4">
                         <label for="responsables" class="block text-sm font-medium text-gray-900">Seleccionar Responsable (Área)</label>
@@ -88,12 +111,6 @@
                             <option value="">Selecciona un área</option>
                         </select>
                     </div>
-
-
-
-
-
-
                 </div>
                 <!-- Pie del modal -->
                 <div class="flex justify-end p-4 border-t">
@@ -224,10 +241,10 @@
                             </td>
                             {{--DELETE--}}
                             <td>
-                                <button onclick="openModal(this)" data-url="{{ route('reports.destroy', $repo->id) }}"
-                                    class="hover:scale-105 bg-red-500 text-white font-bold p-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out hover:bg-red-600 active:bg-red-700">
-                                    Eliminar
-                                </button>
+                            <button onclick="openModal(this)" data-url="{{ route('reports.destroy', $repo->id) }}"
+        class="hover:scale-105 bg-red-500 text-white font-bold p-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out hover:bg-red-600 active:bg-red-700">
+        Eliminar
+    </button>
                             </td>
                             {{-- PDF --}}
                             <td>
@@ -307,8 +324,10 @@
 
         </div>
         <script>
-            var formRoutes =
-                "{{ url('/actualizar-reporte/{id}') }}"
+            var baseUrl = "{{ url('/') }}"; // Obtiene la URL base del sitio
+            var updateReporteUrl = "{{ url('/actualizar-reporte') }}/";
+            var getModulesUrl = "{{ url('/get-modules') }}/";
+            var getAreasUrl = "{{ url('/get-areas') }}";
         </script>
 
 
