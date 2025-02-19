@@ -226,7 +226,7 @@
                             </td>
                             <td class="px-6 py-4 uppercase">
                                 {{-- como se define el foreach->la funcion del modelo->lo que se quiere traer --}}
-                                {{ $reporte->user->name }}
+                                {{ $reporte->report_name }}
                             </td>
 
                             {{-- VER DETALLES --}}
@@ -239,10 +239,12 @@
 
                                 </form> -->
                                 <!-- En el onclick se puede asignar cualquier nombre para despues usarlo en el JS -->
+                                 @hasanyrole(['admin'])
                                 <button onclick="openDetailsModal(this)" data-url="{{ route('reports.edit', $reporte->id) }}"
                                     class="bg-teal-500 text-white font-bold py-2 px-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out hover:bg-teal-600 active:bg-teal-700">
                                     Ver detalles
                                 </button>
+                                @endhasanyrole
 
 
 
@@ -269,7 +271,7 @@
                             {{-- PDF --}}
                             <td>
 
-                                <form action="{{ route('pdf', $reporte->id) }}" method="GET">
+                                <form action="{{ route('pdf', $reporte->id) }}" target="_blank" method="GET">
                                     @csrf
 
                                     <button type="submit" class="bg-azul-afac hover:bg-azul-afac text-white font-bold py-2 px-4 rounded-lg flex mr-4 items-center space-x-2 transition duration-300 ease-in-out transform hover:scale-105">

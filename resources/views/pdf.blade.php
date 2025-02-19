@@ -20,9 +20,7 @@
                 <table>
                     <tr>
                         <td rowspan="5">
-
                             <img src="{{ asset('img/AFAC_color.png') }}" class="logo">
-
                         </td>
                         <td rowspan="4">
                             <p> <strong>AGENCIA FEDERAL DE AVIACIÓN CIVIL</strong></p>
