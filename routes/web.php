@@ -37,9 +37,15 @@ Route::view('/reports', 'table')->name('reports'); //Boton tabla de reportes
 
 // Rutas para los controllers TABLA
 Route::get('tables', [tableController::class, 'index'])->name('table.index')->middleware('auth.basic'); //Mostrar en tabla
-Route::put('/detalles/{id}', [verdetallesController::class, 'update'])->name('reports.detalles'); //Guarda el nuevo formulario
-Route::get('/reports/{id}/detalles', [tableController::class, 'edit'])->name('reports.edit'); //vista editar
+Route::post('/actualizar-reporte/{id}', [tableController::class, 'updateDescripcion'])->name('ejemplo.update');
+Route::get('/get-modules/{systemId}', [tableController::class, 'getModules']);
+Route::get('/get-areas', [tableController::class, 'getAreas']);
+Route::post('/upload-evidence', [tableController::class, 'uploadEvidence'])->name('upload.evidence');
 Route::delete('/delete/{id}', [tableController::class, 'destroy'])->name('reports.destroy')->middleware('auth.basic');
+
+// Route::put('/detalles/{id}', [verdetallesController::class, 'update'])->name('reports.detalles'); //Guarda el nuevo formulario
+// Route::get('/reports/{id}/detalles', [tableController::class, 'edit'])->name('reports.edit'); //vista editar
+
 
 Route::get('pdf/{id}', [pdfController::class, 'index'])->name('pdf')->middleware('auth.basic');
 
@@ -65,16 +71,16 @@ Route::post('/addreport', [newformController::class, 'store'])->name('addreport'
 
 
 // RUTA DE EJEMPLO
-Route::get('ejemplo', [ejemplo::class, 'index'])->name('ejemplo')->middleware('auth.basic');
-Route::post('/ejemplo/store', [ejemplo::class, 'store'])->name('ejemplo.store');
+// Route::get('ejemplo', [ejemplo::class, 'index'])->name('ejemplo')->middleware('auth.basic');
+// Route::post('/ejemplo/store', [ejemplo::class, 'store'])->name('ejemplo.store');
 
 
-Route::post('/actualizar-reporte/{id}', [ejemplo::class, 'updateDescripcion'])->name('ejemplo.update');
+// Route::post('/actualizar-reporte/{id}', [ejemplo::class, 'updateDescripcion'])->name('ejemplo.update');
 
-Route::get('/get-modules/{systemId}', [ejemplo::class, 'getModules']);
+// Route::get('/get-modules/{systemId}', [ejemplo::class, 'getModules']);
 
-Route::get('/get-areas', [ejemplo::class, 'getAreas']);
-Route::post('/upload-evidence', [ejemplo::class, 'uploadEvidence'])->name('upload.evidence');
+// Route::get('/get-areas', [ejemplo::class, 'getAreas']);
+// Route::post('/upload-evidence', [ejemplo::class, 'uploadEvidence'])->name('upload.evidence');
 
 
 

@@ -17,44 +17,6 @@ class ejemplo extends Controller
     {
         return view('ejemplo');
     }
-    // Método para almacenar el usuario en la base de datos
-    // public function updateDescripcion(Request $request, $id)
-    // {
-    //     try {
-    //         Log::info('Datos recibidos en la API:', [
-    //             'id' => $id,
-    //             'descripcion' => $request->descripcion,
-    //             'responsables' => $request->responsables,
-    //             'modulo' => $request->modulo,
-    //             'evidenceA' => $request->evidenceA ?? 'No enviado'
-    //         ]);
-
-    //         $reporte = Report::find($id);
-
-    //         if (!$reporte) {
-    //             Log::error('Reporte no encontrado con ID: ' . $id);
-    //             return response()->json(['success' => false, 'message' => 'Reporte no encontrado'], 404);
-    //         }
-
-    //         $reporte->descriptionA = $request->descripcion;
-    //         $reporte->responsibles = $request->responsables; // Guardar responsables en la BD
-    //         $reporte->modules = $request->modulo;
-    //         // Si se envió una imagen, actualizar evidenceA
-    //         if ($request->has('evidenceA')) {
-    //             $reporte->evidenceA = $request->evidenceA;
-    //         }
-    //         $reporte->status = '1';
-    //         $reporte->save();
-
-    //         Log::info('Descripción actualizada correctamente.');
-
-    //         return response()->json(['success' => true, 'message' => 'Descripción actualizada correctamente']);
-    //     } catch (\Exception $e) {
-    //         Log::error('Error al actualizar descripción: ' . $e->getMessage());
-    //         return response()->json(['success' => false, 'message' => 'Error interno del servidor'], 500);
-    //     }
-    // }
-
     public function updateDescripcion(Request $request, $id)
     {
         try {

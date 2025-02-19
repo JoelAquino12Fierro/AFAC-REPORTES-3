@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!systemId) {
             return;
         }
-      // Asegurar que el select está siendo referenciado correctamente
+        // Asegurar que el select está siendo referenciado correctamente
         let selectModulos = document.getElementById("modulos");
         if (!selectModulos) {
             return;
@@ -68,12 +68,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function showSuccessModal(message) {
         let successModal = document.getElementById("successModal");
         let successModalMessage = document.getElementById("successModalMessage");
+        let modalOverlay = document.getElementById("modalOverlay");
 
         if (successModal && successModalMessage) {
             successModalMessage.innerHTML = message; // Insertar mensaje personalizado
             successModal.classList.remove("hidden");
         }
+
+
+        if (modalOverlay) {
+            modalOverlay.classList.remove("hidden");
+        }
     }
+
     // Modal de editar
     window.closeDetailsModal = function () {
         let modal = document.getElementById("editModal");
@@ -83,21 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (modalOverlay) {
             modalOverlay.classList.add("hidden");
-        }
-    };
-    // Modal de exito
-    window.closeModal = function (modalId) {
-        let modal = document.getElementById(modalId);
-        let modalOverlay = document.getElementById("modalOverlay");
-        if (modal) {
-            modal.classList.add("hidden");
-        }
-        if (modalOverlay) {
-            modalOverlay.classList.add("hidden");
-        }
-        // Si se cierra el modal de éxito, recargar la página después de cerrarlo
-        if (modalId === "successModal") {
-            location.reload();
         }
     };
 
@@ -113,13 +105,27 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("modalOverlay").classList.remove("hidden");
     };
 
-    // Función para cerrar cualquier modal (incluyendo el de eliminación)
-    window.closeModal = function (modalId) {
-        let modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.add("hidden");
-        }
-    };
+// Función para cerrar cualquier modal
+window.closeModal = function (modalId) {
+    let modal = document.getElementById(modalId);
+    let modalOverlay = document.getElementById("modalOverlay");
+
+    if (modal) {
+        modal.classList.add("hidden");
+    }
+
+    if (modalOverlay) {
+        modalOverlay.classList.add("hidden"); // ✅ Ahora se oculta correctamente
+    }
+
+    // ✅ Si se cierra el modal de éxito, esperar antes de recargar la página
+    if (modalId === "successModal") {
+        setTimeout(() => {
+            location.reload();
+        }, 300); // 🔹 Pequeño delay para permitir que modalOverlay desaparezca
+    }
+};
+
 
     // Evento para el botón "Guardar"
     btnGuardar.addEventListener("click", function (event) {
@@ -148,9 +154,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 // Extraer el folio de la respuesta del servidor
                 let folio = data.folio ? data.folio : "Desconocido";
+                // Ocultar el modal de edición
                 modal.classList.add("hidden");
+                document.getElementById("modalOverlay").classList.remove("hidden");
                 showSuccessModal(`Se ha concluido el reporte con número de folio <br> <strong>${folio}</strong> `);
-                document.getElementById("modalOverlay").classList.add("hidden");
 
             })
             .catch(error => console.error(error));
