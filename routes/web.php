@@ -6,6 +6,7 @@ use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
 use App\Http\Controllers\pdfController;
 use App\Http\Controllers\RecoverPasswordController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\roles;
 use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
@@ -84,8 +85,14 @@ Route::get('rol', [roles::class,'index'])->name('roles'); //Ver en la barra de n
 Route::post('/role', [roles::class, 'store'])->name('roles.store'); //crear un nuevo rol
 Route::delete('/roles/{id}', [roles::class, 'destroy'])->name('roles.destroy'); //Eliminar un rol
 Route::put('/roles/{id}', [roles::class, 'update'])->name('roles.update'); // Actualizar un rol
+Route::post('/addrol', [roles::class,'store'])->name('addrol')->middleware('auth.basic');//para ver el diseño del formulario de nuevo rol
+
 
 
 
 //ruta de recuperación de contraseña 
 Route::get('/recover-password', [RecoveryCodeController::class, 'index'])->name('recover');
+
+
+// ruta para guardar    E   X   E   L   
+Route::get('/exportar-reportes', [ReporteController::class, 'exportarExcel'])->name('reportes.exportar');
