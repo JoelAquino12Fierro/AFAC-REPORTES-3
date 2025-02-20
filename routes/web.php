@@ -43,8 +43,7 @@ Route::get('/get-areas', [tableController::class, 'getAreas']);
 Route::post('/upload-evidence', [tableController::class, 'uploadEvidence'])->name('upload.evidence');
 Route::delete('/delete/{id}', [tableController::class, 'destroy'])->name('reports.destroy')->middleware('auth.basic');
 
-// Route::put('/detalles/{id}', [verdetallesController::class, 'update'])->name('reports.detalles'); //Guarda el nuevo formulario
-// Route::get('/reports/{id}/detalles', [tableController::class, 'edit'])->name('reports.edit'); //vista editar
+
 
 
 Route::get('pdf/{id}', [pdfController::class, 'index'])->name('pdf')->middleware('auth.basic');
@@ -60,29 +59,29 @@ Route::post('newModule', [moduleController::class, 'store'])->name('register.mod
 
 // Ruta para la tabla de usuarios
 Route::get('user', [UsController::class, 'index'])->name('users')->middleware('auth.basic');
-Route::delete('/u/{id}', [UsController::class, 'destroy'])->name('deleteUser')->middleware('auth.basic');
+Route::delete('/user/delete/{id}', [UsController::class, 'destroy'])->name('deleteUser');
+
 Route::put('/ud/{id}', [UsController::class, 'update'])->name('editUser')->middleware('auth.basic');
+Route::post('adduser',[UsController::class,'store'])->name('adduser')->middleware('auth.basic');
+Route::get('area',[UsController::class,'areas'])->name('areauser')->middleware('auth.basic');
+Route::get('/positions/{areaId}', [UsController::class, 'getPositionsByArea'])->name('positions.byArea');
+Route::post('/responsibilities', [UsController::class, 'storeResponsibility'])->name('responsibilities.store');
+
+
+// Ruta para obtener todas las áreas
+Route::get('/users/areas', [UsController::class, 'getAllAreas'])->name('areauser');
+
+// Ruta para obtener cargos por área
+Route::get('/users/positions/{areaId}', [UsController::class, 'getPositionsByArea'])->name('positions.byArea');
+
+// Ruta para obtener el área y cargo de un usuario
+Route::get('/users/area/{id}', [UsController::class, 'getUserAreaAndPosition'])->name('getUserArea');
 
 
 
 //Rutas de nuevo reporte
 Route::get('/newform', [newformController::class, 'create_function'])->name('newform')->middleware('auth.basic');
 Route::post('/addreport', [newformController::class, 'store'])->name('addreport')->middleware('auth.basic'); //para ver el diseño del formulario de nuevo registro
-
-
-// RUTA DE EJEMPLO
-// Route::get('ejemplo', [ejemplo::class, 'index'])->name('ejemplo')->middleware('auth.basic');
-// Route::post('/ejemplo/store', [ejemplo::class, 'store'])->name('ejemplo.store');
-
-
-// Route::post('/actualizar-reporte/{id}', [ejemplo::class, 'updateDescripcion'])->name('ejemplo.update');
-
-// Route::get('/get-modules/{systemId}', [ejemplo::class, 'getModules']);
-
-// Route::get('/get-areas', [ejemplo::class, 'getAreas']);
-// Route::post('/upload-evidence', [ejemplo::class, 'uploadEvidence'])->name('upload.evidence');
-
-
 
 
 // Ruta de roles

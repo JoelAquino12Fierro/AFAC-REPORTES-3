@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\System;
 use App\Models\types_report;
-use App\Models\User;
 use App\Models\Report;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
+
 
 
 class newformController extends Controller

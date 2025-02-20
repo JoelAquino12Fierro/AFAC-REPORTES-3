@@ -6,10 +6,8 @@
     </x-slot>
 
     <body>
-
         <!-- El id modalOverlay Funciona como un fondo semitransparente detrás del modal. -->
         <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-filter-none z-40"></div>
-
         <!-- Modal Eliminar-->
         <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
             <div class="bg-white p-6 rounded-lg shadow-lg">
@@ -23,10 +21,10 @@
                         </svg>
                     </div>
                     {{-- Título centrado debajo del icono --}}
-                    <p class="mt-2 text-lg font-semibold text-gray-900">ELIMINAR REPORTE</p>
+                    <p class="mt-2 text-lg font-semibold text-gray-900">ELIMINAR USUARIO</p>
                 </div>
                 <div class="flex w-full gap-4"></div>
-                <p class="text-gray-600">¿Estás seguro de que deseas eliminar este reporte?</p>
+                <p class="text-gray-600">¿Estás seguro de que deseas eliminar este usuario?</p>
                 <form id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
@@ -38,29 +36,25 @@
             </div>
         </div>
         <!-- Modal de éxito -->
-        <div id="successModal" class="hidden fixed inset-0 flex items-center justifay-center z-50">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-auto  ">
+        <div id="successModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-auto">
                 <!-- Encabezado -->
                 <div class="flex items-center justify-between p-4 border-b">
                     <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
-                    <p class="text-center text-azul-afac font-bold text-xl ml-2">REGISTRO EXITOSO</p>
-
+                    <p class="text-center text-azul-afac font-bold text-xl ml-2">OPERACIÓN EXITOSA</p>
                 </div>
                 <!-- Cuerpo del modal -->
                 <div class="p-4 justify-center">
-                    <p class="text-gray-700 mt-2 text-center">¡Reporte generado con éxito!</p>
-                    <p class="text-gray-700 mt-2 text-center">Número de folio:</p>
-                    <p class="text-gray-700 mt-2 text-center font-semibold" id="successModalMessage"></p> <!-- Asegurar este ID -->
+                    <p class="text-gray-700 mt-2 text-center " id="successModalMessage"></p> <!-- Asegurar este ID -->
                 </div>
                 <!-- Pie del modal -->
                 <div class="flex justify-end p-4 border-t ">
-                    <button onclick="closeModal('successModal')" class="mt-4 bg-azul-afac text-white px-4 py-2 rounded-md">
+                    <button onclick="closeSuccessModal()" class="mt-4 bg-azul-afac text-white px-4 py-2 rounded-md">
                         Aceptar
                     </button>
                 </div>
             </div>
         </div>
-
         <!-- Modal Editar Usuario -->
         <div id="editModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
             <div class="bg-white p-6 rounded-lg shadow-lg w-auto max-w-2xl">
@@ -69,14 +63,11 @@
                     <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
                     <p class="text-center text-azul-afac font-bold text-xl ml-2">EDITAR USUARIO</p>
                 </div>
-
-
                 <!-- Cuerpo del Modal con Formulario -->
                 <div class="p-4">
                     <form id="editForm" action="" method="POST">
                         @csrf
                         @method('PUT')
-
                         <!-- ID oculto del usuario -->
                         <input type="hidden" id="userId" name="userId">
                         <input type="hidden" name="_method" value="PUT">
@@ -101,35 +92,29 @@
                                 <label for="apeM" class="block text-sm font-medium text-gray-700">Apellido Materno</label>
                                 <input type="text" id="apeM" name="apeM" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="Nombre del usuario">
                             </div>
-
-
                             <!-- Email -->
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
                                 <input type="email" id="email" name="email" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
                             </div>
-
-                            <!-- Rol -->
+                            <!-- Área -->
                             <div>
-                                <label for="role" class="block text-sm font-medium text-gray-700">Rol</label>
-                                <select id="role" name="role" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
-                                    <option value="admin">Administrador</option>
-                                    <option value="user">Usuario</option>
+                                <label for="editArea" class="block text-sm font-medium text-gray-700">Departamento</label>
+                                <select id="editArea" name="editArea" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <!-- Cargo -->
+                            <div>
+                                <label for="editPosition" class="block text-sm font-medium text-gray-700">Cargo</label>
+                                <select id="editPosition" name="editPosition" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
+                                    <option value=""></option>
                                 </select>
                             </div>
 
-                            <!-- Area -->
-                            <div>
-                                <label for="status" class="block text-sm font-medium text-gray-700">Estado</label>
-                                <select id="status" name="status" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
-                                    <option value="activo">Activo</option>
-                                    <option value="inactivo">Inactivo</option>
-                                </select>
-                            </div>
                         </div>
                     </form>
                 </div>
-
                 <!-- Pie del Modal -->
                 <div class="flex justify-end p-4 border-t">
                     <button onclick="closeDetailsModal()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 mr-2">
@@ -141,8 +126,109 @@
                 </div>
             </div>
         </div>
+        <!-- Modal nuevo usuario -->
+        <div div id="newModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-auto  ">
+                <!-- Encabezado -->
+                <div class="flex items-center justify-between p-4 border-b">
+                    <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
+                    <p class="text-center text-azul-afac font-bold text-xl ml-2">NUEVO USUARIO</p>
+                </div>
+                <!-- Cuerpo del modal -->
+                <div class="p-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Numero de empleado -->
+                        <div>
+                            <label for="NUnumber" class="block text-sm font-medium text-gray-700">Número de empleado</label>
+                            <input type="text" id="NUnumber" name="NUnumber" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="Número de empleado">
+                        </div>
+                        <!-- Nombre -->
+                        <div>
+                            <label for="NUname" class="block text-sm font-medium text-gray-700">Nombre</label>
+                            <input type="text" id="NUname" name="NUname" class="mt-1  block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac " placeholder="Nombre del usuario">
+                        </div>
+                        <!-- Apellido Paterno -->
+                        <div>
+                            <label for="NUapeP" class="block text-sm font-medium text-gray-700">Apellido Paterno</label>
+                            <input type="text" id="NUapeP" name="NUapeP" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="Apellido paterno">
+                        </div>
+                        <!-- Apellido Materno -->
+                        <div>
+                            <label for="NUapeM" class="block text-sm font-medium text-gray-700">Apellido Materno</label>
+                            <input type="text" id="NUapeM" name="NUapeM" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="Apellido Materno">
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label for="NUemail" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                            <input type="email" id="NUemail" name="NUemail" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="correo@ejemplo.mx">
+                        </div>
+                        <!-- Password -->
+                        <div>
+                            <label for="NUpassword" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                            <input type="password" id="NUpassword" name="NUpassword" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="Ingresa la contraseña">
+                        </div>
+
+                        <!-- Password Confirmation -->
+                        <div>
+                            <label for="NUpasswordc" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+                            <input type="password" id="NUpasswordc" name="NUpasswordc" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac" placeholder="Repite la contraseña">
+                        </div>
+
+                        <!-- Area -->
+                        <div>
+                            <label for="NUarea" class="block text-sm font-medium text-gray-700">Departamento</label>
+                            <select id="NUarea" name="NUarea" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
+                                <option value="">Selecciona un departamento</option>
+                            </select>
+                        </div>
+
+                        <!-- Position -->
+                        <div>
+                            <label for="NUposition" class="block text-sm font-medium text-gray-700">Cargo</label>
+                            <select id="NUposition" name="NUposition" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac">
+                                <option value="">Selecciona un cargo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pie del modal -->
+                <div class="flex justify-end p-4 border-t">
+                    <button onclick="closenewModal(this)" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 mr-2">
+                        Cerrar
+                    </button>
+                    <button id="newuser" name="newuser" class="bg-azul-afac hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-lg" type="button">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de error -->
+        <div id="errorModal" class="flex items-center justify-center  hidden fixed inset-0  z-50">
+            <div class="bg-white rounded-lg shadow-lg p-4 w-80 relative border-t-4 border-red-600">
+                <div class="flex items-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="white">
+                        <circle cx="12" cy="12" r="10" fill="#F87171" />
+                        <path fill="white" d="M8 8L16 16M16 8L8 16" stroke="white" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <div class="ml-3">
+                        <h2 class="text-red-600 font-semibold text-xl text-center">ERROR</h2>
+                    </div>
+                </div>
+                <div class="mb-4 justify-center">
+                    <p class="text-black text-sm text-center" id="errorModalMessage"></p>
+                </div>
+                <div class="flex justify-end mt-2">
+                    <button onclick="closeErrorModal(this)" class="px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-sm text-white tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                        Intentar de nuevo
+                    </button>
+                </div>
+            </div>
+        </div>
 
 
+        <!-- Terminan modales -->
         <div class="py-12 bg-gray-100 min-h-screen">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
@@ -162,7 +248,7 @@
                                         </div>
                                         <input type="text" id="table-search-users" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Buscar Usuario">
                                     </div>
-                                    <button type="submit" class="mt-4 right-2 text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-base font-semibold px-6 py-3 text-center inline-flex items-center shadow-lg">Nuevo</button>
+                                    <button type="button" onclick="newModal(this)" id="new" name="new" class="mt-4 right-2 text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-base font-semibold px-6 py-3 text-center inline-flex items-center shadow-lg">Nuevo</button>
                                 </div>
                             </form>
                         </div>
@@ -205,8 +291,6 @@
                                                 data-email="{{ $us->email }}"
                                                 data-apeP="{{ $us->paternal_surname }}"
                                                 data-apeM="{{ $us->maternal_surname}}"
-                                                data-role="{{ $us->role }}"
-                                                data-status="{{ $us->status }}"
                                                 data-url="{{ route('editUser', $us->id) }}">
                                                 Editar
                                             </button>
@@ -223,10 +307,83 @@
                             </table>
                         </div>
                     </div>
+                    <!-- Paginación -->
+                    <div class="flex justify-center ">
+                        <ul class="flex items-center space-x-2">
+                            @if ($user->hasPages())
+                            <div class="flex space-x-1 justify-center mt-4">
+                                {{-- Botón "Prev" --}}
+                                @if ($user->onFirstPage())
+                                <button class="rounded-md border border-gray-300 py-2 px-3 text-center text-sm shadow-sm text-gray-600 bg-gray-200 cursor-not-allowed opacity-50">
+                                    Prev
+                                </button>
+                                @else
+                                <a href="{{ $user->previousPageUrl() }}" class="rounded-md border border-azul-secundario py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-azul-afac hover:text-white hover:bg-azul-afac hover:border-azul-afac focus:text-white focus:bg-azul-afac focus:border-azul-afac active:border-azul-afac active:text-white active:bg-azul-afac ml-2">
+                                    Prev
+                                </a>
+                                @endif
+
+                                {{-- Números de Página --}}
+                                @foreach ($user->links()->elements[0] as $page => $url)
+                                @if ($page == $user->currentPage())
+                                <a href="{{ $url }}" class="min-w-9 rounded-md bg-azul-afac py-2 px-3 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-azul-secundario focus:shadow-none active:bg-azul-secundario hover:bg-azul-secundario active:shadow-none ml-2">
+                                    {{ $page }}
+                                </a>
+                                @else
+                                <a href="{{ $url }}" class="min-w-9 rounded-md border border-azul-secundario py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-azul-afac hover:text-white hover:bg-azul-afac hover:border-azul-afac focus:text-white focus:bg-azul-afac focus:border-azul-afac active:border-azul-afac active:text-white active:bg-azul-afac ml-2">
+                                    {{ $page }}
+                                </a>
+                                @endif
+                                @endforeach
+
+                                {{-- Botón "Next" --}}
+                                @if ($user->hasMorePages())
+                                <a href="{{ $user->nextPageUrl() }}" class="rounded-md border border-azul-secundario py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-azul-afac hover:text-white hover:bg-azul-afac hover:border-azul-afac focus:text-white focus:bg-azul-afac focus:border-azul-afac active:border-azul-afac active:text-white active:bg-azul-afac ml-2">
+                                    Next
+                                </a>
+                                @else
+                                <button class="rounded-md border border-gray-300 py-2 px-3 text-center text-sm shadow-sm text-gray-600 bg-gray-200 cursor-not-allowed opacity-50">
+                                    Next
+                                </button>
+                                @endif
+                            </div>
+                            @endif
+                    </div>
+
                 </div>
+
+
             </div>
+
+
+            </ul>
         </div>
-        <script src="{{ asset(path: 'js/users.js') }}"></script>
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    window.openModal = function (button) {
+        let deleteUrl = button.getAttribute("data-url");
+        if (!deleteUrl) {
+            console.error("❌ Error: No se encontró la URL de eliminación.");
+            return;
+        }
+        document.getElementById("deleteForm").setAttribute("action", deleteUrl);
+        document.getElementById("deleteModal").classList.remove("hidden");
+    };
+
+    window.closeModal = function () {
+        document.getElementById("deleteModal").classList.add("hidden");
+    };
+});
+</script>
+        <script>
+            var adduser = "{{ route('adduser') }}";
+            var area = "{{ route('areauser') }}";
+            var possi = "{{ url('/positions') }}";
+            var responsibilitiesUrl = "{{ route('responsibilities.store') }}";
+            var getUserAreaUrl = "{{ route('getUserArea', ['id' => ':id']) }}";
+            var getPositionsUrl = "{{ route('positions.byArea', ':areaId') }}";
+            var areaUrl = "{{ route('areauser') }}";
+        </script>
     </body>
-    
+    <script src="{{ asset(path: 'js/users.js') }}"></script>
 </x-app-layout>
