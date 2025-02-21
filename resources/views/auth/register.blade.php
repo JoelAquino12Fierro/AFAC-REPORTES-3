@@ -10,8 +10,25 @@
             @csrf
 
             <div>
+                <x-label for="id" value="{{ __('Numero de Empleado') }}" />
+                <x-input id="id" class="block mt-1 w-full" type="number" name="id" :value="old('id')" required autofocus autocomplete="id" />
+            </div>
+
+            <div>
                 <x-label for="name" value="{{ __('Nombre') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            </div>
+
+            <div class="w-full flex space-x-4 mt-3">
+                <div class="w-1/2">
+                    <x-label for="paternal_surname" value="{{ __('Apellido Paterno') }}" />
+                    <x-input id="paternal_surname" class="block mt-1 w-full" type="text" name="paternal_surname" :value="old('paternal_surname')" required autofocus autocomplete="paternal_surname" />
+                </div>
+
+                <div class="w-1/2">
+                    <x-label for="maternal_surname" value="{{ __('Apellido Materno') }}" />
+                    <x-input id="maternal_surname" class="block mt-1 w-full" type="text" name="maternal_surname" :value="old('maternal_surname')" required autofocus autocomplete="maternal_surname" />
+                </div>
             </div>
 
             <div class="mt-4">

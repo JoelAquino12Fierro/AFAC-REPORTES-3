@@ -21,7 +21,7 @@
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                             </svg>
                                         </div>
-                                        <input type="text" id="table-search-users" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Buscar Usuario">
+                                        <input type="text" id="table-search-users" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Buscar Usuario" oninput="filterTable()">
                                     </div>
                                     <button type="submit" class="mt-4 right-2 text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-base font-semibold px-6 py-3 text-center inline-flex items-center shadow-lg">Nuevo</button>
                                 </div>
@@ -141,6 +141,25 @@
 
         // Actualizar la acción del formulario con la URL correcta
         document.getElementById('editForm').action = `/users/${id}`;
+
+        // buscador para filtrar la tabla
+        function filterTable() {
+            const input = document.getElementById("table-search-users");
+            const filter = input.value.toLowerCase();
+            const rows = document.querySelectorAll("#user-results tr");
+
+            rows.forEach((row) => {
+                const cells = row.querySelectorAll("td, th");
+                const userName = cells[1].textContent.toLowerCase();
+                const userId = cells[0].textContent.toLowerCase();
+
+                if (userName.includes(filter) || userId.includes(filter)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
     }
 </script>
 </x-app-layout>
