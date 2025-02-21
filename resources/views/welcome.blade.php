@@ -19,100 +19,39 @@
             </style>
         @endif
     </head>
-    <body class=" font-sans antialiased ">
-        <div class="bg-gray-900 text-black/50">
-            <!-- imagen de BACKGROUND -->
-            <img id="background" class="absolute left-0 top-0 w-full" src="https://files.oaiusercontent.com/file-7fKkZSMv7DBZqvN3D7wg6a?se=2025-02-12T21%3A10%3A44Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D82856ab0-98e6-4a43-bef6-3b42be2d7f83.webp&sig=T1/yQq1LpVmkMFl2AnQprhUcgNodoayaIuXeTULHsOs%3D" alt="Background de un avion " />
-            <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#0000FF] selection:text-white">
-                <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                        <div class="flex lg:justify-center lg:col-start-2">
-                            <!-- logo -->
-                             
-                        </div>
-                        @if (Route::has('login'))
-                            <nav class="-mx-3 flex flex-1 justify-end">
+    <body class="bg-[#003764] min-h-screen flex items-center justify-center">
+        <div class="w-full h-screen flex items-center justify-center">
+            <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 w-full h-full">
+                <svg viewBox="0 0 1024 1024" class="absolute top-1/2 left-1/2 -z-10 size-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
+                    <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
+                    <defs>
+                        <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                            <stop stop-color="#003764" />
+                            <stop offset="1" stop-color="#00509E" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+                <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+                    <h2 class="text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">Bienvenido al sistema de Reportes de la AFAC.</h2>
+                    <p class="mt-6 text-lg/8 text-pretty text-gray-300"></p>
+                    @if (Route::has('login'))
+                            <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                                 @auth
-                                    <a
-                                        href="{{ url('/dashboard') }}"
-                                        class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
-                                    >
-                                        Página Principal
-                                    </a>
-                                @else
-                                    <a
-                                        href="{{ route('login') }}"
-                                        class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
-                                    >
-                                        Ingresar
-                                    </a>
-
-                                    @if (Route::has('register'))
-                                        <a
-                                            href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
-                                        >
-                                            Registrarse
-                                        </a>
-                                    @endif
-                                @endauth
-                            </nav>
-                        @endif
-                    </header>
-
-                    <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-
-                            <a
-                                href="{{ route('login') }}"
-                                 class="flex items-start gap-4 rounded-lg bg-white/70 p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
-                                >
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#0000FF]/10 sm:size-16">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#003764" class="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                                        <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5"/>
-                                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                    </svg>
-                                </div>
-
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black">Iniciar sesión</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        texto-
-                                    </p>
-                                </div>
-
-                                <svg class="size-6 shrink-0 self-center stroke-[#0000FF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                            </a>
+                            <a href="{{ route('register') }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Pagina Principal</a>
+                            @else
                             
-                            <a
-                                href="{{route('password.request')}}"
-                                class="flex items-start gap-4 rounded-lg bg-white/70 p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
-                            >
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#0000FF]/10 sm:size-16">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#003764" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-                                    </svg>
-                                </div>
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black">Restablecer Contraseña</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        texto-
-                                    </p>
-                                </div>
-                                <svg class="size-6 shrink-0 self-center stroke-[#0000FF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                                
-                                
-                            </a>
-
+                            <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                                @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Registrarse</a>
+                                @endif
+                                <a href="{{ route('login') }}" class="text-sm/6 font-semibold text-white">Iniciar sesión <span aria-hidden="true">→</span></a>
+                            </div>
+                            @endauth
                         </div>
-                    </main>
-
-                    <footer class="py-16 text-center text-sm text-black">
-                        AFAC
-                    </footer>
+                    @endif
+                </div>
+                <div class="relative mt-16 h-80 lg:mt-8">
+                    <img class="absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="{{ asset('img/fondoAFACbg.jpeg') }}" alt="App screenshot" width="1824" height="1080">
                 </div>
             </div>
         </div>
