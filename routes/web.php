@@ -61,20 +61,16 @@ Route::post('newModule', [moduleController::class, 'store'])->name('register.mod
 Route::get('user', [UsController::class, 'index'])->name('users')->middleware('auth.basic');
 Route::delete('/user/delete/{id}', [UsController::class, 'destroy'])->name('deleteUser');
 
-Route::put('/ud/{id}', [UsController::class, 'update'])->name('editUser')->middleware('auth.basic');
+Route::put('/users/update/{id}', [UsController::class, 'update'])->name('editUser')->middleware('auth.basic');
 Route::post('adduser',[UsController::class,'store'])->name('adduser')->middleware('auth.basic');
 Route::get('area',[UsController::class,'areas'])->name('areauser')->middleware('auth.basic');
 Route::get('/positions/{areaId}', [UsController::class, 'getPositionsByArea'])->name('positions.byArea');
 Route::post('/responsibilities', [UsController::class, 'storeResponsibility'])->name('responsibilities.store');
-
-
-// Ruta para obtener todas las áreas
+// Ruta para obtener todas las áreas EDITAR
 Route::get('/users/areas', [UsController::class, 'getAllAreas'])->name('areauser');
-
-// Ruta para obtener cargos por área
+// Ruta para obtener cargos por área EDITAR
 Route::get('/users/positions/{areaId}', [UsController::class, 'getPositionsByArea'])->name('positions.byArea');
-
-// Ruta para obtener el área y cargo de un usuario
+// Ruta para obtener el área y cargo de un usuario EDITAR
 Route::get('/users/area/{id}', [UsController::class, 'getUserAreaAndPosition'])->name('getUserArea');
 
 

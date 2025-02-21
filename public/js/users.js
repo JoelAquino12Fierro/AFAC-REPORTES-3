@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const deleteForm = document.getElementById("deleteForm");
     const selectArea = document.getElementById("editArea");
     const selectPosition = document.getElementById("editPosition");
+    const btn_edit = document.getElementById("btn_edit");
     let userAreaUrl = "";
 
-    // ✅ Al cambiar de área, cargar los cargos disponibles
     selectArea.addEventListener("change", async function () {
         let areaId = this.value;
         if (areaId) {
@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Obtener los datos del usuario desde el botón
         const userId = button.getAttribute("data-id");
         let userAreaUrl = getUserAreaUrl.replace(':id', userId);
+        let updateUrl = editUserUrl.replace(':id', userId); // Generar la URL de actualización
+        //  Asignar la URL al formulario para que Laravel reciba el ID correcto
+        document.getElementById("editForm").setAttribute("action", updateUrl);
         const userName = button.getAttribute("data-name");
         const userEmail = button.getAttribute("data-email");
         const userApeP = button.getAttribute("data-apeP");
@@ -42,40 +45,79 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("apeM").value = userApeM;
         document.getElementById("number").value = userId;
 
-        console.log(`📌 Cargando usuario con ID: ${userId}`);
+
         await loadAreas();
 
-        // **Obtener el Área y Cargo del Usuario**
-        
-        console.log("📌 Consultando área y cargo con URL:", userAreaUrl); // ✅ Debug
         try {
             let response = await fetch(userAreaUrl);
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
             let data = await response.json();
-            console.log("📌 Área y cargo del usuario:", data);
-
-            selectArea.value = data.areas;
-            await loadPositions(data.areas);
-            selectPosition.value = data.positions;
-
+            // Verificar si el usuario tiene un área asignada
+            if (data.areas) {
+                selectArea.value = data.areas;
+                await loadPositions(data.areas);
+            } else {
+                selectArea.value = "";
+                selectPosition.innerHTML = '<option value="">Selecciona un cargo</option>'; // Vacía las opciones de cargo
+            }
+            // Verificar si el usuario tiene un cargo asignado
+            if (data.positions) {
+                selectPosition.value = data.positions;
+            }
         } catch (error) {
-            console.error("❌ Error al obtener el área y cargo del usuario:", error);
         }
 
         // Mostrar el modal y el fondo semitransparente
         editModal.classList.remove("hidden");
         overlay.classList.remove("hidden");
     };
+    document.getElementById("editForm").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Evitar recarga de la página
+    
+        let form = this;
+        let userId = document.getElementById("userId").value; // Obtener el ID del usuario
+        let updateUrl = editUserUrl.replace(":id", userId); // Reemplazar `:id` en la URL
+        let formData = new FormData(form);
+    
+        // Asegurar que Laravel reciba correctamente el método PUT
+        formData.append("_method", "PUT");
+    
+        
+    
+        try {
+            let response = await fetch(updateUrl, {
+                method: "POST", // Laravel aceptará PUT si enviamos _method en formData
+                body: formData,
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
+                }
+            });
+            let text = await response.text();
+            try {
+                let result = JSON.parse(text); // Intentar parsear JSON
+                if (result.success) {
+                    let userName = result.user_name || "Usuario";
+                    closeDetailsModal();
+                    showSuccessModal(` Usuario actualizado:<br><strong>${userName.toUpperCase()}</strong>`);
+                } else {
+                    showErrorModal(" Error al actualizar el usuario");
+                }
+            } catch (jsonError) {
+                showErrorModal(" Error inesperado");
+            }
+        } catch (error) {
+        
+            showErrorModal(" No se pudo actualizar el usuario.");
+        }
+    });
+    
     // Función para cerrar el modal de edición
     window.closeDetailsModal = function () {
         editModal.classList.add("hidden");
         overlay.classList.add("hidden");
     };
 
-
-    console.log("📌 Consultando área y cargo con URL:", userAreaUrl); // ✅ Debug
-
-    // ✅ Función para cargar todas las áreas
+    // Carga areas
     async function loadAreas() {
         try {
             let response = await fetch(areaUrl);
@@ -90,12 +132,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectArea.appendChild(option);
             });
         } catch (error) {
-            console.error("❌ Error al obtener áreas:", error);
+
         }
     }
 
-    // ✅ Cargar Cargos según Área
-    // ✅ Función para cargar posiciones según área seleccionada
+
     async function loadPositions(areaId) {
         let url = getPositionsUrl.replace(':areaId', areaId);
         try {
@@ -111,13 +152,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectPosition.appendChild(option);
             });
         } catch (error) {
-            console.error("❌ Error al obtener posiciones:", error);
         }
     }
 
 
     // ---------------------------------------------------------------------
-    
+
     // NEW USER ---------------------------------------------
     window.newModal = async function () {
         newModal.classList.remove("hidden");
@@ -213,8 +253,6 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .catch(error => console.error(" Error al registrar responsibility:", error));
     }
-
-
     async function Areas() {
         let selectArea = document.getElementById("NUarea");
         try {
@@ -238,51 +276,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-
     async function Positions(areaId) {
         let selectPosition = document.getElementById("NUposition");
-        let url = `${possi}/${selectArea.value}`;
+        let url = `${possi}/${areaId}`; 
+    
         try {
             let response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             let data = await response.json();
-            // Limpiar opciones previas
+    
             selectPosition.innerHTML = '<option value="">Selecciona un cargo</option>';
-            // Agregar nuevas opciones al select
+    
             data.forEach(position => {
                 let option = document.createElement("option");
                 option.value = position.id;
-                option.textContent = position.name; // 
+                option.textContent = position.name;
                 selectPosition.appendChild(option);
             });
-
-
-        } catch (error) {
-            console.error(" Error al obtener posiciones:", error);
+        } catch (error) {        
         }
     }
 
+    document.getElementById("NUarea").addEventListener("change", async function () {
+        let areaId = this.value;
+        if (areaId) {
+            await Positions(areaId);
+        } else {
+            document.getElementById("NUposition").innerHTML = '<option value="">Selecciona un cargo</option>';
+        }
+    });
 
-
-
-
-    // DELETEEEEEEEE-------
-
-    // window.openModal = function (button) {
-    //     let deleteUrl = button.getAttribute("data-url");
-    //     if (!deleteUrl) {
-    //         console.error("❌ Error: No se encontró la URL de eliminación.");
-    //         return;
-    //     }
-    //     deleteForm.setAttribute("action", deleteUrl);
-    //     deleteModal.classList.remove("hidden");
-    //     overlay.classList.remove("hidden");
-    // };
-
-
-
+    // Para eliminar
     deleteForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -308,11 +334,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // EXITO------------------------------------------
+
     window.showSuccessModal = function (message) {
-        if (successModalMessage && successModal) {
-            successModalMessage.innerHTML = message;
+        let successModal = document.getElementById("successModal");
+        let successModalMessage = document.getElementById("successModalMessage");
+    
+        if (successModal && successModalMessage) {
+            successModalMessage.innerHTML = message; 
             successModal.classList.remove("hidden");
             overlay.classList.remove("hidden");
+        } else {
+            
         }
     };
 
@@ -337,20 +369,19 @@ document.addEventListener("DOMContentLoaded", function () {
         // overlay.classList.add("hidden");
         // location.reload(); // Recargar la página para ver los cambios
     };
+    // ---------------------------------------
     // DELETE
     window.openModal = function (button) {
         let deleteUrl = button.getAttribute("data-url");
         if (!deleteUrl) {
-            console.error("❌ Error: No se encontró la URL de eliminación.");
+
             return;
         }
         document.getElementById("deleteForm").setAttribute("action", deleteUrl);
         document.getElementById("deleteModal").classList.remove("hidden");
         document.getElementById("modalOverlay").classList.remove("hidden");
     };
-
-
-
+    // Close
     window.closeModal = function () {
         deleteModal.classList.add("hidden");
         overlay.classList.add("hidden");

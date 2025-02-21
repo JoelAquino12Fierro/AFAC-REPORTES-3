@@ -65,7 +65,7 @@
                 </div>
                 <!-- Cuerpo del Modal con Formulario -->
                 <div class="p-4">
-                    <form id="editForm" action="" method="POST">
+                    <form id="editForm" method="POST">
                         @csrf
                         @method('PUT')
                         <!-- ID oculto del usuario -->
@@ -111,18 +111,19 @@
                                     <option value=""></option>
                                 </select>
                             </div>
-
                         </div>
+
+                        <!-- Pie del Modal -->
+                        <div class="flex justify-end p-4 border-t">
+                            <button type="button" onclick="closeDetailsModal()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 mr-2">
+                                Cerrar
+                            </button>
+                            <button type="submit" id="btn_edit" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-lg">
+                                Guardar
+                            </button>
+                        </div>
+
                     </form>
-                </div>
-                <!-- Pie del Modal -->
-                <div class="flex justify-end p-4 border-t">
-                    <button onclick="closeDetailsModal()" class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 mr-2">
-                        Cerrar
-                    </button>
-                    <button type="submit" form="editForm" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 px-4 rounded-lg">
-                        Guardar
-                    </button>
                 </div>
             </div>
         </div>
@@ -349,32 +350,13 @@
                             </div>
                             @endif
                     </div>
-
                 </div>
-
-
             </div>
-
-
             </ul>
         </div>
         <script>
-document.addEventListener("DOMContentLoaded", function () {
-    window.openModal = function (button) {
-        let deleteUrl = button.getAttribute("data-url");
-        if (!deleteUrl) {
-            console.error("❌ Error: No se encontró la URL de eliminación.");
-            return;
-        }
-        document.getElementById("deleteForm").setAttribute("action", deleteUrl);
-        document.getElementById("deleteModal").classList.remove("hidden");
-    };
 
-    window.closeModal = function () {
-        document.getElementById("deleteModal").classList.add("hidden");
-    };
-});
-</script>
+        </script>
         <script>
             var adduser = "{{ route('adduser') }}";
             var area = "{{ route('areauser') }}";
@@ -383,6 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var getUserAreaUrl = "{{ route('getUserArea', ['id' => ':id']) }}";
             var getPositionsUrl = "{{ route('positions.byArea', ':areaId') }}";
             var areaUrl = "{{ route('areauser') }}";
+            var editUserUrl = "{{ route('editUser', ['id' => ':id']) }}";
         </script>
     </body>
     <script src="{{ asset(path: 'js/users.js') }}"></script>
