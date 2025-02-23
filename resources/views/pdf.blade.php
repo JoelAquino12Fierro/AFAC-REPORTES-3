@@ -59,7 +59,6 @@
         <section class="info">
             <table>
                 <tr>
-                   
                     <td>
                         <strong class="azul">Área: </strong>
                         <br>

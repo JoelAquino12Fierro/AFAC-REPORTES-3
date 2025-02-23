@@ -8,6 +8,8 @@ use App\Models\System;
 use App\Models\types_report;
 use App\Models\Report;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -38,127 +40,51 @@ class newformController extends Controller
             'system' => 'required|exists:systems,id',
             'type_report' => 'required|exists:types_reports,id',
             'report_date' => 'required|date',
+            'report_user' => 'required|string|max:255',
             'description' => 'required|string',
-            'report_user' => 'required|string',
-            'file' => 'nullable|file|mimes:png,jpg,jpeg|max:10240'
+            'file' => 'nullable|file|mimes:jpg,png,gif|max:10240', // Máximo 10MB
         ]);
-        // Si la validación falla, devolver errores en JSON
+
+        // Si falla la validación
         if ($validator->fails()) {
             return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()
-            ], 400);
+                'status' => 'error',
+                'message' => $validator->errors()->first(),
+            ], 422);
         }
 
         try {
-            // Generar el folio
-            $lastFolio = Report::max('id') + 1;
-            $folio = 'DTIARS-' . str_pad($lastFolio, 3, '0', STR_PAD_LEFT);
-
-            // Crear el reporte
-            $report = new Report();
-            $report->folio = $folio;
-            $report->application_date = now();
-            $report->report_date = $request->report_date;
-            $report->description = $request->description;
-            $report->areas = $request->area;
-            $report->systems = $request->system;
-            $report->report_user = $request->report_user;
-            $report->types_reports = $request->type_report;
-
-            // Si existe un archivo, guardarlo
+            // Guardar el archivo si se proporciona
+            $filePath = null;
             if ($request->hasFile('file')) {
-                $file = $request->file('file');
-                $filename = $folio . '.' . $file->getClientOriginalExtension();
-                $filePath = $file->storeAs('evidence/user', $filename, 'public'); // Guardar en storage/app/public/evidence/user
-                $report->evidence = $filePath;
+                $filePath = $request->file('file')->store('reports_evidence', 'public');
             }
 
-            $report->save();
+            // Crear un nuevo registro en la tabla reports
+            $report = Report::create([
+                'folio' => $request->folio,
+                'application_date' => now(),
+                'area_id' => $request->area,
+                'system_id' => $request->system,
+                'type_report_id' => $request->type_report,
+                'report_date' => $request->report_date,
+                'report_user' => strtoupper($request->report_user),
+                'description' => strtoupper($request->description),
+                'evidence_path' => $filePath,
+            ]);
 
-            // Respuesta de éxito en JSON
             return response()->json([
-                'success' => true,
-                'message' => 'Reporte creado correctamente.',
-                'folio' => $folio
+                'status' => 'success',
+                'message' => '¡Reporte generado con éxito!',
+                'folio' => $report->folio,
             ]);
         } catch (\Exception $e) {
-            // Respuesta de error en JSON
             return response()->json([
-                'success' => false,
-                'message' => 'Error al guardar el reporte.',
-                'error' => $e->getMessage()
+                'status' => 'error',
+                'message' => 'Error al guardar el reporte. Intenta de nuevo.',
             ], 500);
         }
     }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// namespace App\Http\Controllers;
-
-// use App\Models\Area;
-// use App\Models\System;
-// use App\Models\types_report;
-// use App\Models\User;
-// use Illuminate\Http\Request;
-
-// class newformController extends Controller
-// {
-//     public function create_function(){
-//         $area=Area::all();
-//         $system=System::all();
-//         $type=types_report::all();
-//         $user=User::all();
-//         return view('newForm', compact('area','system','type','user')); 
-//     }
-    
-    
-//     // CONTROLADOR DE EL FORMULARIO QUE CREA REPORTES NUEVOS 
-
-
-//     public function store(Request $request){
-
-//         $request->validate([
-//             'application_date'=>'required|date',
-//             'report_date'=>'required|date',
-//             'area'=>'required|string',
-//             'system'=>'required|string',
-//             'type_report'=>'required|string',
-//             'reporting_user'=>'required|exists:users,id',
-//             'actions'=>'require|string',
-//             'description'=>'nullable|string',
-//             'evidence'=>'nullable|image|mimes:jpg,png|max:2048',
-//         ]);
-
-//         //generar folio con nomeclatura
-//     }
-// }

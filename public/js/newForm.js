@@ -1,42 +1,37 @@
-
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("registroForm").addEventListener("submit", async function (event) {
+    const form = document.getElementById("registroForm");
+
+    form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        let formData = new FormData(this);
+        let formData = new FormData(form);
 
         try {
             let response = await fetch(addReportUrl, {
                 method: "POST",
                 body: formData,
                 headers: {
-                    "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
-                }
+                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
+                },
             });
 
             let result = await response.json();
 
-            if (response.ok) {
-                document.getElementById("successModalMessage").textContent = result.folio;
-                showModal("successModal");
+            if (result.status === "success") {
+                document.getElementById("successModalMessage").innerText = result.folio;
+                document.getElementById("successModal").classList.remove("hidden");
             } else {
-                document.getElementById("errorModalMessage").textContent = result.message || "Hubo un error.";
-                showModal("errorModal");
+                document.getElementById("errorModalMessage").innerText = result.message;
+                document.getElementById("errorModal").classList.remove("hidden");
             }
         } catch (error) {
-            document.getElementById("errorModalMessage").textContent = "Error de conexión.";
-            showModal("errorModal");
+            document.getElementById("errorModalMessage").innerText = "Hubo un error en la conexión.";
+            document.getElementById("errorModal").classList.remove("hidden");
         }
     });
-
-    function showModal(modalId) {
-        document.getElementById("modalOverlay").classList.remove("hidden");
-        document.getElementById(modalId).classList.remove("hidden");
-    }
-
-    window.closeModal = function (modalId) {
-        document.getElementById("modalOverlay").classList.add("hidden");
-        document.getElementById(modalId).classList.add("hidden");
-    };
 });
 
+// Función para cerrar los modales
+function closeModal(modalId) {
+    document.getElementById(modalId).classList.add("hidden");
+}
