@@ -33,58 +33,65 @@ class newformController extends Controller
 
     // Guardar
     public function store(Request $request)
-    {
-        // Validación de los datos
-        $validator = Validator::make($request->all(), [
-            'area' => 'required|exists:areas,id',
-            'system' => 'required|exists:systems,id',
-            'type_report' => 'required|exists:types_reports,id',
-            'report_date' => 'required|date',
-            'report_user' => 'required|string|max:255',
-            'description' => 'required|string',
-            'file' => 'nullable|file|mimes:jpg,png,gif|max:10240', // Máximo 10MB
-        ]);
+{
+    // Validación de los datos
+    $validator = Validator::make($request->all(), [
+        'area' => 'required|exists:areas,id',
+        'system' => 'required|exists:systems,id',
+        'type_report' => 'required|exists:types_reports,id',
+        'report_date' => 'required|date',
+        'description' => 'required|string',
+        'report_user' => 'required|string',
+        'file' => 'nullable|file|mimes:png,jpg,jpeg|max:10240'
+    ]);
 
-        // Si falla la validación
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => $validator->errors()->first(),
-            ], 422);
-        }
-
-        try {
-            // Guardar el archivo si se proporciona
-            $filePath = null;
-            if ($request->hasFile('file')) {
-                $filePath = $request->file('file')->store('reports_evidence', 'public');
-            }
-
-            // Crear un nuevo registro en la tabla reports
-            $report = Report::create([
-                'folio' => $request->folio,
-                'application_date' => now(),
-                'area_id' => $request->area,
-                'system_id' => $request->system,
-                'type_report_id' => $request->type_report,
-                'report_date' => $request->report_date,
-                'report_user' => strtoupper($request->report_user),
-                'description' => strtoupper($request->description),
-                'evidence_path' => $filePath,
-            ]);
-
-            return response()->json([
-                'status' => 'success',
-                'message' => '¡Reporte generado con éxito!',
-                'folio' => $report->folio,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Error al guardar el reporte. Intenta de nuevo.',
-            ], 500);
-        }
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'errors' => $validator->errors()
+        ], 400);
     }
+
+    try {
+        // Generar el folio dinámicamente
+        $lastId = Report::max('id') + 1;
+        $folio = 'DTIARS-' . str_pad($lastId, 3, '0', STR_PAD_LEFT);
+
+        // Crear el reporte
+        $report = new Report();
+        $report->folio = $folio;
+        $report->application_date = now();
+        $report->report_date = $request->report_date;
+        $report->description = strtoupper($request->description);
+        $report->area_id = $request->area;
+        $report->system_id = $request->system;
+        $report->type_report_id = $request->type_report;
+        $report->report_user = strtoupper($request->report_user);
+
+        // Si se adjunta un archivo, guardarlo en public/evidence/user
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = $folio . '.' . $file->getClientOriginalExtension();
+            $filePath = $file->storeAs('evidence/user', $filename, 'public');
+            $report->evidence_path = $filePath;
+        }
+
+        $report->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Reporte creado correctamente.',
+            'folio' => $folio
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Error al guardar el reporte.',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+}
+
 }
 
 
