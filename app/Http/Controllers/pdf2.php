@@ -2,20 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use App\Models\Area;
-use App\Models\Module;
-use App\Models\modules_system;
-use App\Models\Report;
-use App\Models\responsible;
-use App\Models\System;
-use App\Models\types_report;
-use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
-
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use App\Models\Report;
 
-class pdfController extends Controller
+class pdf2 extends Controller
 {
     public function index(Request $request, $id)
     {
@@ -33,5 +24,4 @@ class pdfController extends Controller
         // Mostrar 
         return $pdf->stream('documento.pdf');
     }
-
 }

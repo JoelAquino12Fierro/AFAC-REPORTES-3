@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ejemplo;
 use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
+use App\Http\Controllers\pdf2;
 use App\Http\Controllers\pdfController;
 use App\Http\Controllers\roles;
 use App\Http\Controllers\systemController;

@@ -6,21 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class responsible extends Model
 {
-    protected $table = 'resposibles';
+    protected $table = 'responsibles';
     // Para imprimir los nombres de la relaciones
-    protected $fillable = ['users','areas','positions'];
-
-    public function users() //Funcionando
+    // Relación con el usuario
+    public function user()
     {
-        return $this->hasOne(User::class, 'id', 'users');
-    }
-    public function areas() //Funcionando
-    {
-        return $this->hasOne(positions_area::class, 'id', 'areas');
-    }
-    public function positions() //Funcionando
-    {
-        return $this->hasOne(positions_area::class, 'id', 'positions');
+        return $this->belongsTo(User::class, 'users', 'id');
     }
 
+    // Relación con el área (si quieres obtener el nombre del área desde esta tabla)
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'areas', 'id');
+    }
+
+    // Relación con el cargo (posición)
+    public function position()
+    {
+        return $this->belongsTo(Position::class, 'positions', 'id');
+    }
 }

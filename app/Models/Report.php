@@ -9,33 +9,53 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Report extends Model
 {
-    protected $table = 'reports';
-    // Para imprimir los nombres de la relaciones
-    protected $fillable = ['id', 'systems', 'areas', 'types_reports', 'reporting_user', 'modules_systems', 'status', 'responsibles'];
 
-    public function system() //Funcionando
+
+    protected $fillable = [
+        'folio',
+        'application_date',
+        'areas',
+        'systems',
+        'types_reports',
+        'report_user',
+        'description',
+        'evidence',
+        'report_date',
+        'modules',
+        'descriptionA',
+        'evidenceA',
+        'responsibles',
+        'status',
+    ];
+
+    // Relación con la tabla areas
+    public function area()
     {
-        return $this->hasOne(System::class, 'id', 'systems');
+        // belongsTo(ClaseDelModeloRelacion, 'nombre_columna_FK', 'columna_PK_de_la_tabla_relacionada')
+        return $this->belongsTo(Area::class, 'areas', 'id');
     }
 
-    public function area() //Funcionando
+    // systems
+    public function system()
     {
-        return $this->hasOne(Area::class, 'id', 'areas');
+        return $this->belongsTo(System::class, 'systems', 'id');
     }
-    public function type()
+
+    // types_reports
+    public function typeReport()
     {
-        return $this->hasOne(types_report::class, 'id', 'types_reports');
+        return $this->belongsTo(types_report::class, 'types_reports', 'id');
     }
-    public function user()
+// Modules
+    public function module()
     {
-        return $this->hasOne(User::class, 'id', 'reporting_user');
+        return $this->belongsTo(Module::class, 'modules', 'id');
     }
-    public function modules_systems()
+
+    // responsibles
+    public function responsible()
     {
-        return $this->hasOne(modules_system::class, 'id', 'modules_systems');
+        return $this->hasMany(Responsible::class, 'areas', 'responsibles');
     }
-    public function responsibles()
-    {
-        return $this->hasOne(responsible::class, 'id', 'responsibles');
-    }
+    
 }

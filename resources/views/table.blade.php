@@ -215,7 +215,7 @@
                                 {{ $repo->system->systems_name}}
                             </td>
                             <td class="px-6 py-4 uppercase">
-                                {{ $repo->type->name_types_reports}}
+                                {{ $repo->typeReport->name_types_reports}}
                             </td>
                             <td class="px-6 py-4 uppercase">
                                 {{-- como se define el foreach->la funcion del modelo->lo que se quiere traer --}}

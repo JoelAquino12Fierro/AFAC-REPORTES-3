@@ -147,8 +147,8 @@ p,
 }
 .evidence{
     image-rendering: auto;
-    width: 150px;
-    height: 150px;
+    max-width: 100px;
+    height: auto;
 }
 .background {
     position: fixed;
