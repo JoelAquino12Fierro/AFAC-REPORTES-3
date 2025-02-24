@@ -9,7 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Agregar Dropzone -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" />
-
+        <title>SISTEMA DE INCIDENCIAS</title>
 
     </head>
 
