@@ -138,10 +138,12 @@
                     </form>
                 </div>
                 <div class="basic -1/7 mb-4 ">
-               
+
+                    
                         <button
                             class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-700 text-white hover:bg-green-800 ">Exportar
                             a Excel</button>
+                  
 
                 </div>
             </div>

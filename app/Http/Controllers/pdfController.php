@@ -20,17 +20,17 @@ class pdfController extends Controller
     public function index(Request $request, $id)
     {
 
-
         // Instancia
         $pdf = app('dompdf.wrapper');
-
         // reporte con sus relaciones definidas en el modelo
         $reporte = Report::with(['area', 'system', 'typeReport', 'module', 'responsible'])->findOrFail($id);
-       
-
         $pdf->loadView('pdf2', compact('reporte'));
+        // Asigando el nombre al PDF
+        $fileName = 'Reporte_' . $reporte->folio . '.pdf';
+        // Mostrar en navegador
+        // return $pdf->stream('documento.pdf');
+        // Descargar
 
-        // Mostrar 
-        return $pdf->stream('documento.pdf');
+        return $pdf->download($fileName);
     }
 }

@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     let modal = document.getElementById("editModal");
     let inputDescripcion = document.getElementById("descripcion");
-    let inputId = document.getElementById("reporte_id"); // Campo oculto para el ID
+    let inputId = document.getElementById("reporte_id"); 
     let btnGuardar = document.querySelector("#editModal button[type='submit']");
     let inputResponsables = document.getElementById("responsables");
     let selectModulos = document.getElementById("modulos");
-    let inputEvidencia = document.getElementById("evidence"); // ✅ Se declara aquí
+    let inputEvidencia = document.getElementById("evidence");
     document.querySelectorAll(".btn-editar").forEach(button => {
         button.addEventListener("click", function () {
             let descripcion = this.getAttribute("data-descripcion");
@@ -144,7 +144,7 @@ window.closeModal = function (modalId) {
         formData.append("evidence", evidenciaArchivo);
         formData.append("_token", document.querySelector('meta[name="csrf-token"]').getAttribute("content"));
 
-        let url = updateReporteUrl + reporteId; // ✅ URL dinámica desde Blade
+        let url = updateReporteUrl + reporteId; 
 
         fetch(url, {
             method: "POST",
