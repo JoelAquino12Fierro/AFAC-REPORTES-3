@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.success) {
                 // Mostrar modal de éxito
                 showModal('successModal', ` ${data.folio}`);
+               
             } else {
                 // Mostrar modal de error
                 showModal('errorModal', 'Error al generar el reporte');
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         modalMessage.textContent = message;
         modal.classList.remove("hidden");  // Mostrar modal
         overlay.classList.remove("hidden"); //Fondo 
-
+        
     }
 
     // Función para cerrar los modales
@@ -44,6 +45,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const overlay=document.getElementById('modalOverlay');
         modal.classList.add("hidden");  // Ocultar modal
         overlay.classList.add("hidden"); //FOndo
+        // Si se cierra el modal de éxito, recargar la página
+        if (modalId === 'successModal') {
+            location.reload();
+        }
     }
 
     // Añadir la función de cerrar a los botones de los modales

@@ -19,35 +19,35 @@
         <!-- El id modalOverlay Funciona como un fondo semitransparente detrás del modal. -->
         <div id="modalOverlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-40 backdrop-filter-none z-40"></div>
         <!-- Modal Eliminar-->
-<!-- Modal de Eliminación -->
-<div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
-    <div class="bg-white p-6 rounded-lg shadow-lg">
-        <div class="flex flex-col items-center justify-center text-center">
-            <div class="flex size-12 items-center justify-center rounded-full bg-[#e70909]/20 sm:size-16">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="size-6 sm:size-8 bi bi-plus-square" viewBox="0 0 16 16">
-                    <g fill="#da0000">
-                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
-                    </g>
-                </svg>
-            </div>
-            <p class="mt-2 text-lg font-semibold text-gray-900">ELIMINAR REPORTE</p>
-        </div>
-        <p class="text-gray-600 text-center">¿Estás seguro de que deseas eliminar este reporte?</p>
+        <!-- Modal de Eliminación -->
+        <div id="deleteModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="flex flex-col items-center justify-center text-center">
+                    <div class="flex size-12 items-center justify-center rounded-full bg-[#e70909]/20 sm:size-16">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="size-6 sm:size-8 bi bi-plus-square" viewBox="0 0 16 16">
+                            <g fill="#da0000">
+                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="mt-2 text-lg font-semibold text-gray-900">ELIMINAR REPORTE</p>
+                </div>
+                <p class="text-gray-600 text-center">¿Estás seguro de que deseas eliminar este reporte?</p>
 
-        <form id="deleteForm" method="POST">
-            @csrf
-            @method('DELETE')
-            <div class="flex justify-end mt-4">
-                <button type="button" onclick="closeModal('deleteModal')" class="mr-2 px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
-                    Cancelar
-                </button>
-                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500">
-                    Eliminar
-                </button>
+                <form id="deleteForm" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="flex justify-end mt-4">
+                        <button type="button" onclick="closeModal('deleteModal')" class="mr-2 px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500">
+                            Eliminar
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
 
 
 
@@ -138,13 +138,11 @@
                     </form>
                 </div>
                 <div class="basic -1/7 mb-4 ">
-                
-                <a href="{{ route('reportes.exportar') }}">
-                    <button
-                        class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-700 text-white hover:bg-green-800 ">Exportar
-                        a Excel</button>
-                        </a>
-                        
+               
+                        <button
+                            class="w-1/8 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-700 text-white hover:bg-green-800 ">Exportar
+                            a Excel</button>
+
                 </div>
             </div>
             <form>
@@ -239,17 +237,17 @@
                                     data-route="{{ route('ejemplo.update', $repo->id) }}">
                                     Editar
                                 </button>
-                                @endhasanyrole
+                               
 
 
 
                             </td>
                             {{--DELETE--}}
                             <td>
-                            <button onclick="openModal(this)" data-url="{{ route('reports.destroy', $repo->id) }}"
-                            class="btn btn-delete font-bold py-2 px-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out hover:scale-105 bg-red-500 text-white hover:bg-red-600 active:bg-red-700">
-        Eliminar
-    </button>
+                                <button onclick="openModal(this)" data-url="{{ route('reports.destroy', $repo->id) }}"
+                                    class="btn btn-delete font-bold py-2 px-4 rounded-lg flex-1 mr-4 items-center space-x-2 transition duration-300 ease-in-out hover:scale-105 bg-red-500 text-white hover:bg-red-600 active:bg-red-700">
+                                    Eliminar
+                                </button>
                             </td>
                             {{-- PDF --}}
                             <td>

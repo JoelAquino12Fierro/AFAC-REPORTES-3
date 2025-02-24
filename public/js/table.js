@@ -115,14 +115,14 @@ window.closeModal = function (modalId) {
     }
 
     if (modalOverlay) {
-        modalOverlay.classList.add("hidden"); // ✅ Ahora se oculta correctamente
+        modalOverlay.classList.add("hidden"); 
     }
 
-    // ✅ Si se cierra el modal de éxito, esperar antes de recargar la página
+
     if (modalId === "successModal") {
         setTimeout(() => {
             location.reload();
-        }, 300); // 🔹 Pequeño delay para permitir que modalOverlay desaparezca
+        }, 300); // 
     }
 };
 
