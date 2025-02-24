@@ -87,3 +87,5 @@ Route::post('/addreport', [newformController::class, 'store'])->name('addreport'
 // Ruta de roles
 
 Route::get('rol', [roles::class, 'index'])->name('roles'); //Ver en la barra de navegacion
+
+Route::get('/exportar-reportes', [ReporteController::class, 'exportarExcel'])->name('reportes.exportar');

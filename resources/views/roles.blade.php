@@ -161,7 +161,7 @@
                             <div class="bg-white shadow-lg rounded-lg p-6 w-96">
                                 <h2 class="text-lg text-center font-bold mb-4">Crear nuevo rol</h2>
 
-                                <form id="newRoleForm" method="POST" action="{{ route('roles.store') }}">
+                                <form id="newRoleForm" method="POST" action="{{route('roles.store')}}">
                                       @csrf
                                       @method('POST')
                                         <div class="mb-4">
