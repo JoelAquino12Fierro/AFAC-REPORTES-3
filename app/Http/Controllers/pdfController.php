@@ -26,12 +26,12 @@ class pdfController extends Controller
 
         // reporte con sus relaciones definidas en el modelo
         $reporte = Report::with(['area', 'system', 'typeReport', 'module', 'responsible'])->findOrFail($id);
+        // Calcular la fecha formateada y guardarla en una variable separada
+        $formatted_date = date('d-m-Y', strtotime($reporte->application_date));
 
-        // Cargar la vista 
-        $pdf->loadView('pdf2', compact('reporte'));
+        $pdf->loadView('pdf2', compact('reporte', 'formatted_date'));
 
         // Mostrar 
         return $pdf->stream('documento.pdf');
     }
-
 }

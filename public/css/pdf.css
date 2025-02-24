@@ -16,7 +16,7 @@ body {
     padding: 0;
 }
 .container {
-    position: relative;
+    position: fixed;
     z-index: 1;
     padding: 50px;
 }
@@ -149,6 +149,7 @@ p,
     image-rendering: auto;
     max-width: 100px;
     height: auto;
+   
 }
 .background {
     position: fixed;
@@ -167,4 +168,9 @@ p,
 }
 
 
-
+td.modulo {
+    width: 250px; 
+    white-space: nowrap;      
+    overflow: hidden;         
+    text-overflow: ellipsis;  
+}

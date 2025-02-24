@@ -44,7 +44,10 @@
                     </tr>
                     <tr>
                         <td>fecha plantilla</td>
-                        <td>{{ $reporte->application_date }}</td>
+                        <td>{{ $formatted_date }}</td>
+
+
+
                     </tr>
                     <tr>
                         <td colspan="2"><strong>SOLICITUDES DE ATENCIÓN</strong></td>
@@ -82,7 +85,7 @@
                 <tr>
                     <td>
                         <strong class="azul">Fecha de entrega:</strong>
-                        <p>{{ $reporte->report_date}}</p>
+                        <p>{{ $reporte->report_date->format('d-m-Y')}}</p>
                     </td>
 
                     <td>
@@ -118,11 +121,7 @@
                     <td class="negritas">Descripción</td>
                 </tr>
                 <tr>
-
-
                     <td class="modulo">{{ $reporte->module->modules_name }}</td>
-
-
                     <td class="mayusculas">
                         {{ $reporte->descriptionA }}
                         <br>

@@ -203,10 +203,10 @@
                                 {{ $repo->folio }}
                             </th>
                             <td class="px-6 py-4 uppercase">
-                                {{ $repo->application_date }}
+                                {{ $repo->application_date->format('d-m-Y') }}
                             </td>
                             <td class="px-6 py-4 uppercase">
-                                {{ $repo->report_date }}
+                                {{ $repo->report_date->format('d-m-Y') }}
                             </td>
                             <td class="px-6 py-4 uppercase">
                                 {{ $repo->area->areas_name}}
