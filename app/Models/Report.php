@@ -27,10 +27,10 @@ class Report extends Model
         'responsibles',
         'status',
     ];
-    // protected $casts = [
-    //     'application_date' => 'datetime',
-    //     'report_date' => 'datetime',
-    // ];
+    protected $casts = [
+        'application_date' => 'datetime',
+        'report_date' => 'datetime',
+    ];
 
     // Relación con la tabla areas
     public function area()

@@ -44,8 +44,7 @@
                     </tr>
                     <tr>
                         <td>fecha plantilla</td>
-                        <td>{{ $formatted_date }}</td>
-
+                       <td>{{$reporte->application_date }}</td>
 
 
                     </tr>
