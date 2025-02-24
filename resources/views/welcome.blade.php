@@ -19,92 +19,39 @@
             </style>
         @endif
     </head>
-    <body class="font-sans antialiased ">
-        <div class="bg-gray-50 text-black/50">
-            <!-- imagen de BACKGROUND -->
-            <img id="background" class="absolute left-0 top-0 w-full" src="https://cdn-3.expansion.mx/dims4/default/80c66c8/2147483647/strip/true/crop/724x483+0+0/resize/1200x801!/format/webp/quality/60/?url=https%3A%2F%2Fcherry-brightspot.s3.amazonaws.com%2F0e%2Fea%2F4169f6b94c50a54cbbc2ad6b4c78%2Fistock-537714779.jpg" alt="Background de un avion " />
-            <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#0000FF] selection:text-white">
-                <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                    <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
-                        <div class="flex lg:justify-center lg:col-start-2">
-                            <!-- logo -->
-                             
-                        </div>
-                        @if (Route::has('login'))
-                            <nav class="-mx-3 flex flex-1 justify-end">
+    <body class="bg-[#003764] min-h-screen flex items-center justify-center">
+        <div class="w-full h-screen flex items-center justify-center">
+            <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 w-full h-full">
+                <svg viewBox="0 0 1024 1024" class="absolute top-1/2 left-1/2 -z-10 size-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
+                    <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
+                    <defs>
+                        <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                            <stop stop-color="#003764" />
+                            <stop offset="1" stop-color="#00509E" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+                <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+                    <h2 class="text-3xl font-semibold tracking-tight text-balance text-white sm:text-4xl">Bienvenido al sistema de Reportes de la AFAC.</h2>
+                    <p class="mt-6 text-lg/8 text-pretty text-gray-300"></p>
+                    @if (Route::has('login'))
+                            <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                                 @auth
-                                    <a
-                                        href="{{ url('/dashboard') }}"
-                                        class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
-                                    >
-                                        Página Principal
-                                    </a>
-                                @else
-                                    <a
-                                        href="{{ route('login') }}"
-                                        class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
-                                    >
-                                        Ingresar
-                                    </a>
-
-                                    @if (Route::has('register'))
-                                        <a
-                                            href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
-                                        >
-                                            Registrarse
-                                        </a>
-                                    @endif
-                                @endauth
-                            </nav>
-                        @endif
-                    </header>
-
-                    <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-
-                            <a
-                                href="{{ route('login') }}"
-                                 class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
-                                >
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#0000FF]/10 sm:size-16">
-                                    </div>
-
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black">Iniciar sesión</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        texto-
-                                    </p>
-                                </div>
-
-                                <svg class="size-6 shrink-0 self-center stroke-[#0000FF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                            </a>
-
-                            <a
-                                href="{{route('register')}}"
-                                class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10"
-                            >
-                                <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#0000FF]/10 sm:size-16">
-                                    </div>
-                                <div class="pt-3 sm:pt-5">
-                                    <h2 class="text-xl font-semibold text-black">Restablecer Contraseña</h2>
-
-                                    <p class="mt-4 text-sm/relaxed">
-                                        texto-
-                                    </p>
-                                </div>
-                                <svg class="size-6 shrink-0 self-center stroke-[#0000FF]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"/></svg>
-                                
-                                
-                            </a>
-
+                            <a href="{{ route('register') }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Pagina Principal</a>
+                            @else
+                            
+                            <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                                @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Registrarse</a>
+                                @endif
+                                <a href="{{ route('login') }}" class="text-sm/6 font-semibold text-white">Iniciar sesión <span aria-hidden="true">→</span></a>
+                            </div>
+                            @endauth
                         </div>
-                    </main>
-
-                    <footer class="py-16 text-center text-sm text-black">
-                        AFAC
-                    </footer>
+                    @endif
+                </div>
+                <div class="relative mt-16 h-80 lg:mt-8">
+                    <img class="absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="{{ asset('img/fondoAFACbg.jpeg') }}" alt="App screenshot" width="1824" height="1080">
                 </div>
             </div>
         </div>

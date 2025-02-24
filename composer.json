@@ -18,7 +18,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.0",
-        "spatie/laravel-permission": "^6.10",
+        "maatwebsite/excel": "^3.1",
+        "spatie/laravel-permission": "^6.15",
         "twbs/bootstrap": "5.3.3"
     },
     "require-dev": {

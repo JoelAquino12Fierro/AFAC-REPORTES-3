@@ -8,6 +8,8 @@ use App\Http\Controllers\moduleController;
 use App\Http\Controllers\newformController;
 use App\Http\Controllers\pdf2;
 use App\Http\Controllers\pdfController;
+use App\Http\Controllers\RecoverPasswordController;
+use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\roles;
 use App\Http\Controllers\systemController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +18,7 @@ use App\Http\Controllers\UsController;
 use App\Http\Controllers\userController as User;
 use App\Http\Controllers\verdetallesController;
 use Illuminate\Http\Request as HttpRequest;
+use Laravel\Fortify\Http\Controllers\RecoveryCodeController;
 
 Route::get('/', function () {
     return view('welcome');

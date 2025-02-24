@@ -10,9 +10,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Livewire\WithPagination;
 
 class tableController extends Controller
 {
+   
     public function index() //Mostrar en tabla
     {
         $reporte = Report::paginate(10);
