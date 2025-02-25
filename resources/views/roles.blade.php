@@ -85,9 +85,49 @@
 
                     </body>
                     {{--paginación--}}
-                    <div class="mt-4">
-                        {{$roles->links()}}
+                   
+<div class="flex justify-center mt-4">
+                <ul class="flex items-center space-x-2">
+                    @if ($roles->hasPages())
+                    <div class="flex space-x-1 justify-center mt-4">
+                        {{-- Botón "Prev" --}}
+                        @if ($roles->onFirstPage())
+                        <button class="rounded-md border border-gray-300 py-2 px-3 text-center text-sm shadow-sm text-gray-600 bg-gray-200 cursor-not-allowed opacity-50">
+                            Prev
+                        </button>
+                        @else
+                        <a href="{{ $roles->previousPageUrl() }}" class="rounded-md border border-azul-secundario py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-azul-afac hover:text-white hover:bg-azul-afac hover:border-azul-afac focus:text-white focus:bg-azul-afac focus:border-azul-afac active:border-azul-afac active:text-white active:bg-azul-afac ml-2">
+                            Prev
+                        </a>
+                        @endif
+
+                        {{-- Números de Página --}}
+                        @foreach ($roles->links()->elements[0] as $page => $url)
+                        @if ($page == $roles->currentPage())
+                        <a href="{{ $url }}" class="min-w-9 rounded-md bg-azul-afac py-2 px-3 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-azul-secundario focus:shadow-none active:bg-azul-secundario hover:bg-azul-secundario active:shadow-none ml-2">
+                            {{ $page }}
+                        </a>
+                        @else
+                        <a href="{{ $url }}" class="min-w-9 rounded-md border border-azul-secundario py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-azul-afac hover:text-white hover:bg-azul-afac hover:border-azul-afac focus:text-white focus:bg-azul-afac focus:border-azul-afac active:border-azul-afac active:text-white active:bg-azul-afac ml-2">
+                            {{ $page }}
+                        </a>
+                        @endif
+                        @endforeach
+
+                        {{-- Botón "Next" --}}
+                        @if ($roles->hasMorePages())
+                        <a href="{{ $roles->nextPageUrl() }}" class="rounded-md border border-azul-secundario py-2 px-3 text-center text-sm transition-all shadow-sm hover:shadow-lg text-azul-afac hover:text-white hover:bg-azul-afac hover:border-azul-afac focus:text-white focus:bg-azul-afac focus:border-azul-afac active:border-azul-afac active:text-white active:bg-azul-afac ml-2">
+                            Next
+                        </a>
+                        @else
+                        <button class="rounded-md border border-gray-300 py-2 px-3 text-center text-sm shadow-sm text-gray-600 bg-gray-200 cursor-not-allowed opacity-50">
+                            Next
+                        </button>
+                        @endif
                     </div>
+                    @endif
+                </ul>
+</div>
                     <!--    I  N   I   C   I   O       D   E       M   O   D   A   L   E   S   -->
                     
 
@@ -268,3 +308,8 @@
 
     </body>
 </x-app-layout>
+
+
+
+
+

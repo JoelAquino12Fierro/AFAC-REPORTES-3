@@ -87,3 +87,6 @@ Route::post('/addreport', [newformController::class, 'store'])->name('addreport'
 // Ruta de roles
 
 Route::get('rol', [roles::class, 'index'])->name('roles'); //Ver en la barra de navegacion
+Route::post('/role', [roles::class, 'store'])->name('roles.store'); //crear un nuevo rol
+Route::delete('/roles/{id}', [roles::class, 'destroy'])->name('roles.destroy'); //Eliminar un rol
+Route::put('/roles/{id}', [roles::class, 'update'])->name('roles.update'); // Actualizar un rol

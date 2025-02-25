@@ -8,13 +8,13 @@ use Livewire\WithPagination;
 
 class userController extends Controller
 {
-    use WithPagination;
-    public function index() //Mostrar en tabla
-    {
-        $users = User::paginate(5);
+    // use WithPagination;
+    // public function index() //Mostrar en tabla
+    // {
+    //     $users = User::paginate(5);
 
-        return view('users', compact('users'));
-    }
+    //     return view('users', compact('users'));
+    // }
 
     // public function create_function()
     // {

@@ -363,9 +363,29 @@
             var possi = "{{ url('/positions') }}";
             var responsibilitiesUrl = "{{ route('responsibilities.store') }}";
             var getUserAreaUrl = "{{ route('getUserArea', ['id' => ':id']) }}";
-            var getPositionsUrl = "{{ route('positions.byArea', ':areaId') }}";
+            var getPositionsUrl = "{{ route('positions.byArea', ['areaId' => ':areaId']) }}";
             var areaUrl = "{{ route('areauser') }}";
             var editUserUrl = "{{ route('editUser', ['id' => ':id']) }}";
+            
+            // buscador para filtrar la tabla
+        function filterTable() {
+            const input = document.getElementById("table-search-users");
+            const filter = input.value.toLowerCase();
+            const rows = document.querySelectorAll("#user-results tr");
+
+            rows.forEach((row) => {
+                const cells = row.querySelectorAll("td, th");
+                const userName = cells[1].textContent.toLowerCase();
+                const userId = cells[0].textContent.toLowerCase();
+
+                if (userName.includes(filter) || userId.includes(filter)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
         </script>
     </body>
     <script src="{{ asset(path: 'js/users.js') }}"></script>
