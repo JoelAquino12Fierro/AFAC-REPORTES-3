@@ -32,8 +32,6 @@ return new class extends Migration
             $table->foreign('systems')->references('id')->on('systems')->onDelete('cascade');
             $table->foreign('modules')->references('id')->on('modules')->onDelete('cascade');
         });
-
-      
     }
 
     /**

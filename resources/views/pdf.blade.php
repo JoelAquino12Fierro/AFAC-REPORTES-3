@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td>fecha plantilla</td>
-                       <td>{{$reporte->application_date }}</td>
+                        <td>{{$reporte->application_date }}</td>
 
 
                     </tr>
@@ -124,7 +124,7 @@
                         <br>
 
 
-                        <img src="{{ asset($reporte->evidenceA) }}" alt="evidence" class="evidence" >
+                        <img src="{{ asset($reporte->evidenceA) }}" alt="evidence" class="evidence">
 
 
                     </td>

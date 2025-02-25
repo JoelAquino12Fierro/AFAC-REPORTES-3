@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let inputResponsables = document.getElementById("responsables");
     let selectModulos = document.getElementById("modulos");
     let inputEvidencia = document.getElementById("evidence");
+    
     document.querySelectorAll(".btn-editar").forEach(button => {
         button.addEventListener("click", function () {
             let descripcion = this.getAttribute("data-descripcion");

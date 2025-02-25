@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 await loadPositions(data.areas);
             } else {
                 selectArea.value = "";
-                selectPosition.innerHTML = '<option value="">Selecciona un cargo</option>'; // Vacía las opciones de cargo
+                selectPosition.innerHTML = '<option value="">Selecciona un cargo</option>'; 
             }
             // Verificar si el usuario tiene un cargo asignado
             if (data.positions) {
@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault(); // Evitar recarga de la página
     
         let form = this;
-        let userId = document.getElementById("userId").value; // Obtener el ID del usuario
-        let updateUrl = editUserUrl.replace(":id", userId); // Reemplazar `:id` en la URL
+        let userId = document.getElementById("userId").value; 
+        let updateUrl = editUserUrl.replace(":id", userId); 
         let formData = new FormData(form);
     
         // Asegurar que Laravel reciba correctamente el método PUT
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
         try {
             let response = await fetch(updateUrl, {
-                method: "POST", // Laravel aceptará PUT si enviamos _method en formData
+                method: "POST", 
                 body: formData,
                 headers: {
                     "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
@@ -179,9 +179,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let email = document.getElementById("NUemail").value;
         let password = document.getElementById("NUpassword").value.trim();
         let passwordc = document.getElementById("NUpasswordc").value.trim();
-        let areaId = document.getElementById("NUarea").value;  // ✅ Definir correctamente
+        let areaId = document.getElementById("NUarea").value;  
         let areaText = document.getElementById("NUarea").selectedOptions[0].text;
-        let positionId = document.getElementById("NUposition").value;  // ✅ Definir correctamente
+        let positionId = document.getElementById("NUposition").value;  
         let positionText = document.getElementById("NUposition").selectedOptions[0].text;
         // Validación básica
         if (!number || !name || !apeP || !email || !password || !passwordc || !areaId || !positionId) {
