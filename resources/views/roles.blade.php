@@ -197,26 +197,51 @@
 
 
                         <!-- M   O   D   A   L       N   U   E   V   O      R   O   L   (oculto por defecto) -->
+                        
                         <div id="NewRole" class="bg-gray-800 bg-opacity-50 fixed inset-0 flex items-center justify-center hidden">
-                            <div class="bg-white shadow-lg rounded-lg p-6 w-96">
-                                <h2 class="text-lg text-center font-bold mb-4">Crear nuevo rol</h2>
+                                <div class="bg-white p-6 rounded-lg shadow-lg w-auto">
+                                    <!-- Encabezado -->
+                                    <div class="flex items-center justify-between p-4 border-b">
+                                        <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
+                                        <p class="text-center text-azul-afac font-bold text-xl ml-2">NUEVO ROL</p>
+                                    </div>
+                                    <!-- Cuerpo del modal -->
+                                    <div class="p-4">
+                                        <form id="newRoleForm" action="{{ route('roles.store') }}" method="POST">
+                                            @csrf
+                                            @method('POST')
 
-                                <form id="newRoleForm" method="POST" action="{{ route('roles.store') }}">
-                                      @csrf
-                                      @method('POST')
-                                        <div class="mb-4">
-                                        <label for="rol" class="block text-sm font-medium text-gray-700">Nombre del rol:</label>
-                                        <input type="text" id="rol" name="rol"
-                                            class="mt-1 block w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            required>
-                                        </div>
-
-                                        <div class="flex justify-end w-full space-x-2">
-                                            <button type="button" class="w-1/2 px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400" onclick="closeNewRole()">Cancelar</button>
-                                            <button type="submit" class="w-1/2 px-4 py-2 bg-[#003764] text-white rounded-md hover:bg-[#002b4b]">Guardar</button>
-                                        </div>
-                                </form>
-                            </div>
+                                            <!-- Cuerpo del modal (inputs y selects) -->
+                                            <div class="w-full">
+                                                
+                                                <!-- Nombre -->
+                                                <div>
+                                                    <label for="rol" class="block text-sm font-medium text-gray-700">Nombre del Rol</label>
+                                                    <input type="text" id="rol" name="rol" 
+                                                    class="mt-2  block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-azul-afac focus:border-azul-afac " placeholder="Nombre del rol"
+                                                    required>
+                                                </div>
+                                            </div>
+                                            <!-- Pie del modal -->
+                                            <!-- <div class="w-full flex justify-between mt-4">
+                                                <button type="button" onclick="closeNewRole()" class="w-1/2 px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 mr-2">
+                                                    Cerrar
+                                                </button>
+                                                <button type="submit" class="w-1/2 bg-azul-afac hover:bg-[#002b4b] text-white font-semibold py-2 px-4 rounded-lg">
+                                                    Guardar
+                                                </button>
+                                            </div> -->
+                                            <div class="flex justify-end mt-4">
+                                                <button type="button" onclick="closeNewRole()" class="flex-1 mr-1 inline-flex items-center rounded-lg justify-center p-2 bg-gray-300 rounded-lg hover:bg-gray-400">
+                                                    Cancelar
+                                                </button>
+                                                <button type="submit" class="flex-1 ml-1 inline-flex items-center justify-center px-4 py-2 bg-azul-afac hover:bg-[#002b4b] text-white font-semibold rounded-lg">
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                         </div>
 
                 </div>
