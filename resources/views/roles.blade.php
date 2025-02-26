@@ -135,8 +135,12 @@
                     <!-- Modal A    C    T  U   A   L   I   Z   A   R       E   L       R   O   L (Oculto por defecto) -->
                         <div id="miModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
                             <div class="bg-white p-6 rounded-lg shadow-lg w-96 relative">
-                                        <!-- Contenido del Modal -->
-                                <h2 class="text-lg text-center font-bold mb-4">Modificar Rol de Usuario</h2>
+                                        <!-- encabezado -->
+                                         
+                                    <div class="flex items-center justify-between p-4 border-b">
+                                        <img src="{{ asset('img/AFAC_azul.png') }}" alt="logo" class="h-20 mr-2">
+                                        <p class="text-center text-azul-afac font-bold text-xl ml-2">MODIFICACIÓN DE ROL</p>
+                                    </div>
 
                                 <form id="editForm" method="POST">
                                     @csrf
@@ -223,14 +227,6 @@
                                                 </div>
                                             </div>
                                             <!-- Pie del modal -->
-                                            <!-- <div class="w-full flex justify-between mt-4">
-                                                <button type="button" onclick="closeNewRole()" class="w-1/2 px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 mr-2">
-                                                    Cerrar
-                                                </button>
-                                                <button type="submit" class="w-1/2 bg-azul-afac hover:bg-[#002b4b] text-white font-semibold py-2 px-4 rounded-lg">
-                                                    Guardar
-                                                </button>
-                                            </div> -->
                                             <div class="flex justify-end mt-4">
                                                 <button type="button" onclick="closeNewRole()" class="flex-1 mr-1 inline-flex items-center rounded-lg justify-center p-2 bg-gray-300 rounded-lg hover:bg-gray-400">
                                                     Cancelar
@@ -299,7 +295,7 @@
                     cerrarModalEliminar();
                 }
                 if (event.target === modalCrear) {
-                    cerrarModalCrear();
+                    closeNewRole();
                 }
             });
 
