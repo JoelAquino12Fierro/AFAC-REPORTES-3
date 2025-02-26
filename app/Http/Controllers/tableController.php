@@ -28,7 +28,7 @@ class tableController extends Controller
     public function updateDescripcion(Request $request, $id)
     {
         try {
-            Log::info('📌 Datos recibidos en la API:', [
+            Log::info(' Datos recibidos en la API:', [
                 'id' => $id,
                 'descripcion' => $request->descripcion,
                 'responsables' => $request->responsables,
@@ -38,7 +38,7 @@ class tableController extends Controller
             $reporte = Report::find($id);
 
             if (!$reporte) {
-                Log::error('❌ Reporte no encontrado con ID: ' . $id);
+                Log::error(' Reporte no encontrado con ID: ' . $id);
                 return response()->json(['success' => false, 'message' => 'Reporte no encontrado'], 404);
             }
 
@@ -62,7 +62,7 @@ class tableController extends Controller
             $reporte->status = '1';
             $reporte->save();
 
-            Log::info('✅ Reporte actualizado correctamente.');
+            Log::info(' Reporte actualizado correctamente.');
 
             return response()->json([
                 'success' => true,
