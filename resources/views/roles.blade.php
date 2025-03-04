@@ -232,7 +232,7 @@
                                                     Cancelar
                                                 </button>
                                                 <button type="submit" class="flex-1 ml-1 inline-flex items-center justify-center px-4 py-2 bg-azul-afac hover:bg-[#002b4b] text-white font-semibold rounded-lg">
-                                                    Eliminar
+                                                    Guardar
                                                 </button>
                                             </div>
                                         </form>

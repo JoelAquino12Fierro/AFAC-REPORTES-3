@@ -16,9 +16,22 @@ class ReportesExport implements FromCollection, WithHeadings, WithStyles, WithCo
      */
     public function collection()
     {
-        return Report::select('folio', 'application_date', 'report_date', 'areas', 'systems', 'types_reports', 'report_user', 'description', 'evidence', 'status')->get();
-    }
-
+        return Report::join('types_reports', 'reports.types_reports', '=', 'types_reports.id')
+        ->join('areas', 'reports.areas', '=', 'areas.id')
+        ->join('systems', 'reports.systems', '=', 'systems.id')
+        ->select(
+            'reports.folio',
+            'reports.application_date',
+            'reports.report_date',
+            'areas.areas_name as area_name',
+            'systems.systems_name as system_name',
+            'types_reports.name_types_reports as type_report_name',
+            'reports.report_user',
+            'reports.description',
+            'reports.evidence',
+            'reports.status'
+        )->get();
+        }
     /**
      * Encabezados de las columnas
      */
